@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.data;
+package pl.mini.pw.zanieczyszczenie.data.dataclasses;
 
 import java.time.LocalDateTime;
 import java.util.List;

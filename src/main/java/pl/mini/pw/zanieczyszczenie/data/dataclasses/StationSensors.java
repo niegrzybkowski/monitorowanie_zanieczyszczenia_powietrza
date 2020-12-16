@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.data;
+package pl.mini.pw.zanieczyszczenie.data.dataclasses;
 
 public class StationSensors extends DataClass {
     /*
