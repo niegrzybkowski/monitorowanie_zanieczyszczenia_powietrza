@@ -7,6 +7,18 @@
     <groupId>ZPOiF_DGK</groupId>
     <artifactId>monitorowanie_zanieczyszczenia_powietrza</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20201115</version>
+        </dependency>
+    </dependencies>
 
-    
+
 </project>
