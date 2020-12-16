@@ -11,9 +11,12 @@ public class Readings extends DataClass {
     private String key; //TODO: zmienić na enum
     private List<Observation> observations;
 
-
     public static class Observation {
         private LocalDateTime time;
         private double value;
+        public Observation(LocalDateTime time, double value) {
+            this.time = time;
+            this.value = value;
+        }
     }
 }
