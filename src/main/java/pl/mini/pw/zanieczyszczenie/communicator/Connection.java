@@ -49,6 +49,7 @@ public class Connection {
         while (scanner.hasNext()) {
             input.append(scanner.nextLine());
         }
+        scanner.close();
 
         return input.toString();
     }
