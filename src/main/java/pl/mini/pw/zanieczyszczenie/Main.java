@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszcenie;
+package pl.mini.pw.zanieczyszczenie;
 
 import org.json.*;
 
