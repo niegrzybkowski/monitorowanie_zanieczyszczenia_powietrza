@@ -3,12 +3,11 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import pl.mini.pw.zanieczyszczenie.data.commons.Station;
-import pl.mini.pw.zanieczyszczenie.data.dataclasses.Readings;
+import pl.mini.pw.zanieczyszczenie.data.commons.*;
+import pl.mini.pw.zanieczyszczenie.data.dataclasses.*;
 
 
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -60,8 +59,8 @@ public class Parser {
     /*
     getData
      */
-    private String readReadings(int id) {
-        String getDataURL_tail = "data/getData/" + id;
+    private String readReadings(int sensorId) {
+        String getDataURL_tail = "data/getData/" + sensorId;
         URLstring = URLstring + getDataURL_tail;
         Connection connection = new Connection(URLstring);
         return connection.getData();
@@ -86,6 +85,32 @@ public class Parser {
         return observations;
     } // trzeba poprawic nie zapisuje key
 
+    /*
+    sensors
+     */
+    private String readStationSensors(int stationId) {
+        String sensors_tail = "station/sensors/" + stationId;
+        URLstring = URLstring + sensors_tail;
+        Connection connection = new Connection(URLstring);
+        return connection.getData();
+    }
+    private List<StationSensors> parseStationSensors(String data) {
+        List<StationSensors> sensors = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i=0; i<jsonArray.length(); i++) {
+            JSONObject current = jsonArray.getJSONObject(i);
+            JSONObject current_param = new JSONObject(current.get("param").toString());
+            StationSensors sensor = new StationSensors();
+            sensor.setSensorID(current.getInt("id"));
+            sensor.setStationID(current.getInt("stationId"));
+            String key = current_param.getString("paramCode");
+            key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
+            sensor.setKey(PollutionType.valueOf(key));
+            sensors.add(sensor);
+        }
+        return sensors;
+    }
 
     public static void main(String[] args) {
 
