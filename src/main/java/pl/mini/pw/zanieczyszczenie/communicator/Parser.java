@@ -9,6 +9,7 @@ import pl.mini.pw.zanieczyszczenie.data.dataclasses.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Parser {
     /*
     FindAll
      */
-    private String readFindAll() {
+    public String readFindAll() {
         String findAllURL_tail = "station/findAll";
         URLstring = URLstring + findAllURL_tail;
         Connection connection = new Connection(URLstring);
@@ -59,7 +60,7 @@ public class Parser {
     /*
     getData
      */
-    private String readReadings(int sensorId) {
+    public String readReadings(int sensorId) {
         String getDataURL_tail = "data/getData/" + sensorId;
         URLstring = URLstring + getDataURL_tail;
         Connection connection = new Connection(URLstring);
@@ -88,13 +89,13 @@ public class Parser {
     /*
     sensors
      */
-    private String readStationSensors(int stationId) {
+    public String readStationSensors(int stationId) {
         String sensors_tail = "station/sensors/" + stationId;
         URLstring = URLstring + sensors_tail;
         Connection connection = new Connection(URLstring);
         return connection.getData();
     }
-    private List<StationSensors> parseStationSensors(String data) {
+    public List<StationSensors> parseStationSensors(String data) {
         List<StationSensors> sensors = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(data);
 
@@ -110,6 +111,58 @@ public class Parser {
             sensors.add(sensor);
         }
         return sensors;
+    }
+
+    /*
+    getIndex
+     */
+    public String readGetIndex(int stationId) {
+        String index_tail = "aqindex/getIndex/" + stationId;
+        URLstring = URLstring + index_tail;
+        Connection connection = new Connection(URLstring);
+        return connection.getData();
+    }
+    public List<IndexData> parseGetIndex(String data) {
+        List<IndexData> indexes = new ArrayList<>();
+        JSONObject jsonObject = new JSONObject(data);
+
+        String[] firstPart = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
+        String[] secondPart = {"SourceDataDate", "CalcDate", "IndexLevel"};
+        PollutionType[] firstPartAsEnum = {PollutionType.STANDARD, PollutionType.SO2, PollutionType.NO2,
+                PollutionType.CO, PollutionType.PM10, PollutionType.PM25, PollutionType.O3, PollutionType.C6H6};
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        for (int i=0; i<firstPart.length; i++) {
+            PollutionType key = firstPartAsEnum[i];
+            LocalDateTime[] localDateTimes = new LocalDateTime[2];
+            for (int j=0; j<2; j++) {
+                String dateString = jsonObject.get(firstPart[i] + secondPart[j]).toString();
+                try { // api czasami pokazuje date inaczej
+                    long epochDate = Long.parseLong(dateString);
+                    localDateTimes[j] = LocalDateTime.ofEpochSecond(epochDate/1000, 0,
+                            ZoneId.of("Europe/Warsaw").getRules().getOffset(LocalDateTime.now()));
+                } catch (NumberFormatException e) {
+                    if (dateString.equals(JSONObject.NULL.toString())) {
+                        localDateTimes[j] = null;
+                    } else {
+                        localDateTimes[j] = LocalDateTime.parse(dateString, formatter);
+                    }
+                }
+            }
+            Object indexLevel;
+            if (jsonObject.get(firstPart[i] + "IndexLevel")==JSONObject.NULL) { // w przypadku braku indeksu
+                indexLevel = -1;
+            } else {
+                JSONObject indexLevelInfo = jsonObject.getJSONObject(firstPart[i] + "IndexLevel");
+                indexLevel = indexLevelInfo.get("id");
+            }
+
+            indexes.add(new IndexData(localDateTimes[0], localDateTimes[1],
+                    new IndexData.IndexLevel((int) indexLevel), key));
+        }
+
+        return indexes;
     }
 
     public static void main(String[] args) {
