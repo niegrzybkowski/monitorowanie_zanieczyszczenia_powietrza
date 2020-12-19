@@ -27,7 +27,7 @@ public class Parser {
         Connection connection = new Connection(URLstring);
         return connection.getData();
     }
-    public List<Station> parseFindAll(String data) {
+    public FindAll parseFindAll(String data) {
         List<Station> stations = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(data);
@@ -53,7 +53,7 @@ public class Parser {
                     (String) addressStreet
             ));
         }
-        return stations;
+        return new FindAll(stations);
     }
 
 
@@ -67,7 +67,6 @@ public class Parser {
         return connection.getData();
     }
     public Readings parseReadings(String data) {
-        Readings readings = new Readings();
         List<Readings.Observation> observations = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -84,12 +83,10 @@ public class Parser {
             }
             observations.add(new Readings.Observation(date, ((BigDecimal) value).doubleValue()));
         }
-        readings.setObservations(observations);
         String key = jsonObject.getString("key");
         key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
-        readings.setKey(PollutionType.valueOf(key));
-        return readings;
-    } // trzeba poprawic nie zapisuje key
+        return new Readings(PollutionType.valueOf(key),observations);
+    }
 
     /*
     sensors
@@ -100,22 +97,23 @@ public class Parser {
         Connection connection = new Connection(URLstring);
         return connection.getData();
     }
-    public List<StationSensors> parseStationSensors(String data) {
-        List<StationSensors> sensors = new ArrayList<>();
+    public StationSensors parseStationSensors(String data) {
+        List<StationSensors.Sensor> sensors = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(data);
 
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject current = jsonArray.getJSONObject(i);
             JSONObject current_param = new JSONObject(current.get("param").toString());
-            StationSensors sensor = new StationSensors();
-            sensor.setSensorID(current.getInt("id"));
-            sensor.setStationID(current.getInt("stationId"));
+
             String key = current_param.getString("paramCode");
             key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
-            sensor.setKey(PollutionType.valueOf(key));
+            StationSensors.Sensor sensor = new StationSensors.Sensor(
+                    current.getInt("stationId"),
+                    current.getInt("id"),
+                    PollutionType.valueOf(key));
             sensors.add(sensor);
         }
-        return sensors;
+        return new StationSensors(sensors);
     }
 
     /*
@@ -127,7 +125,7 @@ public class Parser {
         Connection connection = new Connection(URLstring);
         return connection.getData();
     }
-    public List<IndexData> parseGetIndex(String data) {
+    public Index parseGetIndex(String data) {
         List<IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
@@ -167,10 +165,14 @@ public class Parser {
                     new IndexData.IndexLevel((int) indexLevel), key));
         }
 
-        return indexes;
+        return new Index(indexes);
     }
 
     public static void main(String[] args) {
-
+        Parser parser = new Parser();
+        String data = parser.readGetIndex(52);
+        System.out.println(data);
+        Index index = parser.parseGetIndex(data);
+        System.out.println(index);
     }
 }

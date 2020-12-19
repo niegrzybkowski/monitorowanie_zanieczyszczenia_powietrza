@@ -11,4 +11,15 @@ public class Index extends DataClass {
         pjp-api/rest/aqindex/getIndex/{stationId}
      */
     private List<IndexData> indexes;
+
+    public Index(List<IndexData> indexes) {
+        this.indexes = indexes;
+    }
+
+    @Override
+    public String toString() {
+        return "Index{" +
+                "indexes=" + indexes +
+                '}';
+    }
 }
