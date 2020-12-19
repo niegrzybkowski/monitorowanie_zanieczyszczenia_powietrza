@@ -23,8 +23,7 @@ public class Parser {
      */
     public String readFindAll() {
         String findAllURL_tail = "station/findAll";
-        URLstring = URLstring + findAllURL_tail;
-        Connection connection = new Connection(URLstring);
+        Connection connection = new Connection(URLstring + findAllURL_tail);
         return connection.getData();
     }
     public FindAll parseFindAll(String data) {
@@ -62,8 +61,7 @@ public class Parser {
      */
     public String readReadings(int sensorId) {
         String getDataURL_tail = "data/getData/" + sensorId;
-        URLstring = URLstring + getDataURL_tail;
-        Connection connection = new Connection(URLstring);
+        Connection connection = new Connection(URLstring + getDataURL_tail);
         return connection.getData();
     }
     public Readings parseReadings(String data) {
@@ -93,8 +91,7 @@ public class Parser {
      */
     public String readStationSensors(int stationId) {
         String sensors_tail = "station/sensors/" + stationId;
-        URLstring = URLstring + sensors_tail;
-        Connection connection = new Connection(URLstring);
+        Connection connection = new Connection(URLstring + sensors_tail);
         return connection.getData();
     }
     public StationSensors parseStationSensors(String data) {
@@ -121,8 +118,7 @@ public class Parser {
      */
     public String readGetIndex(int stationId) {
         String index_tail = "aqindex/getIndex/" + stationId;
-        URLstring = URLstring + index_tail;
-        Connection connection = new Connection(URLstring);
+        Connection connection = new Connection(URLstring + index_tail);
         return connection.getData();
     }
     public Index parseGetIndex(String data) {
@@ -170,7 +166,7 @@ public class Parser {
 
     public static void main(String[] args) {
         Parser parser = new Parser();
-        String data = parser.readGetIndex(52);
+        String data = parser.readGetIndex(14);
         System.out.println(data);
         Index index = parser.parseGetIndex(data);
         System.out.println(index);
