@@ -13,12 +13,9 @@ public class Readings extends DataClass {
     private PollutionType key; //TODO: zmienić na enum
     private List<Observation> observations;
 
-    public PollutionType getKey() {
-        return key;
-    }
-
-    public void setKey(PollutionType key) {
+    public Readings(PollutionType key, List<Observation> observations) {
         this.key = key;
+        this.observations = observations;
     }
 
     @Override
@@ -27,14 +24,6 @@ public class Readings extends DataClass {
                 "key=" + key +
                 ", observations=" + observations +
                 '}';
-    }
-
-    public List<Observation> getObservations() {
-        return observations;
-    }
-
-    public void setObservations(List<Observation> observations) {
-        this.observations = observations;
     }
 
     public static class Observation {

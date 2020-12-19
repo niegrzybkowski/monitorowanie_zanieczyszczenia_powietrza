@@ -2,45 +2,45 @@ package pl.mini.pw.zanieczyszczenie.data.dataclasses;
 
 import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
 
+import java.util.List;
+
 public class StationSensors extends DataClass {
     /*
         Stanowiska pomiarowe:
         pjp-api/rest/station/sensors/{stationId}
      */
-    private int stationID;
-    private int sensorID;
-    private PollutionType key;
 
-    public int getStationID() {
-        return stationID;
+    private List<Sensor> stationSensors;
+
+    public StationSensors(List<Sensor> stationSensors) {
+        this.stationSensors = stationSensors;
     }
 
-    public void setStationID(int stationID) {
-        this.stationID = stationID;
-    }
+    public static class Sensor {
+        private int stationID;
+        private int sensorID;
+        private PollutionType key;
 
-    public int getSensorID() {
-        return sensorID;
-    }
+        public Sensor(int stationID, int sensorID, PollutionType key) {
+            this.stationID = stationID;
+            this.sensorID = sensorID;
+            this.key = key;
+        }
 
-    public void setSensorID(int sensorID) {
-        this.sensorID = sensorID;
-    }
-
-    public PollutionType getKey() {
-        return key;
-    }
-
-    public void setKey(PollutionType key) {
-        this.key = key;
+        @Override
+        public String toString() {
+            return "Sensor{" +
+                    "stationID=" + stationID +
+                    ", sensorID=" + sensorID +
+                    ", key=" + key +
+                    '}';
+        }
     }
 
     @Override
     public String toString() {
         return "StationSensors{" +
-                "stationID=" + stationID +
-                ", sensorID=" + sensorID +
-                ", key=" + key +
+                "stationSensors=" + stationSensors +
                 '}';
     }
 }

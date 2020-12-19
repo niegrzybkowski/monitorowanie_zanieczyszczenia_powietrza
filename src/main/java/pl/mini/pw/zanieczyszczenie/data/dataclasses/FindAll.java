@@ -10,4 +10,8 @@ public class FindAll extends DataClass {
         pjp-api/rest/station/findAll
      */
     private List<Station> container;
+
+    public FindAll(List<Station> container) {
+        this.container = container;
+    }
 }
