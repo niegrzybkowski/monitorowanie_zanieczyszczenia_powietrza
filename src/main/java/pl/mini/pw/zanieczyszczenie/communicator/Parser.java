@@ -66,7 +66,8 @@ public class Parser {
         Connection connection = new Connection(URLstring);
         return connection.getData();
     }
-    public List<Readings.Observation> parseReadings(String data) {
+    public Readings parseReadings(String data) {
+        Readings readings = new Readings();
         List<Readings.Observation> observations = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -83,7 +84,11 @@ public class Parser {
             }
             observations.add(new Readings.Observation(date, ((BigDecimal) value).doubleValue()));
         }
-        return observations;
+        readings.setObservations(observations);
+        String key = jsonObject.getString("key");
+        key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
+        readings.setKey(PollutionType.valueOf(key));
+        return readings;
     } // trzeba poprawic nie zapisuje key
 
     /*
