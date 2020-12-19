@@ -10,7 +10,7 @@ public class Readings extends DataClass {
         Dane pomiarowe:
         pjp-api/rest/data/getData/{sensorId}
      */
-    private PollutionType key; //TODO: zmienić na enum
+    private PollutionType key;
     private List<Observation> observations;
 
     public PollutionType getKey() {
