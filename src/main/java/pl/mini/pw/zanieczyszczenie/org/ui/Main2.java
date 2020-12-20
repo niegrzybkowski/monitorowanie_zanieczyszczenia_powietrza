@@ -12,9 +12,9 @@ public class Main2 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("app.fxml")));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_panel.fxml")));
+        primaryStage.setTitle("Monitorowanie zanieczyszczenia powietrza");
+        primaryStage.setScene(new Scene(root, 640, 405));
         primaryStage.show();
     }
 
