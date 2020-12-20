@@ -110,5 +110,43 @@ public class FindAll extends APIPage {
         public String getAddressStreet() {
             return addressStreet;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Station station = (Station) o;
+
+            if (id != station.id) return false;
+            if (Double.compare(station.geographicLat, geographicLat) != 0) return false;
+            if (Double.compare(station.geographicLon, geographicLon) != 0) return false;
+            if (cityID != station.cityID) return false;
+            if (!stationName.equals(station.stationName)) return false;
+            if (!cityName.equals(station.cityName)) return false;
+            if (!communeName.equals(station.communeName)) return false;
+            if (!districtName.equals(station.districtName)) return false;
+            if (!provinceName.equals(station.provinceName)) return false;
+            return addressStreet != null ? addressStreet.equals(station.addressStreet) : station.addressStreet == null;
+        }
+
+        @Override
+        public int hashCode() {
+            int result;
+            long temp;
+            result = id;
+            result = 31 * result + stationName.hashCode();
+            temp = Double.doubleToLongBits(geographicLat);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            temp = Double.doubleToLongBits(geographicLon);
+            result = 31 * result + (int) (temp ^ (temp >>> 32));
+            result = 31 * result + cityID;
+            result = 31 * result + cityName.hashCode();
+            result = 31 * result + communeName.hashCode();
+            result = 31 * result + districtName.hashCode();
+            result = 31 * result + provinceName.hashCode();
+            result = 31 * result + (addressStreet != null ? addressStreet.hashCode() : 0);
+            return result;
+        }
     }
 }
