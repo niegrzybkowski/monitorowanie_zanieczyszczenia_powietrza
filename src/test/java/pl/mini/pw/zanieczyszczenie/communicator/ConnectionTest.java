@@ -22,6 +22,6 @@ public class ConnectionTest {
 
     @Test
     public void testContents() {
-        assertTrue(data.contains("\"stationId\""));
+        assertTrue(data.contains("\"stationId\":156"));
     }
 }
