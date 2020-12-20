@@ -135,6 +135,36 @@
             <Text layoutX="607.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <ImageView fx:id="image1" fitHeight="420.0" fitWidth="420.0" layoutX="5.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="stan_powietrza" alignment="CENTER" editable="false" layoutX="510.0" layoutY="70.0" prefHeight="3.0" prefWidth="94.0" />
+            <TextField fx:id="pm25" alignment="CENTER" editable="false" layoutX="462.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="pm10" alignment="CENTER" editable="false" layoutX="532.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="no2" alignment="CENTER" editable="false" layoutX="607.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="co" alignment="CENTER" editable="false" layoutX="463.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="c6h6" alignment="CENTER" editable="false" layoutX="532.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="so2" alignment="CENTER" editable="false" layoutX="608.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
       </children>
     </AnchorPane>
   </children>
