@@ -27,7 +27,7 @@ public class Parser {
         return connection.getData();
     }
     public FindAll parseFindAll(String data) {
-        List<Station> stations = new ArrayList<>();
+        List<FindAll.Station> stations = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(data);
         for (int i=0; i<jsonArray.length(); i++) {
@@ -39,7 +39,7 @@ public class Parser {
             if (addressStreet== JSONObject.NULL) {
                 addressStreet = null;
             }
-            stations.add(new Station(
+            stations.add(new FindAll.Station(
                     current.getInt("id"),
                     current.getString("stationName"),
                     current.getDouble("gegrLat"),
