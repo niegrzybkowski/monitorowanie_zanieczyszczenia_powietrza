@@ -20,6 +20,11 @@ public class ConnectionTest {
     }
 
     @Test
+    public void findAllNotNull() {
+        assertNotNull(findAllResponse);
+    }
+
+    @Test
     public void sensorsNotNull() {
         assertNotNull(stationSensorsResponse);
     }
