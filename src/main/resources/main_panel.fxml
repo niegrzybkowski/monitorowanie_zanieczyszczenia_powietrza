@@ -43,15 +43,15 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="440.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="440.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -100,7 +100,6 @@
           </font>
         </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fa8ff" height="452.0" layoutX="429.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="254.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="453.0" stroke="BLACK" strokeType="INSIDE" width="429.0" />
             <Separator layoutX="432.0" layoutY="49.0" prefHeight="2.0" prefWidth="248.0" />
             <Button layoutX="619.0" layoutY="8.0" minWidth="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" text="OK">
                <font>
@@ -110,7 +109,6 @@
                <font>
                   <Font size="12.0" />
                </font></Button>
-            <ImageView fitHeight="410.0" fitWidth="423.0" layoutX="7.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
             <LineChart layoutX="439.0" layoutY="250.0" prefHeight="196.0" prefWidth="235.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
@@ -129,13 +127,74 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="454.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
             <Text layoutX="516.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stan Powietrza" />
-            <TextFlow layoutX="489.0" layoutY="74.0" prefHeight="26.0" prefWidth="131.0" />
             <Text layoutX="462.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="461.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C6H6" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
+            <ImageView fx:id="image1" fitHeight="420.0" fitWidth="420.0" layoutX="5.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="stan_powietrza" alignment="CENTER" editable="false" layoutX="510.0" layoutY="70.0" prefHeight="3.0" prefWidth="94.0" />
+            <TextField fx:id="pm25" alignment="CENTER" editable="false" layoutX="462.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="pm10" alignment="CENTER" editable="false" layoutX="532.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="no2" alignment="CENTER" editable="false" layoutX="607.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="co" alignment="CENTER" editable="false" layoutX="463.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="c6h6" alignment="CENTER" editable="false" layoutX="532.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="so2" alignment="CENTER" editable="false" layoutX="608.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka1" alignment="CENTER" editable="false" layoutX="462.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka2" alignment="CENTER" editable="false" layoutX="532.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka3" alignment="CENTER" editable="false" layoutX="607.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka4" alignment="CENTER" editable="false" layoutX="463.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka5" alignment="CENTER" editable="false" layoutX="532.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka6" alignment="CENTER" editable="false" layoutX="608.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
       </children>
     </AnchorPane>
   </children>
