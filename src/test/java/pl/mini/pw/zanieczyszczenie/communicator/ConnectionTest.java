@@ -48,4 +48,14 @@ public class ConnectionTest {
     public void readingsStartWithKey() {
         assertTrue(readingsResponse.startsWith("{\"key\":\"PM10\",\"values\":["));
     }
+
+    @Test
+    public void indexNotNull() {
+        assertNotNull(indexResponse);
+    }
+
+    @Test
+    public void indexStartsWithID() {
+        assertTrue(indexResponse.startsWith("{\"id\":52,"));
+    }
 }
