@@ -14,4 +14,8 @@ public class FindAll extends DataClass {
     public FindAll(List<Station> container) {
         this.container = container;
     }
+
+    public List<Station> getContainer() {
+        return container;
+    }
 }
