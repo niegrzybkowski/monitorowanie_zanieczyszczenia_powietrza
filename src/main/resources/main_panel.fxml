@@ -119,13 +119,13 @@
             </LineChart>
             <Separator layoutX="430.0" layoutY="249.0" prefHeight="2.0" prefWidth="248.0" />
             <ProgressBar layoutX="436.0" layoutY="14.0" prefHeight="20.0" prefWidth="94.0" progress="0.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="453.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="523.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="452.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="523.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="454.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
+            <Rectangle fx:id="prostokat1" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="453.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat2" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="523.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat4" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="452.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat5" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="523.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat6" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokat0" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="454.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
             <Text layoutX="516.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stan Powietrza" />
             <Text layoutX="462.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
