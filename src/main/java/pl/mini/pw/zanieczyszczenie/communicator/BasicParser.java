@@ -17,7 +17,9 @@ import java.util.List;
 
 public class BasicParser implements Parser{
     private String URLstring = "http://api.gios.gov.pl/pjp-api/rest/";
+    //TODO: dodać przełączanie z trybu URL na pliki lokalne
 
+    //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
     /*
     FindAll
      */
@@ -136,6 +138,7 @@ public class BasicParser implements Parser{
         return connection.getData();
     }
     public Index parseGetIndex(String data) {
+        // TODO: PollutionType będzie wyciągnięty, trzeba będzie tu poprawić
         List<Index.IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
