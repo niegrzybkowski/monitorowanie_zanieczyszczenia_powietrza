@@ -25,6 +25,18 @@ public class Controller {
     private TextField c6h6;
     @FXML
     private TextField so2;
+    @FXML
+    private TextField jednostka1;
+    @FXML
+    private TextField jednostka2;
+    @FXML
+    private TextField jednostka3;
+    @FXML
+    private TextField jednostka4;
+    @FXML
+    private TextField jednostka5;
+    @FXML
+    private TextField jednostka6;
 
 
     public void initialize() {
@@ -44,7 +56,18 @@ public class Controller {
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
             t.setText("55");
         }
-
+        var list_jednostek = new ArrayList<TextField>();
+        list_jednostek.add(jednostka1);
+        list_jednostek.add(jednostka2);
+        list_jednostek.add(jednostka3);
+        list_jednostek.add(jednostka4);
+        list_jednostek.add(jednostka5);
+        list_jednostek.add(jednostka6);
+        for(TextField t : list_jednostek){
+            t.setMouseTransparent(true);
+            t.setStyle("-fx-background-color: rgba(53,89,119,0);");
+            t.setText("\u00B5"+"g/m"+"\u00B3");
+        }
 
     }
 

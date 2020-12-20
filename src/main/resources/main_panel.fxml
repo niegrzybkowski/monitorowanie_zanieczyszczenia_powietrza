@@ -165,6 +165,36 @@
                   <Font size="14.0" />
                </font>
             </TextField>
+            <TextField fx:id="jednostka1" alignment="CENTER" editable="false" layoutX="462.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka2" alignment="CENTER" editable="false" layoutX="532.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka3" alignment="CENTER" editable="false" layoutX="607.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka4" alignment="CENTER" editable="false" layoutX="463.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka5" alignment="CENTER" editable="false" layoutX="532.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="jednostka6" alignment="CENTER" editable="false" layoutX="608.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
       </children>
     </AnchorPane>
   </children>
