@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.data.dataclasses;
+package pl.mini.pw.zanieczyszczenie.data.APIPage;
 
 import java.util.Map;
 

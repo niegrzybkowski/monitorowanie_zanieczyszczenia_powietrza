@@ -1,7 +1,6 @@
-package pl.mini.pw.zanieczyszczenie.data.dataclasses;
+package pl.mini.pw.zanieczyszczenie.data.APIPage;
 
 import pl.mini.pw.zanieczyszczenie.data.commons.IndexData;
-import pl.mini.pw.zanieczyszczenie.data.commons.Station;
 
 import java.util.List;
 
