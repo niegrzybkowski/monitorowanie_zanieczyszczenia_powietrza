@@ -7,7 +7,7 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -30,10 +30,10 @@ public class ParserTestFindAll {
 
     @BeforeClass
     public static void beforeClass() throws IOException {
-        String data = new String(ParserTestFindAll
+        String data = new String(Objects.requireNonNull(ParserTestFindAll
                 .class
                 .getClassLoader()
-                .getResourceAsStream("findAll_snap.json")
+                .getResourceAsStream("findAll.json"))
                 .readAllBytes()
         );
         Parser p = new Parser();
