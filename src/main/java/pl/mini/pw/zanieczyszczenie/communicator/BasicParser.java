@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BasicParser {
+public class BasicParser implements Parser{
     private String URLstring = "http://api.gios.gov.pl/pjp-api/rest/";
 
     /*
@@ -57,7 +57,10 @@ public class BasicParser {
         }
         return new FindAll(stations);
     }
-
+    @Override
+    public FindAll getFindAll() {
+        return parseFindAll(readFindAll());
+    }
 
     /*
     getData
@@ -88,6 +91,10 @@ public class BasicParser {
         key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
         return new Readings(PollutionType.valueOf(key),observations);
     }
+    @Override
+    public Readings getReadings(int sensorID){
+        return parseReadings(readReadings(sensorID));
+    }
 
     /*
     sensors
@@ -114,6 +121,10 @@ public class BasicParser {
             sensors.add(sensor);
         }
         return new StationSensors(sensors);
+    }
+    @Override
+    public StationSensors getStationSensors(int stationID) {
+        return parseStationSensors(readStationSensors(stationID));
     }
 
     /*
@@ -165,6 +176,15 @@ public class BasicParser {
         }
 
         return new Index(indexes);
+    }
+    @Override
+    public Index getIndex(int stationID) {
+        return parseGetIndex(readGetIndex(stationID));
+    }
+
+    @Override
+    public Snapshot getSnapshot() {
+        throw new RuntimeException("Unimplemented method: getSnapshot");
     }
 
     public static void main(String[] args) {
