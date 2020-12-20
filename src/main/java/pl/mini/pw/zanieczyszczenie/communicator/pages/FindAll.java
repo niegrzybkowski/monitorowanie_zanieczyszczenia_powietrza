@@ -47,16 +47,16 @@ public class FindAll extends APIPage {
     public static class Station {
         // TODO: remove unnecessary fields
 
-        public final int id;
-        public final String stationName;
-        public final double geographicLat;
-        public final double geographicLon;
-        public final int cityID;
-        public final String cityName;
-        public final String communeName;
-        public final String districtName;
-        public final String provinceName;
-        public final String addressStreet;
+        private final int id;
+        private final String stationName;
+        private final double geographicLat;
+        private final double geographicLon;
+        private final int cityID;
+        private final String cityName;
+        private final String communeName;
+        private final String districtName;
+        private final String provinceName;
+        private final String addressStreet;
 
         public Station(int id, String stationName, double geographicLat, double geographicLon, int cityID, String cityName, String communeName, String districtName, String provinceName, String addressStreet) {
             this.id = id;
@@ -69,6 +69,46 @@ public class FindAll extends APIPage {
             this.districtName = districtName;
             this.provinceName = provinceName;
             this.addressStreet = addressStreet;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getStationName() {
+            return stationName;
+        }
+
+        public double getGeographicLat() {
+            return geographicLat;
+        }
+
+        public double getGeographicLon() {
+            return geographicLon;
+        }
+
+        public int getCityID() {
+            return cityID;
+        }
+
+        public String getCityName() {
+            return cityName;
+        }
+
+        public String getCommuneName() {
+            return communeName;
+        }
+
+        public String getDistrictName() {
+            return districtName;
+        }
+
+        public String getProvinceName() {
+            return provinceName;
+        }
+
+        public String getAddressStreet() {
+            return addressStreet;
         }
     }
 }
