@@ -25,6 +25,11 @@ public class ConnectionTest {
     }
 
     @Test
+    public void findAllContainsWarsaw() {
+        assertTrue(findAllResponse.contains("\"id\":550,\"stationName\":\"Warszawa-Ursynów\""));
+    }
+
+    @Test
     public void sensorsNotNull() {
         assertNotNull(stationSensorsResponse);
     }
