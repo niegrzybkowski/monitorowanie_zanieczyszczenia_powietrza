@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,21 @@ public class Controller {
     private TextField jednostka5;
     @FXML
     private TextField jednostka6;
+    @FXML
+    private Rectangle prostokat0;
+    @FXML
+    private Rectangle prostokat1;
+    @FXML
+    private Rectangle prostokat2;
+    @FXML
+    private Rectangle prostokat3;
+    @FXML
+    private Rectangle prostokat4;
+    @FXML
+    private Rectangle prostokat5;
+    @FXML
+    private Rectangle prostokat6;
+
 
 
     public void initialize() {
@@ -68,7 +85,18 @@ public class Controller {
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
             t.setText("\u00B5"+"g/m"+"\u00B3");
         }
+        var list_prostokaty = new ArrayList<Rectangle>();
+        list_prostokaty.add(prostokat0);
+        list_prostokaty.add(prostokat1);
+        list_prostokaty.add(prostokat2);
+        list_prostokaty.add(prostokat3);
+        list_prostokaty.add(prostokat4);
+        list_prostokaty.add(prostokat5);
+        list_prostokaty.add(prostokat6);
 
+        for(Rectangle t : list_prostokaty){
+            t.setFill(Color.web("#1aff1a"));
+        }
     }
 
 }
