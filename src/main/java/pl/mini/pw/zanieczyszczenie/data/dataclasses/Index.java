@@ -16,10 +16,33 @@ public class Index extends DataClass {
         this.indexes = indexes;
     }
 
+    public List<IndexData> getIndexes() {
+        return indexes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Index index = (Index) o;
+
+        return indexes.equals(index.indexes);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + indexes.hashCode();
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Index{" +
-                "indexes=" + indexes +
+                super.toString() + ", " +
+                indexes +
                 '}';
     }
 }
