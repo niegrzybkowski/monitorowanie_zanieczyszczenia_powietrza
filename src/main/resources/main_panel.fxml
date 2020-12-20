@@ -43,13 +43,13 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <VBox prefHeight="440.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
   <children>
@@ -127,7 +127,6 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="598.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="454.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
             <Text layoutX="516.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stan Powietrza" />
-            <TextFlow layoutX="489.0" layoutY="74.0" prefHeight="26.0" prefWidth="131.0" />
             <Text layoutX="462.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
@@ -135,6 +134,7 @@
             <Text layoutX="532.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C6H6" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <ImageView fx:id="image1" fitHeight="420.0" fitWidth="420.0" layoutX="5.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="stan_powietrza" alignment="CENTER" editable="false" layoutX="510.0" layoutY="70.0" prefHeight="3.0" prefWidth="94.0" />
       </children>
     </AnchorPane>
   </children>
