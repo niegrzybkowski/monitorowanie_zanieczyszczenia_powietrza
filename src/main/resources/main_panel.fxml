@@ -51,7 +51,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="440.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="440.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -100,7 +100,6 @@
           </font>
         </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fa8ff" height="452.0" layoutX="429.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="254.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="453.0" stroke="BLACK" strokeType="INSIDE" width="429.0" />
             <Separator layoutX="432.0" layoutY="49.0" prefHeight="2.0" prefWidth="248.0" />
             <Button layoutX="619.0" layoutY="8.0" minWidth="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" text="OK">
                <font>
@@ -135,7 +134,7 @@
             <Text layoutX="461.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C6H6" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
-            <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image1" fitHeight="420.0" fitWidth="420.0" layoutX="5.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
       </children>
     </AnchorPane>
   </children>
