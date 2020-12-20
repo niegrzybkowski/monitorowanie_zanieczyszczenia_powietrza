@@ -136,7 +136,7 @@ public class BasicParser implements Parser{
         return connection.getData();
     }
     public Index parseGetIndex(String data) {
-        List<IndexData> indexes = new ArrayList<>();
+        List<Index.IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
         String[] firstPart = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
@@ -171,8 +171,8 @@ public class BasicParser implements Parser{
                 indexLevel = indexLevelInfo.get("id");
             }
 
-            indexes.add(new IndexData(localDateTimes[0], localDateTimes[1],
-                    new IndexData.IndexLevel((int) indexLevel), key));
+            indexes.add(new Index.IndexData(localDateTimes[0], localDateTimes[1],
+                    new Index.IndexData.IndexLevel((int) indexLevel), key));
         }
 
         return new Index(indexes);
