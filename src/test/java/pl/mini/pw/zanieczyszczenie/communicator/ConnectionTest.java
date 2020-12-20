@@ -19,4 +19,9 @@ public class ConnectionTest {
     public void testConnection() {
         assertNotNull(data);
     }
+
+    @Test
+    public void testContents() {
+        assertTrue(data.contains("\"stationId\""));
+    }
 }
