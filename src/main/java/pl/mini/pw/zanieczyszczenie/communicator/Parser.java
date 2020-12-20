@@ -26,31 +26,34 @@ public class Parser {
         Connection connection = new Connection(URLstring + findAllURL_tail);
         return connection.getData();
     }
+    private FindAll.Station parseStationJSON(JSONObject current) {
+        JSONObject current_city = new JSONObject(current.get("city").toString());
+        JSONObject current_commune = new JSONObject(current_city.get("commune").toString());
+
+        Object addressStreet = current.get("addressStreet");
+        if (addressStreet== JSONObject.NULL) {
+            addressStreet = null;
+        }
+        return new FindAll.Station(
+                current.getInt("id"),
+                current.getString("stationName"),
+                current.getDouble("gegrLat"),
+                current.getDouble("gegrLon"),
+                current_city.getInt("id"),
+                current_city.get("name").toString(),
+                current_commune.get("communeName").toString(),
+                current_commune.get("districtName").toString(),
+                current_commune.get("provinceName").toString(),
+                (String) addressStreet
+        );
+    }
     public FindAll parseFindAll(String data) {
         List<FindAll.Station> stations = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(data);
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject current = jsonArray.getJSONObject(i);
-            JSONObject current_city = new JSONObject(current.get("city").toString());
-            JSONObject current_commune = new JSONObject(current_city.get("commune").toString());
-
-            Object addressStreet = current.get("addressStreet");
-            if (addressStreet== JSONObject.NULL) {
-                addressStreet = null;
-            }
-            stations.add(new FindAll.Station(
-                    current.getInt("id"),
-                    current.getString("stationName"),
-                    current.getDouble("gegrLat"),
-                    current.getDouble("gegrLon"),
-                    current_city.getInt("id"),
-                    current_city.get("name").toString(),
-                    current_commune.get("communeName").toString(),
-                    current_commune.get("districtName").toString(),
-                    current_commune.get("provinceName").toString(),
-                    (String) addressStreet
-            ));
+            stations.add(parseStationJSON(current));
         }
         return new FindAll(stations);
     }
