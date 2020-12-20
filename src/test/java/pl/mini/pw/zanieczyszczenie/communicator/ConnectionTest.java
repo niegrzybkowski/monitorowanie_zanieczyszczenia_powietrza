@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class ConnectionTest {
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         String URLstring = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/156";
         Connection connection = new Connection(URLstring);
         System.out.println(connection.getData());
