@@ -110,7 +110,6 @@
                <font>
                   <Font size="12.0" />
                </font></Button>
-            <ImageView fitHeight="410.0" fitWidth="423.0" layoutX="7.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
             <LineChart layoutX="439.0" layoutY="250.0" prefHeight="196.0" prefWidth="235.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
@@ -136,6 +135,7 @@
             <Text layoutX="461.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="532.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C6H6" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="607.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
+            <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true" />
       </children>
     </AnchorPane>
   </children>
