@@ -38,4 +38,14 @@ public class ConnectionTest {
     public void sensorsBasicContains() {
         assertTrue(stationSensorsResponse.contains("\"stationId\":156"));
     }
+
+    @Test
+    public void readingsNotNull() {
+        assertNotNull(readingsResponse);
+    }
+
+    @Test
+    public void readingsStartWithKey() {
+        assertTrue(readingsResponse.startsWith("{\"key\":\"PM10\",\"values\":["));
+    }
 }
