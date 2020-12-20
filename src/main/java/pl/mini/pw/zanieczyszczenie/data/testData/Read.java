@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Read {
+    // TODO: ogarnąć cokolwiek tu się dzieje, patrz test/BasicParserTestFindAll
     String root = System.getProperty("user.dir");
     String seperator = File.separator;
 

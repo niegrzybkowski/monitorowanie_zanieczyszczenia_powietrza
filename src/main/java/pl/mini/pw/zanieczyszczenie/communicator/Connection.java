@@ -34,7 +34,7 @@ public class Connection {
     }
 
     public String getData() {
-        HttpURLConnection connection = getConnection();
+        HttpURLConnection connection = getConnection(); // TODO: poprawić, connection jest nieużywane
 
         StringBuilder input = new StringBuilder();
         Scanner scanner = null;

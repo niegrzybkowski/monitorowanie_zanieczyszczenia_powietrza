@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Write {
     BasicParser basicParser = new BasicParser();
-
+    // TODO: ogarnąć cokolwiek tu się dzieje, patrz test/BasicParserTestFindAll
     String root = System.getProperty("user.dir");
     String seperator = File.separator;
     String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HH-00"));

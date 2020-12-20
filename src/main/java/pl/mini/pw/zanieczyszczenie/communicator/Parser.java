@@ -7,5 +7,5 @@ public interface Parser {
     StationSensors getStationSensors(int stationID);
     Readings getReadings(int sensorID);
     Index getIndex(int stationID);
-    Snapshot getSnapshot();
+    Snapshot getSnapshot(); // TODO: może wywalić?
 }
