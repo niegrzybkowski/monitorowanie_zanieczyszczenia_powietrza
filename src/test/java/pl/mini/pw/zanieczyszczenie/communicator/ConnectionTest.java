@@ -17,6 +17,6 @@ public class ConnectionTest {
 
     @Test
     public void testConnection() {
-
+        assertNotNull(data);
     }
 }
