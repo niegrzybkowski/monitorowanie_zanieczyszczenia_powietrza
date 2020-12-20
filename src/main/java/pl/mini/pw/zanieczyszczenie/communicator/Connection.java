@@ -53,10 +53,4 @@ public class Connection {
 
         return input.toString();
     }
-
-    public static void main(String[] args) {
-        String URLstring = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/156";
-        Connection connection = new Connection(URLstring);
-        System.out.println(connection.getData());
-    }
 }
