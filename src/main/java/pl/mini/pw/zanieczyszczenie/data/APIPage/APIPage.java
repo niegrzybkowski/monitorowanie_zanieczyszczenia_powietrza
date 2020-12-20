@@ -2,10 +2,10 @@ package pl.mini.pw.zanieczyszczenie.data.APIPage;
 
 import java.time.LocalDateTime;
 
-public abstract class DataClass {
+public abstract class APIPage {
     private LocalDateTime updated;
 
-    public DataClass() {
+    public APIPage() {
         this.updated = LocalDateTime.now();
     }
 
@@ -22,7 +22,7 @@ public abstract class DataClass {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DataClass dataClass = (DataClass) o;
+        APIPage dataClass = (APIPage) o;
 
         return updated.equals(dataClass.updated);
     }

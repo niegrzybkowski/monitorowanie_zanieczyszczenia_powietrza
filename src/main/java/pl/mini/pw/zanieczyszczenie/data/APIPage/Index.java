@@ -4,7 +4,7 @@ import pl.mini.pw.zanieczyszczenie.data.commons.IndexData;
 
 import java.util.List;
 
-public class Index extends DataClass {
+public class Index extends APIPage {
     /*
         Indeks jakości powietrza:
         pjp-api/rest/aqindex/getIndex/{stationId}

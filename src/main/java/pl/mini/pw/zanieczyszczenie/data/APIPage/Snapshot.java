@@ -2,7 +2,7 @@ package pl.mini.pw.zanieczyszczenie.data.APIPage;
 
 import java.util.Map;
 
-public class Snapshot extends DataClass {
+public class Snapshot extends APIPage {
     /*
       Class will contain everything that can be downloaded from the API for testing purposes
      */

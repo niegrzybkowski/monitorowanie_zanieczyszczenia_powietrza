@@ -4,7 +4,7 @@ import pl.mini.pw.zanieczyszczenie.data.commons.Station;
 
 import java.util.List;
 
-public class FindAll extends DataClass {
+public class FindAll extends APIPage {
     /*
         Stacje pomiarowe:
         pjp-api/rest/station/findAll

@@ -4,7 +4,7 @@ import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
 
 import java.util.List;
 
-public class StationSensors extends DataClass {
+public class StationSensors extends APIPage {
     /*
         Stanowiska pomiarowe:
         pjp-api/rest/station/sensors/{stationId}
