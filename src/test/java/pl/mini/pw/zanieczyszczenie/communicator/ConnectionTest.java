@@ -25,7 +25,7 @@ public class ConnectionTest {
     }
 
     @Test
-    public void testContents() {
+    public void sensorsBasicContains() {
         assertTrue(stationSensorsResponse.contains("\"stationId\":156"));
     }
 }
