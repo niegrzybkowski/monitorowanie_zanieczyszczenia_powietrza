@@ -26,7 +26,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>15.0.1</version> <!--TODO: zmienić na te liby których potrzebujemy -->
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>15.0.1</version>
         </dependency>
     </dependencies>
     <build>
