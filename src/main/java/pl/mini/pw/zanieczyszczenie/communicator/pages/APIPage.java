@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.communicator.APIPage;
+package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
-import pl.mini.pw.zanieczyszczenie.communicator.APIPage.*;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.*;
 
 public interface ParserInterface {
     FindAll getFindAll();

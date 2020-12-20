@@ -1,10 +1,10 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
 import org.junit.Test;
-import pl.mini.pw.zanieczyszczenie.communicator.APIPage.FindAll;
-import pl.mini.pw.zanieczyszczenie.communicator.APIPage.Index;
-import pl.mini.pw.zanieczyszczenie.communicator.APIPage.Readings;
-import pl.mini.pw.zanieczyszczenie.communicator.APIPage.StationSensors;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.Index;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 import pl.mini.pw.zanieczyszczenie.data.testData.Read;
 
 import static org.junit.Assert.*;
