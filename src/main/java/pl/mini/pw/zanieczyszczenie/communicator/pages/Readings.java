@@ -1,11 +1,11 @@
-package pl.mini.pw.zanieczyszczenie.data.dataclasses;
+package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
 import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Readings extends DataClass {
+public class Readings extends APIPage {
     /*
         Dane pomiarowe:
         pjp-api/rest/data/getData/{sensorId}

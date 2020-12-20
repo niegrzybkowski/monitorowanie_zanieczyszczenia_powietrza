@@ -1,6 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.data.testData;
 
-import pl.mini.pw.zanieczyszczenie.communicator.Parser;
+import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Write {
-    Parser parser = new Parser();
+    BasicParser basicParser = new BasicParser();
 
     String root = System.getProperty("user.dir");
     String seperator = File.separator;
@@ -34,7 +34,7 @@ public class Write {
         File file = new File(root+destination, filename);
         file.getParentFile().mkdirs();
 
-        String data = parser.readFindAll();
+        String data = basicParser.readFindAll();
 
         try {
             FileOutputStream outputStream = new FileOutputStream(root + destination + filename);
@@ -54,7 +54,7 @@ public class Write {
         File file = new File(root+thisDestination, filename);
         file.getParentFile().mkdirs();
 
-        String data = parser.readGetIndex(stationId);
+        String data = basicParser.readGetIndex(stationId);
 
         try {
             FileOutputStream outputStream = new FileOutputStream(root + thisDestination + filename);
@@ -75,7 +75,7 @@ public class Write {
         File file = new File(root + thisDestination, filename);
         file.getParentFile().mkdirs();
 
-        String data = parser.readReadings(sensorId);
+        String data = basicParser.readReadings(sensorId);
 
         try {
             FileOutputStream outputStream = new FileOutputStream(root + thisDestination + filename);
@@ -96,7 +96,7 @@ public class Write {
         File file = new File(root + thisDestination, filename);
         file.getParentFile().mkdirs();
 
-        String data = parser.readStationSensors(stationId);
+        String data = basicParser.readStationSensors(stationId);
 
         try {
             FileOutputStream outputStream = new FileOutputStream(root + thisDestination + filename);
