@@ -20,7 +20,7 @@ public class ConnectionTest {
     }
 
     @Test
-    public void testConnection() {
+    public void sensorsNotNull() {
         assertNotNull(stationSensorsResponse);
     }
 
