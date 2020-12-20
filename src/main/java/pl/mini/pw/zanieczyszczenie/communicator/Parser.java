@@ -4,7 +4,7 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import pl.mini.pw.zanieczyszczenie.data.commons.*;
-import pl.mini.pw.zanieczyszczenie.data.APIPage.*;
+import pl.mini.pw.zanieczyszczenie.communicator.APIPage.*;
 
 
 import java.math.BigDecimal;
