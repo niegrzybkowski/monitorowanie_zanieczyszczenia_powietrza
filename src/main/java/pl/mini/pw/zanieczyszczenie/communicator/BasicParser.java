@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Parser {
+public class BasicParser {
     private String URLstring = "http://api.gios.gov.pl/pjp-api/rest/";
 
     /*
@@ -168,10 +168,10 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        Parser parser = new Parser();
-        String data = parser.readGetIndex(14);
+        BasicParser basicParser = new BasicParser();
+        String data = basicParser.readGetIndex(14);
         System.out.println(data);
-        Index index = parser.parseGetIndex(data);
+        Index index = basicParser.parseGetIndex(data);
         System.out.println(index);
     }
 }

@@ -8,8 +8,8 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 import pl.mini.pw.zanieczyszczenie.data.testData.Read;
 
 import static org.junit.Assert.*;
-public class ParserTest {
-    Parser parser = new Parser();
+public class BasicParserTest {
+    BasicParser basicParser = new BasicParser();
     Read reader = new Read();
     String dateOfData = reader.getAvailableDates()[0];
 
@@ -17,7 +17,7 @@ public class ParserTest {
     public void parseFindAll() {
         String data = reader.readFindAll(dateOfData);
 
-        Object findAll = parser.parseFindAll(data);
+        Object findAll = basicParser.parseFindAll(data);
 
         assertTrue(findAll instanceof FindAll);
     }
@@ -26,7 +26,7 @@ public class ParserTest {
     public void parseReadings() {
         String data = reader.readReadings(dateOfData, 92);
 
-        Object readings = parser.parseReadings(data);
+        Object readings = basicParser.parseReadings(data);
 
         assertTrue(readings instanceof Readings);
     }
@@ -35,7 +35,7 @@ public class ParserTest {
     public void parseStationSensors() {
         String data = reader.readStationSensors(dateOfData, 52);
 
-        Object stationSensors = parser.parseStationSensors(data);
+        Object stationSensors = basicParser.parseStationSensors(data);
 
         assertTrue(stationSensors instanceof StationSensors);
     }
@@ -44,7 +44,7 @@ public class ParserTest {
     public void parseGetIndex() {
         String data = reader.readIndex(dateOfData, 52);
 
-        Object index = parser.parseGetIndex(data);
+        Object index = basicParser.parseGetIndex(data);
 
         assertTrue(index instanceof Index);
     }

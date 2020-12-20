@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
-public class ParserTestFindAll {
+public class BasicParserTestFindAll {
     static final FindAll.Station dzialoszyn = new FindAll.Station(
             14,
             "Działoszyn",
@@ -30,13 +30,13 @@ public class ParserTestFindAll {
 
     @BeforeClass
     public static void beforeClass() throws IOException {
-        String data = new String(Objects.requireNonNull(ParserTestFindAll
+        String data = new String(Objects.requireNonNull(BasicParserTestFindAll
                 .class
                 .getClassLoader()
                 .getResourceAsStream("findAll.json"))
                 .readAllBytes()
         );
-        Parser p = new Parser();
+        BasicParser p = new BasicParser();
         parserOutput = p.parseFindAll(data);
     }
 
