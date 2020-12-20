@@ -1,5 +1,5 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
-public interface DataSource {
+public interface AirQualityDataSource {
     String getData(String pathInAPI);
 }
