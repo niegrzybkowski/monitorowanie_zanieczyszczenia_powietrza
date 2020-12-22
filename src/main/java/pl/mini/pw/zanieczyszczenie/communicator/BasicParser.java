@@ -53,7 +53,9 @@ public class BasicParser implements Parser{
                 (String) addressStreet
         );
     }
-    public FindAll parseFindAll(String data) {
+    @Override
+    public FindAll getFindAll() {
+        String data = dataSource.apply("station/findAll");
         List<FindAll.Station> stations = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(data);
@@ -62,10 +64,6 @@ public class BasicParser implements Parser{
             stations.add(parseStationJSON(current));
         }
         return new FindAll(stations);
-    }
-    @Override
-    public FindAll getFindAll() {
-        return parseFindAll(dataSource.apply("station/findAll"));
     }
 
     /*
