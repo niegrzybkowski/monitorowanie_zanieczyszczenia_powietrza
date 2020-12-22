@@ -82,7 +82,7 @@ public class BasicParser implements Parser{
             String dateString = currentValue.get("date").toString();
             LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
-                value = BigDecimal.ZERO;
+                value = BigDecimal.ZERO; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
             }
             observations.add(new Readings.Observation(date, ((BigDecimal) value).doubleValue()));
         }
