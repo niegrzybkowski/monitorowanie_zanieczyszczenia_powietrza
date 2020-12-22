@@ -3,7 +3,6 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import pl.mini.pw.zanieczyszczenie.data.commons.*;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.*;
 
 
@@ -110,7 +109,7 @@ public class BasicParser implements Parser{
             StationSensors.Sensor sensor = new StationSensors.Sensor(
                     current.getInt("stationId"),
                     current.getInt("id"),
-                    PollutionType.valueOf(key));
+                    key);
             sensors.add(sensor);
         }
         return new StationSensors(sensors);

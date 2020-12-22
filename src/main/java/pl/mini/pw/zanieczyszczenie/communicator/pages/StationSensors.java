@@ -1,8 +1,7 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
-import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
-
 import java.util.List;
+import java.util.Objects;
 
 public class StationSensors extends APIPage {
     /*
@@ -16,12 +15,16 @@ public class StationSensors extends APIPage {
         this.stationSensors = stationSensors;
     }
 
+    public List<Sensor> getStationSensors() {
+        return stationSensors;
+    }
+
     public static class Sensor {
         private int stationID;
         private int sensorID;
-        private PollutionType key;
+        private String key;
 
-        public Sensor(int stationID, int sensorID, PollutionType key) {
+        public Sensor(int stationID, int sensorID, String key) {
             this.stationID = stationID;
             this.sensorID = sensorID;
             this.key = key;
@@ -35,7 +38,7 @@ public class StationSensors extends APIPage {
             return sensorID;
         }
 
-        public PollutionType getKey() {
+        public String getKey() {
             return key;
         }
 
@@ -48,7 +51,7 @@ public class StationSensors extends APIPage {
 
             if (stationID != sensor.stationID) return false;
             if (sensorID != sensor.sensorID) return false;
-            return key == sensor.key;
+            return key.equals(sensor.key);
         }
 
         @Override
@@ -69,10 +72,6 @@ public class StationSensors extends APIPage {
         }
     }
 
-    public List<Sensor> getStationSensors() {
-        return stationSensors;
-    }
-
     @Override
     public String toString() {
         return "StationSensors{" +
@@ -88,7 +87,7 @@ public class StationSensors extends APIPage {
 
         StationSensors sensors = (StationSensors) o;
 
-        return stationSensors != null ? stationSensors.equals(sensors.stationSensors) : sensors.stationSensors == null;
+        return Objects.equals(stationSensors, sensors.stationSensors);
     }
 
     @Override
