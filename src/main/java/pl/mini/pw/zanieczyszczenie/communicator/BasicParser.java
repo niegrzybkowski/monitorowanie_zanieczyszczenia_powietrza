@@ -19,6 +19,7 @@ import java.util.function.Function;
 public class BasicParser implements Parser{
     //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
     private Function<String, String> dataSource;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static String giosDataSource(String path) {
         String url = "http://api.gios.gov.pl/pjp-api/rest/";
@@ -72,7 +73,6 @@ public class BasicParser implements Parser{
     public Readings parseReadings(String data) {
         List<Readings.Observation> observations = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         JSONArray values = new JSONArray(jsonObject.get("values").toString());
 
@@ -134,7 +134,7 @@ public class BasicParser implements Parser{
         PollutionType[] firstPartAsEnum = {PollutionType.STANDARD, PollutionType.SO2, PollutionType.NO2,
                 PollutionType.CO, PollutionType.PM10, PollutionType.PM25, PollutionType.O3, PollutionType.C6H6};
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
         for (String key : firstPart) {
             LocalDateTime[] localDateTimes = new LocalDateTime[2];
