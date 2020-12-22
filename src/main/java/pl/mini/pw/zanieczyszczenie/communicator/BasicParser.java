@@ -98,9 +98,6 @@ public class BasicParser implements Parser{
     /*
     sensors
      */
-    public String readStationSensors(int stationId) {
-        return dataSource.apply("station/sensors/" + stationId);
-    }
     public StationSensors parseStationSensors(String data) {
         List<StationSensors.Sensor> sensors = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(data);
@@ -121,7 +118,7 @@ public class BasicParser implements Parser{
     }
     @Override
     public StationSensors getStationSensors(int stationID) {
-        return parseStationSensors(readStationSensors(stationID));
+        return parseStationSensors(dataSource.apply("station/sensors/" + stationID));
     }
 
     /*
