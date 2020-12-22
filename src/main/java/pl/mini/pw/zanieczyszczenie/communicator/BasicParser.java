@@ -39,9 +39,7 @@ public class BasicParser implements Parser{
     FindAll
      */
     public String readFindAll() {
-        String findAllURL_tail = "station/findAll";
-        Connection connection = new Connection(URLstring + findAllURL_tail);
-        return connection.getData();
+        return dataSource.apply("station/findAll");
     }
     private FindAll.Station parseStationJSON(JSONObject current) {
         JSONObject current_city = new JSONObject(current.get("city").toString());
@@ -83,9 +81,7 @@ public class BasicParser implements Parser{
     getData
      */
     public String readReadings(int sensorId) {
-        String getDataURL_tail = "data/getData/" + sensorId;
-        Connection connection = new Connection(URLstring + getDataURL_tail);
-        return connection.getData();
+        return dataSource.apply("data/getData/" + sensorId);
     }
     public Readings parseReadings(String data) {
         List<Readings.Observation> observations = new ArrayList<>();
@@ -117,9 +113,7 @@ public class BasicParser implements Parser{
     sensors
      */
     public String readStationSensors(int stationId) {
-        String sensors_tail = "station/sensors/" + stationId;
-        Connection connection = new Connection(URLstring + sensors_tail);
-        return connection.getData();
+        return dataSource.apply("station/sensors/" + stationId);
     }
     public StationSensors parseStationSensors(String data) {
         List<StationSensors.Sensor> sensors = new ArrayList<>();
@@ -148,9 +142,7 @@ public class BasicParser implements Parser{
     getIndex
      */
     public String readGetIndex(int stationId) {
-        String index_tail = "aqindex/getIndex/" + stationId;
-        Connection connection = new Connection(URLstring + index_tail);
-        return connection.getData();
+        return dataSource.apply("aqindex/getIndex/" + stationId);
     }
     public Index parseGetIndex(String data) {
         // TODO: PollutionType będzie wyciągnięty, trzeba będzie tu poprawić
