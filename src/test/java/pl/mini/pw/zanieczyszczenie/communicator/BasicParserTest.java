@@ -55,4 +55,10 @@ public class BasicParserTest {
         var x = basicParser.getIndex(14);
         System.out.println(x.toString().replace("}, ","},\n"));
     }
+
+    @Test
+    public void printReadings() {
+        var x = basicParser.getIndex(14);
+        System.out.println(x.toString().replace("}, ", "}, \n"));
+    }
 }
