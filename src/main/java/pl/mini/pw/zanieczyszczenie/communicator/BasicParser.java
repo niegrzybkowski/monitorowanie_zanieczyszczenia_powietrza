@@ -139,7 +139,6 @@ public class BasicParser implements Parser{
 
     }
     public Index parseGetIndex(String data) {
-        // TODO: PollutionType będzie wyciągnięty, trzeba będzie tu poprawić
         List<Index.IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
@@ -147,8 +146,6 @@ public class BasicParser implements Parser{
         String[] secondPart = {"SourceDataDate", "CalcDate", "IndexLevel"};
         PollutionType[] firstPartAsEnum = {PollutionType.STANDARD, PollutionType.SO2, PollutionType.NO2,
                 PollutionType.CO, PollutionType.PM10, PollutionType.PM25, PollutionType.O3, PollutionType.C6H6};
-
-
 
         for (String key : firstPart) {
             LocalDateTime[] localDateTimes = new LocalDateTime[2];
