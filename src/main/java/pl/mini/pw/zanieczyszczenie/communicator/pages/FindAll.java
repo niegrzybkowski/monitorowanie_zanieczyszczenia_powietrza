@@ -45,8 +45,6 @@ public class FindAll extends APIPage {
     }
 
     public static class Station {
-        // TODO: remove unnecessary fields
-
         private final int id;
         private final String stationName;
         private final double geographicLat;
