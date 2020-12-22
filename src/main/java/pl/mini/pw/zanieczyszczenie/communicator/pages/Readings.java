@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Readings extends APIPage {
+    // TODO: pomyśleć nad zamienieniem na mapę
     /*
         Dane pomiarowe:
         pjp-api/rest/data/getData/{sensorId}
