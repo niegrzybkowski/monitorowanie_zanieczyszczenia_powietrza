@@ -27,6 +27,38 @@ public class StationSensors extends APIPage {
             this.key = key;
         }
 
+        public int getStationID() {
+            return stationID;
+        }
+
+        public int getSensorID() {
+            return sensorID;
+        }
+
+        public PollutionType getKey() {
+            return key;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Sensor sensor = (Sensor) o;
+
+            if (stationID != sensor.stationID) return false;
+            if (sensorID != sensor.sensorID) return false;
+            return key == sensor.key;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = stationID;
+            result = 31 * result + sensorID;
+            result = 31 * result + (key != null ? key.hashCode() : 0);
+            return result;
+        }
+
         @Override
         public String toString() {
             return "Sensor{" +
@@ -46,5 +78,23 @@ public class StationSensors extends APIPage {
         return "StationSensors{" +
                 "stationSensors=" + stationSensors +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        StationSensors sensors = (StationSensors) o;
+
+        return stationSensors != null ? stationSensors.equals(sensors.stationSensors) : sensors.stationSensors == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (stationSensors != null ? stationSensors.hashCode() : 0);
+        return result;
     }
 }
