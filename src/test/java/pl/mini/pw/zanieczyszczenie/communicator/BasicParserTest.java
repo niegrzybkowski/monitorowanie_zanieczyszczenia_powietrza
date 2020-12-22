@@ -101,7 +101,17 @@ public class BasicParserTest {
     @Test
     public void timestampCheck() {
         LocalDateTime start = LocalDateTime.now();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         LocalDateTime created = basicParser.getFindAll().getUpdateTime();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         LocalDateTime end = LocalDateTime.now();
         assertTrue(created.isAfter(start) && created.isBefore(end));
     }
