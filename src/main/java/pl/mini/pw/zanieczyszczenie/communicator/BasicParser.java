@@ -160,7 +160,7 @@ public class BasicParser implements Parser{
             }
 
             indexes.add(new Index.IndexData(sourceDataDate, calcDate,
-                    new Index.IndexData.IndexLevel((int) indexLevel), key));
+                    ((int) indexLevel), key));
         }
 
         return new Index(indexes);
