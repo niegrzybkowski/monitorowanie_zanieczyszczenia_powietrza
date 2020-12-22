@@ -13,10 +13,10 @@ public class ConnectionTest {
 
     @BeforeClass
     public static void setUp() {
-        findAllResponse = new Connection("http://api.gios.gov.pl/pjp-api/rest/station/findAll").getData();
-        stationSensorsResponse = new Connection("http://api.gios.gov.pl/pjp-api/rest/station/sensors/156").getData();
-        readingsResponse = new Connection("http://api.gios.gov.pl/pjp-api/rest/data/getData/92").getData();
-        indexResponse = new Connection("http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52").getData();
+        findAllResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/findAll");
+        stationSensorsResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/sensors/156");
+        readingsResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/data/getData/92");
+        indexResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52");
     }
 
     @Test
