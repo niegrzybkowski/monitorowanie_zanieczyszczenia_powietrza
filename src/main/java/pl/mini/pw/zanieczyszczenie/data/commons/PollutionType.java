@@ -1,7 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.data.commons;
 
 public enum PollutionType {
-    //TODO: wyciągnąć z commonsów
     STANDARD("", "", -1), // INDEX ONLY!
     SO2("dwutlenek siarki", "SO2", 1),
     NO2("dwutlenek azotu", "NO2", 6),
