@@ -6,6 +6,8 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.Index;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.notNullListHelper;
 
@@ -38,5 +40,13 @@ public class BasicParserTest {
         Index index = basicParser.getIndex(52);
         assertNotNull(index);
         notNullListHelper(index.getIndexes());
+    }
+
+    @Test
+    public void timestampCheck() {
+        LocalDateTime start = LocalDateTime.now();
+        LocalDateTime created = basicParser.getFindAll().getUpdateTime();
+        LocalDateTime end = LocalDateTime.now();
+        assertTrue(created.isAfter(start) && created.isBefore(end));
     }
 }
