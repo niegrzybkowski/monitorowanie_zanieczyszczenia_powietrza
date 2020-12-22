@@ -29,5 +29,7 @@ target/classes/*.fxml
 
 .idea/
 *.iml
-
 target/**
+
+# directory used by TestUtilities for downloading a snapshot of api
+temp/**
