@@ -69,9 +69,6 @@ public class BasicParser implements Parser{
     /*
     getData
      */
-    public String readReadings(int sensorId) {
-        return dataSource.apply("data/getData/" + sensorId);
-    }
     public Readings parseReadings(String data) {
         List<Readings.Observation> observations = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
@@ -95,7 +92,7 @@ public class BasicParser implements Parser{
     }
     @Override
     public Readings getReadings(int sensorID){
-        return parseReadings(readReadings(sensorID));
+        return parseReadings(dataSource.apply("data/getData/" + sensorID));
     }
 
     /*
