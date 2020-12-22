@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -31,11 +30,6 @@ public class BasicParserTestFindAll {
     public static void beforeClass() {
         Parser p = new BasicParser(TestUtilities::loadFromTestResources);
         parserOutput = p.getFindAll();
-    }
-
-    @Test
-    public void notNull() {
-        assertNotNull(parserOutput);
     }
 
     @Test
