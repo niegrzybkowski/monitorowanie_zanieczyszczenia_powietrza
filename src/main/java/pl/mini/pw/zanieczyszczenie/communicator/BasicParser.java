@@ -77,9 +77,9 @@ public class BasicParser implements Parser{
         JSONArray values = new JSONArray(jsonObject.get("values").toString());
 
         for (int i=0; i<values.length(); i++) {
-            JSONObject currentvalue = values.getJSONObject(i);
-            Object value =  currentvalue.get("value");
-            String dateString = currentvalue.get("date").toString();
+            JSONObject currentValue = values.getJSONObject(i);
+            Object value =  currentValue.get("value");
+            String dateString = currentValue.get("date").toString();
             LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
                 value = BigDecimal.ZERO;
@@ -88,7 +88,7 @@ public class BasicParser implements Parser{
         }
         String key = jsonObject.getString("key");
         key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
-        return new Readings(PollutionType.valueOf(key),observations);
+        return new Readings(key,observations);
     }
     @Override
     public Readings getReadings(int sensorID){
