@@ -1,6 +1,9 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,25 +20,24 @@ public class Connection {
         }
     }
 
-    private static HttpURLConnection getConnection(URL url) {
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode!=200) {
-                throw new IOException("HttpResponseCode: " + responseCode + " "
-                        + connection.getResponseMessage());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static HttpURLConnection getConnection(URL url) throws IOException{
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        int responseCode = connection.getResponseCode();
+        if (responseCode!=200) {
+            throw new IOException("HttpResponseCode: " + responseCode + " "
+                    + connection.getResponseMessage());
         }
         return connection;
     }
 
     public String getData() {
-        HttpURLConnection connection = getConnection(this.url); // TODO: poprawić, connection jest nieużywane
+        try {
+            HttpURLConnection connection = getConnection(this.url); // TODO: poprawić, connection jest nieużywane
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         StringBuilder input = new StringBuilder();
         Scanner scanner = null;
