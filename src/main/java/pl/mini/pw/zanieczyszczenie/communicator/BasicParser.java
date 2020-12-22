@@ -25,10 +25,6 @@ public class BasicParser implements Parser{
         return new Connection(url + path).getData();
     }
 
-    public BasicParser() {
-        this.dataSource = BasicParser::giosDataSource;
-    }
-
     public BasicParser(Function<String, String> dataSource) {
         this.dataSource = dataSource;
     }
