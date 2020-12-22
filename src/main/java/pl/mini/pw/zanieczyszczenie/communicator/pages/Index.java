@@ -51,10 +51,10 @@ public class Index extends APIPage {
         private final LocalDateTime sourceDataDate;
         private final LocalDateTime calculationDate;
         private final IndexLevel indexLevel;
-        private final PollutionType key;
+        private final String key;
 
         public IndexData(LocalDateTime sourceDataDate, LocalDateTime calculationDate,
-                         IndexLevel indexLevel, PollutionType key) {
+                         IndexLevel indexLevel, String key) {
             this.sourceDataDate = sourceDataDate;
             this.calculationDate = calculationDate;
             this.indexLevel = indexLevel;
@@ -84,7 +84,7 @@ public class Index extends APIPage {
                 return false;
             if (!Objects.equals(indexLevel, indexData.indexLevel))
                 return false;
-            return key == indexData.key;
+            return key.equals(indexData.key);
         }
 
         @Override
@@ -158,7 +158,7 @@ public class Index extends APIPage {
             return indexLevel;
         }
 
-        public PollutionType getKey() {
+        public String getKey() {
             return key;
         }
     }

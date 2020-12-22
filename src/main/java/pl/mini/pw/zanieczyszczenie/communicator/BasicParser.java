@@ -136,14 +136,13 @@ public class BasicParser implements Parser{
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        for (int i=0; i<firstPart.length; i++) {
-            PollutionType key = firstPartAsEnum[i];
+        for (String key : firstPart) {
             LocalDateTime[] localDateTimes = new LocalDateTime[2];
-            for (int j=0; j<2; j++) {
-                String dateString = jsonObject.get(firstPart[i] + secondPart[j]).toString();
+            for (int j = 0; j < 2; j++) {
+                String dateString = jsonObject.get(key + secondPart[j]).toString();
                 try { // api czasami pokazuje date inaczej
                     long epochDate = Long.parseLong(dateString);
-                    localDateTimes[j] = LocalDateTime.ofEpochSecond(epochDate/1000, 0,
+                    localDateTimes[j] = LocalDateTime.ofEpochSecond(epochDate / 1000, 0,
                             ZoneId.of("Europe/Warsaw").getRules().getOffset(LocalDateTime.now()));
                 } catch (NumberFormatException e) {
                     if (dateString.equals(JSONObject.NULL.toString())) {
@@ -154,10 +153,10 @@ public class BasicParser implements Parser{
                 }
             }
             Object indexLevel;
-            if (jsonObject.get(firstPart[i] + "IndexLevel")==JSONObject.NULL) { // w przypadku braku indeksu
+            if (jsonObject.get(key + "IndexLevel") == JSONObject.NULL) { // w przypadku braku indeksu
                 indexLevel = -1;
             } else {
-                JSONObject indexLevelInfo = jsonObject.getJSONObject(firstPart[i] + "IndexLevel");
+                JSONObject indexLevelInfo = jsonObject.getJSONObject(key + "IndexLevel");
                 indexLevel = indexLevelInfo.get("id");
             }
 
