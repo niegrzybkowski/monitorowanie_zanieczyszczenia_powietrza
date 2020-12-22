@@ -124,6 +124,20 @@ public class BasicParser implements Parser{
     /*
     getIndex
      */
+    private LocalDateTime parseDateTime(String dateString) {
+        try { // api czasami pokazuje date inaczej
+            long epochDate = Long.parseLong(dateString);
+            return LocalDateTime.ofEpochSecond(epochDate / 1000, 0,
+                    ZoneId.of("Europe/Warsaw").getRules().getOffset(LocalDateTime.now()));
+        } catch (NumberFormatException e) {
+            if (dateString.equals(JSONObject.NULL.toString())) {
+                return null;
+            } else {
+                return LocalDateTime.parse(dateString, dateTimeFormatter);
+            }
+        }
+
+    }
     public Index parseGetIndex(String data) {
         // TODO: PollutionType będzie wyciągnięty, trzeba będzie tu poprawić
         List<Index.IndexData> indexes = new ArrayList<>();
