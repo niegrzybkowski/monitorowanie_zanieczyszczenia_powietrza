@@ -148,21 +148,9 @@ public class BasicParser implements Parser{
                 PollutionType.CO, PollutionType.PM10, PollutionType.PM25, PollutionType.O3, PollutionType.C6H6};
 
         for (String key : firstPart) {
-            LocalDateTime[] localDateTimes = new LocalDateTime[2];
-            for (int j = 0; j < 2; j++) {
-                String dateString = jsonObject.get(key + secondPart[j]).toString();
-                try { // api czasami pokazuje date inaczej
-                    long epochDate = Long.parseLong(dateString);
-                    localDateTimes[j] = LocalDateTime.ofEpochSecond(epochDate / 1000, 0,
-                            ZoneId.of("Europe/Warsaw").getRules().getOffset(LocalDateTime.now()));
-                } catch (NumberFormatException e) {
-                    if (dateString.equals(JSONObject.NULL.toString())) {
-                        localDateTimes[j] = null;
-                    } else {
-                        localDateTimes[j] = LocalDateTime.parse(dateString, dateTimeFormatter);
-                    }
-                }
-            }
+            LocalDateTime sourceDataDate = parseDateTime(jsonObject.get(key + "SourceDataDate").toString());
+            LocalDateTime calcDate = parseDateTime(jsonObject.get(key + "CalcDate").toString());
+
             Object indexLevel;
             if (jsonObject.get(key + "IndexLevel") == JSONObject.NULL) { // w przypadku braku indeksu
                 indexLevel = -1;
@@ -171,7 +159,7 @@ public class BasicParser implements Parser{
                 indexLevel = indexLevelInfo.get("id");
             }
 
-            indexes.add(new Index.IndexData(localDateTimes[0], localDateTimes[1],
+            indexes.add(new Index.IndexData(sourceDataDate, calcDate,
                     new Index.IndexData.IndexLevel((int) indexLevel), key));
         }
 
