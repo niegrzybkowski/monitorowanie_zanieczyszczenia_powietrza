@@ -19,7 +19,7 @@ import java.util.function.Function;
 public class BasicParser implements Parser{
     //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
     private Function<String, String> dataSource;
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static String giosDataSource(String path) {
         String url = "http://api.gios.gov.pl/pjp-api/rest/";
@@ -80,7 +80,7 @@ public class BasicParser implements Parser{
             JSONObject currentvalue = values.getJSONObject(i);
             Object value =  currentvalue.get("value");
             String dateString = currentvalue.get("date").toString();
-            LocalDateTime date = LocalDateTime.parse(dateString, formatter);
+            LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
                 value = BigDecimal.ZERO;
             }
@@ -148,7 +148,7 @@ public class BasicParser implements Parser{
                     if (dateString.equals(JSONObject.NULL.toString())) {
                         localDateTimes[j] = null;
                     } else {
-                        localDateTimes[j] = LocalDateTime.parse(dateString, formatter);
+                        localDateTimes[j] = LocalDateTime.parse(dateString, dateTimeFormatter);
                     }
                 }
             }
