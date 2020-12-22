@@ -124,9 +124,6 @@ public class BasicParser implements Parser{
     /*
     getIndex
      */
-    public String readGetIndex(int stationId) {
-        return dataSource.apply("aqindex/getIndex/" + stationId);
-    }
     public Index parseGetIndex(String data) {
         // TODO: PollutionType będzie wyciągnięty, trzeba będzie tu poprawić
         List<Index.IndexData> indexes = new ArrayList<>();
@@ -172,6 +169,6 @@ public class BasicParser implements Parser{
     }
     @Override
     public Index getIndex(int stationID) {
-        return parseGetIndex(readGetIndex(stationID));
+        return parseGetIndex(dataSource.apply("aqindex/getIndex/" + stationID));
     }
 }
