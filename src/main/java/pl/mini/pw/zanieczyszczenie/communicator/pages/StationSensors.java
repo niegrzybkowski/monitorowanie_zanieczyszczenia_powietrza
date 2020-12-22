@@ -37,6 +37,10 @@ public class StationSensors extends APIPage {
         }
     }
 
+    public List<Sensor> getStationSensors() {
+        return stationSensors;
+    }
+
     @Override
     public String toString() {
         return "StationSensors{" +
