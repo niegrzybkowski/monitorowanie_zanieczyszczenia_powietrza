@@ -148,16 +148,16 @@ public class BasicParser implements Parser{
             LocalDateTime sourceDataDate = parseDateTime(jsonObject.get(key + "SourceDataDate").toString());
             LocalDateTime calcDate = parseDateTime(jsonObject.get(key + "CalcDate").toString());
 
-            Object indexLevel;
+            int indexLevel;
             if (jsonObject.get(key + "IndexLevel") == JSONObject.NULL) { // w przypadku braku indeksu
                 indexLevel = -1;
             } else {
                 JSONObject indexLevelInfo = jsonObject.getJSONObject(key + "IndexLevel");
-                indexLevel = indexLevelInfo.get("id");
+                indexLevel = (int) indexLevelInfo.get("id");
             }
 
             indexes.add(new Index.IndexData(sourceDataDate, calcDate,
-                    ((int) indexLevel), key));
+                    indexLevel, key));
         }
 
         return new Index(indexes);
