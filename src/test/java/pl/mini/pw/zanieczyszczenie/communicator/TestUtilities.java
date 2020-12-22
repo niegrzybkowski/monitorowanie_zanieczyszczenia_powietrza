@@ -12,7 +12,7 @@ public final class TestUtilities {
     private static final String root = System.getProperty("user.dir");
     private static final String fs = File.separator;
 
-    public static String loadFromTestResources(String path) { //TODO: naprawić dla windowsowych separatorów
+    public static String loadFromTestResources(String path) {
         try {
             var dataStream = classLoader.getResourceAsStream("dummyAPI/" + path + ".json");
             if (dataStream == null) {
