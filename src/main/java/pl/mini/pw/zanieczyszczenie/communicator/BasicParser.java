@@ -17,7 +17,6 @@ import java.util.function.Function;
 
 
 public class BasicParser implements Parser{
-    //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
     private Function<String, String> dataSource;
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
