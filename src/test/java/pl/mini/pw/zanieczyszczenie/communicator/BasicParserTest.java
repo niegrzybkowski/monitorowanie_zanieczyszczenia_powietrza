@@ -7,6 +7,9 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.notNullListHelper;
@@ -19,6 +22,39 @@ public class BasicParserTest {
         FindAll findAll = basicParser.getFindAll();
         assertNotNull(findAll);
         notNullListHelper(findAll.getContainer());
+    }
+
+    @Test
+    public void containsDzialoszyn() {
+        FindAll findAll = basicParser.getFindAll();
+        FindAll.Station dzialoszyn = new FindAll.Station(
+                14,
+                "Działoszyn",
+                50.972167,
+                14.941319,
+                192,
+                "Działoszyn",
+                "Bogatynia",
+                "zgorzelecki",
+                "DOLNOŚLĄSKIE",
+                "bez ulicy"
+        );
+        assertNotNull("FindAll container is null", findAll.getContainer());
+        ArrayList<FindAll.Station> list = findAll.getContainer()
+                .stream()
+                .filter((x) -> x.getId()==14)
+                .collect(Collectors.toCollection(ArrayList::new));
+        assertEquals("Duplicate ID",1, list.size());
+        assertEquals("Name mismatch", "Działoszyn", list.get(0).getStationName());
+        assertEquals("FindAll.Station.equals() failure", dzialoszyn, list.get(0));
+    }
+    @Test
+    public void testHash() {
+        int sortedContainerHash = -2037789062;
+        FindAll findAll = basicParser.getFindAll();
+        var list = findAll.getContainer();
+        list.sort(Comparator.comparingInt(FindAll.Station::getId));
+        assertEquals("HashCode mismatch", sortedContainerHash, list.hashCode());
     }
 
     @Test
