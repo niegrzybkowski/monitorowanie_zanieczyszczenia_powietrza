@@ -44,23 +44,7 @@ public class Connection {
             return response.orElseThrow(()-> new IOException("Empty response"));
         } catch (IOException e) {
             e.printStackTrace();
+            return "";
         }
-
-        StringBuilder input = new StringBuilder();
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(this.url.openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (scanner==null) {
-            throw new NullPointerException("No data");
-        }
-        while (scanner.hasNext()) {
-            input.append(scanner.nextLine());
-        }
-        scanner.close();
-
-        return input.toString();
     }
 }
