@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Connection {
@@ -35,6 +36,12 @@ public class Connection {
     public String getData() {
         try {
             HttpURLConnection connection = getConnection(this.url); // TODO: poprawić, connection jest nieużywane
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream())
+            );
+            Optional<String> response = br.lines().reduce(String::concat);
+            br.close();
+            return response.orElseThrow(()-> new IOException("Empty response"));
         } catch (IOException e) {
             e.printStackTrace();
         }
