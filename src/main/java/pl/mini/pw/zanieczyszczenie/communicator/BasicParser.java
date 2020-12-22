@@ -191,12 +191,4 @@ public class BasicParser implements Parser{
     public Index getIndex(int stationID) {
         return parseGetIndex(readGetIndex(stationID));
     }
-
-    public static void main(String[] args) {
-        BasicParser basicParser = new BasicParser();
-        String data = basicParser.readGetIndex(14);
-        System.out.println(data);
-        Index index = basicParser.parseGetIndex(data);
-        System.out.println(index);
-    }
 }
