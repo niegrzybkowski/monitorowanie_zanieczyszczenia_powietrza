@@ -1,16 +1,22 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
-import pl.mini.pw.zanieczyszczenie.communicator.pages.Index;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
+import java.util.List;
+
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 public final class TestUtilities {
     private static ClassLoader classLoader = TestUtilities.class.getClassLoader();
-    private static final String root = System.getProperty("user.dir");
-    private static final String fs = File.separator;
+
+    public static void notNullListHelper(List<?> list) {
+        assertNotNull(list);
+        assertNotEquals(0, list.size());
+        assertNotNull(list.get(0));
+    }
 
     public static String loadFromTestResources(String path) {
         try {
@@ -26,9 +32,12 @@ public final class TestUtilities {
         }
     }
 
+    private static final String root = System.getProperty("user.dir");
+    private static final String fs = File.separator;
+
     private static void writerWrapper(String dest, String filename, String data) {
         File dirs = new File(root + fs + "temp" + fs + dest);
-        File file = new File(root + fs + "temp" + fs + dest + fs + filename);
+        new File(root + fs + "temp" + fs + dest + fs + filename);
         if(dirs.mkdirs()) {
             System.out.println("Directory created: " + root + fs + "temp" + fs + dest);
         }
@@ -45,8 +54,6 @@ public final class TestUtilities {
             e.printStackTrace();
         }
     }
-
-
 
     public static void main(String[] args) {
         /*

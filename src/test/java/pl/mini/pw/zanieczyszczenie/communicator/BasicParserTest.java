@@ -6,17 +6,13 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.Index;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
+import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.notNullListHelper;
+
 public class BasicParserTest {
     static Parser basicParser = new BasicParser(TestUtilities::loadFromTestResources);
 
-    public static void notNullListHelper(List<?> list) {
-        assertNotNull(list);
-        assertNotEquals(0, list.size());
-        assertNotNull(list.get(0));
-    }
+
 
     @Test
     public void parseFindAll() {
