@@ -28,6 +28,8 @@ public class Controller {
     @FXML
     private TextField so2;
     @FXML
+    private TextField o3;
+    @FXML
     private TextField jednostka1;
     @FXML
     private TextField jednostka2;
@@ -39,6 +41,8 @@ public class Controller {
     private TextField jednostka5;
     @FXML
     private TextField jednostka6;
+    @FXML
+    private TextField jednostka7;
     @FXML
     private Rectangle prostokat0;
     @FXML
@@ -53,6 +57,8 @@ public class Controller {
     private Rectangle prostokat5;
     @FXML
     private Rectangle prostokat6;
+    @FXML
+    private Rectangle prostokat7;
 
 
 
@@ -68,6 +74,7 @@ public class Controller {
         list_zan.add(co);
         list_zan.add(c6h6);
         list_zan.add(so2);
+        list_zan.add(o3);
         for(TextField t : list_zan){
             t.setMouseTransparent(true);
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
@@ -80,6 +87,7 @@ public class Controller {
         list_jednostek.add(jednostka4);
         list_jednostek.add(jednostka5);
         list_jednostek.add(jednostka6);
+        list_jednostek.add(jednostka7);
         for(TextField t : list_jednostek){
             t.setMouseTransparent(true);
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
@@ -93,6 +101,7 @@ public class Controller {
         list_prostokaty.add(prostokat4);
         list_prostokaty.add(prostokat5);
         list_prostokaty.add(prostokat6);
+        list_prostokaty.add(prostokat7);
 
         for(Rectangle t : list_prostokaty){
             t.setFill(Color.web("#1aff1a"));

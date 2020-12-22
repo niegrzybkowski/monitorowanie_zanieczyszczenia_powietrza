@@ -14,7 +14,7 @@ public class Main2 extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_panel.fxml")));
         primaryStage.setTitle("Monitorowanie zanieczyszczenia powietrza");
-        primaryStage.setScene(new Scene(root, 683, 482));
+        primaryStage.setScene(new Scene(root, 804, 573));
         primaryStage.show();
     }
 
