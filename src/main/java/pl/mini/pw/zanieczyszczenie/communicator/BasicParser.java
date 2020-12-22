@@ -32,9 +32,6 @@ public class BasicParser implements Parser{
     /*
     FindAll
      */
-    public String readFindAll() {
-        return dataSource.apply("station/findAll");
-    }
     private FindAll.Station parseStationJSON(JSONObject current) {
         JSONObject current_city = new JSONObject(current.get("city").toString());
         JSONObject current_commune = new JSONObject(current_city.get("commune").toString());
@@ -68,7 +65,7 @@ public class BasicParser implements Parser{
     }
     @Override
     public FindAll getFindAll() {
-        return parseFindAll(readFindAll());
+        return parseFindAll(dataSource.apply("station/findAll"));
     }
 
     /*
