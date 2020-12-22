@@ -114,7 +114,7 @@ public class BasicParserTest {
 
     @Test
     public void printReadings() {
-        var x = basicParser.getIndex(14);
+        var x = basicParser.getReadings(52);
         System.out.println(x.toString().replace("}, ", "}, \n"));
     }
 }
