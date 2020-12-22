@@ -27,21 +27,45 @@ public class Connection {
         connection.connect();
         int responseCode = connection.getResponseCode();
         if (responseCode!=200) {
-            throw new IOException("HttpResponseCode: " + responseCode + " "
+            throw new IOException("URL "+ url.toString() + " produced HttpResponseCode: " + responseCode + " "
                     + connection.getResponseMessage());
         }
         return connection;
     }
 
+    private static String collectConnection(HttpURLConnection connection) throws IOException {
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(connection.getInputStream())
+        );
+        Optional<String> response = br.lines().reduce(String::concat);
+        br.close();
+        return response.orElseThrow(()-> new IOException("Empty response and/or something has gone terribly wrong"));
+    }
+
     public String getData() {
         try {
-            HttpURLConnection connection = getConnection(this.url); // TODO: poprawić, connection jest nieużywane
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream())
-            );
-            Optional<String> response = br.lines().reduce(String::concat);
-            br.close();
-            return response.orElseThrow(()-> new IOException("Empty response"));
+            HttpURLConnection connection = getConnection(url);
+            return collectConnection(connection);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String readDataFromURL(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        HttpURLConnection connection = getConnection(url);
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(connection.getInputStream())
+        );
+        Optional<String> response = br.lines().reduce(String::concat);
+        br.close();
+        return response.orElseThrow(()-> new IOException("Empty response"));
+    }
+
+    public static String getDataFromURL(String urlString) {
+        try {
+            return readDataFromURL(urlString);
         } catch (IOException e) {
             e.printStackTrace();
             return "";
