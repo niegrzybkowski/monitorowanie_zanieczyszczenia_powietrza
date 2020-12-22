@@ -12,17 +12,15 @@ import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.notNullList
 public class BasicParserTest {
     static Parser basicParser = new BasicParser(TestUtilities::loadFromTestResources);
 
-
-
     @Test
-    public void parseFindAll() {
+    public void parseFindAllNotNull() {
         FindAll findAll = basicParser.getFindAll();
         assertNotNull(findAll);
         notNullListHelper(findAll.getContainer());
     }
 
     @Test
-    public void parseReadings() {
+    public void parseReadingsNotNull() {
         Readings readings = basicParser.getReadings(92);
         assertNotNull(readings);
         notNullListHelper(readings.getObservations());
