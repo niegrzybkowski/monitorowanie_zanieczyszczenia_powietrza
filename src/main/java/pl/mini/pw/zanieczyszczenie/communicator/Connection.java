@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Optional;
 
-public class Connection {
+class Connection {
     private static HttpURLConnection getConnection(URL url) throws IOException{
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
