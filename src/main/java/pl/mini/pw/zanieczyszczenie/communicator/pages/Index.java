@@ -1,7 +1,5 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
-import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
