@@ -1,7 +1,5 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
-import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,15 +8,15 @@ public class Readings extends APIPage {
         Dane pomiarowe:
         pjp-api/rest/data/getData/{sensorId}
      */
-    private PollutionType key;
+    private String key;
     private List<Observation> observations;
 
-    public Readings(PollutionType key, List<Observation> observations) {
+    public Readings(String key, List<Observation> observations) {
         this.key = key;
         this.observations = observations;
     }
 
-    public PollutionType getKey() {
+    public String getKey() {
         return key;
     }
 
