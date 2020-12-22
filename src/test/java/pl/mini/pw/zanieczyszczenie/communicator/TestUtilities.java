@@ -1,21 +1,28 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
+import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public final class TestUtilities {
     private static ClassLoader classLoader = TestUtilities.class.getClassLoader();
 
-    public static void notNullListHelper(List<?> list) {
+    public static void assertNotNullList(List<?> list) {
         assertNotNull(list);
         assertNotEquals(0, list.size());
         assertNotNull(list.get(0));
+    }
+
+    public static <T> void assertSortedListHash(int expectedHashCode, List<T> list, Comparator<T> comparator) {
+        list.sort(comparator);
+        assertEquals("HashCode mismatch, expected: " + expectedHashCode + " got " + list.hashCode(),
+                expectedHashCode, list.hashCode());
     }
 
     public static String loadFromTestResources(String path) {

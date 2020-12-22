@@ -12,20 +12,21 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
-import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.notNullListHelper;
+import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.assertNotNullList;
+import static pl.mini.pw.zanieczyszczenie.communicator.TestUtilities.assertSortedListHash;
 
 public class BasicParserTest {
     static Parser basicParser = new BasicParser(TestUtilities::loadFromTestResources);
 
     @Test
-    public void parseFindAllNotNull() {
+    public void findAllNotNull() {
         FindAll findAll = basicParser.getFindAll();
         assertNotNull(findAll);
-        notNullListHelper(findAll.getContainer());
+        assertNotNullList(findAll.getContainer());
     }
 
     @Test
-    public void containsDzialoszyn() {
+    public void findAllContains() {
         FindAll findAll = basicParser.getFindAll();
         FindAll.Station dzialoszyn = new FindAll.Station(
                 14,
@@ -49,33 +50,52 @@ public class BasicParserTest {
         assertEquals("FindAll.Station.equals() failure", dzialoszyn, list.get(0));
     }
     @Test
-    public void testHash() {
-        int sortedContainerHash = -2037789062;
-        FindAll findAll = basicParser.getFindAll();
-        var list = findAll.getContainer();
-        list.sort(Comparator.comparingInt(FindAll.Station::getId));
-        assertEquals("HashCode mismatch", sortedContainerHash, list.hashCode());
+    public void findAllHash() {
+        assertSortedListHash(-2037789062,
+                basicParser.getFindAll().getContainer(),
+                Comparator.comparingInt(FindAll.Station::getId));
     }
 
     @Test
-    public void parseReadingsNotNull() {
+    public void readingsNotNull() {
         Readings readings = basicParser.getReadings(92);
         assertNotNull(readings);
-        notNullListHelper(readings.getObservations());
+        assertNotNullList(readings.getObservations());
     }
 
     @Test
-    public void parseStationSensorsNotNull() {
+    public void readingsHash() {
+//        assertSortedListHash(862275477,
+//                basicParser.getReadings(92).getObservations(),
+//                Comparator.comparing(Readings.Observation::getTime));
+    }
+
+    @Test
+    public void stationSensorsNotNull() {
         StationSensors sensors = basicParser.getStationSensors(52);
         assertNotNull(sensors);
-        notNullListHelper(sensors.getStationSensors());
+        assertNotNullList(sensors.getStationSensors());
     }
 
     @Test
-    public void parseGetIndexNotNull() {
+    public void stationSensorsHash() {
+        assertSortedListHash(-1701317268,
+                basicParser.getStationSensors(52).getStationSensors(),
+                Comparator.comparingInt(StationSensors.Sensor::getSensorID));
+    }
+
+    @Test
+    public void indexNotNull() {
         Index index = basicParser.getIndex(52);
         assertNotNull(index);
-        notNullListHelper(index.getIndexes());
+        assertNotNullList(index.getIndexes());
+    }
+
+    @Test
+    public void indexHash() {
+        assertSortedListHash(-1312665777,
+                basicParser.getIndex(52).getIndexes(),
+                Comparator.comparing(Index.IndexData::getCalculationDate));
     }
 
     @Test
