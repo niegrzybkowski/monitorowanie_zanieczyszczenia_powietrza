@@ -7,7 +7,6 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -29,15 +28,9 @@ public class BasicParserTestFindAll {
     static final int sortedContainerHash = -2037789062;
 
     @BeforeClass
-    public static void beforeClass() throws IOException {
-        String data = new String(Objects.requireNonNull(BasicParserTestFindAll
-                .class
-                .getClassLoader()
-                .getResourceAsStream("findAll.json"))
-                .readAllBytes()
-        );
-        BasicParser p = new BasicParser();
-        parserOutput = p.parseFindAll(data);
+    public static void beforeClass() {
+        Parser p = new BasicParser(TestUtilities::loadFromTestResources);
+        parserOutput = p.getFindAll();
     }
 
     @Test
