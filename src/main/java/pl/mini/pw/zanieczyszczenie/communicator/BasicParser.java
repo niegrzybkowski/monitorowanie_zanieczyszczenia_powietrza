@@ -143,9 +143,6 @@ public class BasicParser implements Parser{
         JSONObject jsonObject = new JSONObject(data);
 
         String[] firstPart = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
-        String[] secondPart = {"SourceDataDate", "CalcDate", "IndexLevel"};
-        PollutionType[] firstPartAsEnum = {PollutionType.STANDARD, PollutionType.SO2, PollutionType.NO2,
-                PollutionType.CO, PollutionType.PM10, PollutionType.PM25, PollutionType.O3, PollutionType.C6H6};
 
         for (String key : firstPart) {
             LocalDateTime sourceDataDate = parseDateTime(jsonObject.get(key + "SourceDataDate").toString());
