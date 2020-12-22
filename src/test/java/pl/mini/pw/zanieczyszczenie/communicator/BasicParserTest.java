@@ -65,9 +65,9 @@ public class BasicParserTest {
 
     @Test
     public void readingsHash() {
-//        assertSortedListHash(862275477,
-//                basicParser.getReadings(92).getObservations(),
-//                Comparator.comparing(Readings.Observation::getTime));
+        assertSortedListHash(-1753926665,
+                basicParser.getReadings(92).getObservations(),
+                Comparator.comparing(Readings.Observation::getTime));
     }
 
     @Test
