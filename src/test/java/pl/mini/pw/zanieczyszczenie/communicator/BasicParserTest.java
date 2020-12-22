@@ -49,4 +49,10 @@ public class BasicParserTest {
         LocalDateTime end = LocalDateTime.now();
         assertTrue(created.isAfter(start) && created.isBefore(end));
     }
+
+    @Test
+    public void printIndex() {
+        var x = basicParser.getIndex(14);
+        System.out.println(x.toString().replace("}, ","},\n"));
+    }
 }
