@@ -142,9 +142,9 @@ public class BasicParser implements Parser{
         List<Index.IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
-        String[] firstPart = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
+        String[] prefixes = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
 
-        for (String key : firstPart) {
+        for (String key : prefixes) {
             LocalDateTime sourceDataDate = parseDateTime(jsonObject.get(key + "SourceDataDate").toString());
             LocalDateTime calcDate = parseDateTime(jsonObject.get(key + "CalcDate").toString());
 
