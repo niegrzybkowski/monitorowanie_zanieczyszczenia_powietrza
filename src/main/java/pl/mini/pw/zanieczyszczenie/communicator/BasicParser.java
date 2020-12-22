@@ -17,6 +17,9 @@ import java.util.function.Function;
 
 
 public class BasicParser implements Parser{
+    //TODO: dodać przełączanie z trybu URL na pliki lokalne
+    //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
+
     private static String URLstring = "http://api.gios.gov.pl/pjp-api/rest/";
     private Function<String, String> dataSource;
 
@@ -24,8 +27,14 @@ public class BasicParser implements Parser{
         return new Connection(URLstring + path).getData();
     }
 
-    //TODO: dodać przełączanie z trybu URL na pliki lokalne
-    //TODO: podzielić klasę, patrz docs/ParserBreakup.pdf
+    public BasicParser() {
+        this.dataSource = BasicParser::giosDataSource;
+    }
+
+    public BasicParser(Function<String, String> dataSource) {
+        this.dataSource = dataSource;
+    }
+
     /*
     FindAll
      */
