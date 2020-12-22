@@ -192,11 +192,6 @@ public class BasicParser implements Parser{
         return parseGetIndex(readGetIndex(stationID));
     }
 
-    @Override
-    public Snapshot getSnapshot() {
-        throw new RuntimeException("Unimplemented method: getSnapshot");
-    }
-
     public static void main(String[] args) {
         BasicParser basicParser = new BasicParser();
         String data = basicParser.readGetIndex(14);
