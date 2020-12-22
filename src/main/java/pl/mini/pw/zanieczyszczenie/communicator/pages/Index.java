@@ -4,6 +4,7 @@ import pl.mini.pw.zanieczyszczenie.data.commons.PollutionType;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Index extends APIPage {
     /*
@@ -47,10 +48,10 @@ public class Index extends APIPage {
     }
 
     public static class IndexData {
-        public final LocalDateTime sourceDataDate;
-        public final LocalDateTime calculationDate;
-        public final IndexLevel indexLevel;
-        public final PollutionType key;
+        private final LocalDateTime sourceDataDate;
+        private final LocalDateTime calculationDate;
+        private final IndexLevel indexLevel;
+        private final PollutionType key;
 
         public IndexData(LocalDateTime sourceDataDate, LocalDateTime calculationDate,
                          IndexLevel indexLevel, PollutionType key) {
@@ -68,6 +69,31 @@ public class Index extends APIPage {
                     ", indexLevel=" + indexLevel +
                     ", key=" + key +
                     '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            IndexData indexData = (IndexData) o;
+
+            if (!Objects.equals(sourceDataDate, indexData.sourceDataDate))
+                return false;
+            if (!Objects.equals(calculationDate, indexData.calculationDate))
+                return false;
+            if (!Objects.equals(indexLevel, indexData.indexLevel))
+                return false;
+            return key == indexData.key;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = sourceDataDate != null ? sourceDataDate.hashCode() : 0;
+            result = 31 * result + (calculationDate != null ? calculationDate.hashCode() : 0);
+            result = 31 * result + (indexLevel != null ? indexLevel.hashCode() : 0);
+            result = 31 * result + (key != null ? key.hashCode() : 0);
+            return result;
         }
 
         public static class IndexLevel {
@@ -103,6 +129,37 @@ public class Index extends APIPage {
                         return "Brak indeksu";
                 }
             }
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+
+                IndexLevel that = (IndexLevel) o;
+
+                return id == that.id;
+            }
+
+            @Override
+            public int hashCode() {
+                return id;
+            }
+        }
+
+        public LocalDateTime getSourceDataDate() {
+            return sourceDataDate;
+        }
+
+        public LocalDateTime getCalculationDate() {
+            return calculationDate;
+        }
+
+        public IndexLevel getIndexLevel() {
+            return indexLevel;
+        }
+
+        public PollutionType getKey() {
+            return key;
         }
     }
 }
