@@ -18,6 +18,14 @@ public class Readings extends APIPage {
         this.observations = observations;
     }
 
+    public PollutionType getKey() {
+        return key;
+    }
+
+    public List<Observation> getObservations() {
+        return observations;
+    }
+
     @Override
     public String toString() {
         return "Readings{" +
@@ -32,6 +40,14 @@ public class Readings extends APIPage {
         public Observation(LocalDateTime time, double value) {
             this.time = time;
             this.value = value;
+        }
+
+        public LocalDateTime getTime() {
+            return time;
+        }
+
+        public double getValue() {
+            return value;
         }
 
         @Override
