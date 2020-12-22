@@ -58,14 +58,21 @@ public final class TestUtilities {
     public static void main(String[] args) {
         /*
             Tworzy snapshot API i zapisuje
+            Jak nie znajdzie resources/dummyAPI/station/findAll.json to pobiera nowe i ciągnie z giosu pełne
+
          */
         Parser onlineParser = new BasicParser(BasicParser::giosDataSource);
         Parser trimmed = new BasicParser(TestUtilities::loadFromTestResources);
 
         var findAll = trimmed.getFindAll();
         if(findAll == null || findAll.getContainer() == null || findAll.getContainer().size() == 0) {
-            System.err.println("No trimmed source, downloading full");
-            findAll = onlineParser.getFindAll();
+            System.err.println("No trimmed source found, downloading full findAll.json");
+            System.err.println("Move the downloaded file from temp/station/findAll.json to src/test/resources/dummyAPI/station/findAll.json");
+            System.err.println("NOTE: DO NOT RUN THIS WITH THE FULL findAll.json, trim it first to a few stations");
+            writerWrapper("station",
+                    "findAll.json",
+                    BasicParser.giosDataSource("station/findAll"));
+            return;
         }
         for(var station: findAll.getContainer()) {
             int stationID = station.getId();
