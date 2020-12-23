@@ -29,7 +29,7 @@ class Connection {
         return response.orElseThrow(()-> new IOException("Empty response and/or something has gone terribly wrong"));
     }
 
-    private static String getDataFromURLThrowing(String urlString) throws IOException {
+    public static String getDataFromURLThrowing(String urlString) throws IOException {
         URL url = new URL(urlString);
         HttpURLConnection connection = getConnection(url);
         return collectConnection(connection);

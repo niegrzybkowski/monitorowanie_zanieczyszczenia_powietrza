@@ -3,6 +3,8 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class ConnectionTest {
@@ -60,43 +62,49 @@ public class ConnectionTest {
     }
 
     @Test
-    public void throwException1() {
+    public void throwException404() {
         try {
-            Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
-        } catch (Exception e) {
-            assert(true);
+            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
+        } catch (IOException e) {
+            return;
         }
+        fail();
     }
     @Test
-    public void throwException2() {
+    public void throwException500() {
         try {
-            Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
-        } catch (Exception e) {
-            assert(true);
+            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
+        } catch (IOException e) {
+            return;
         }
+        fail();
     }
 
     @Test
     public void correctExceptionMessage1() {
         try {
-            Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
-        } catch (Exception e) {
+            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
+        } catch (IOException e) {
             String expectedMessage =
                     "URL http://api.gios.gov.pl/pjp-api/rest/station/findAll2 produced HttpResponseCode: 404 null";
             String actualMessage = e.getMessage();
             assertTrue(actualMessage.contains(expectedMessage));
+            return;
         }
+        fail();
     }
 
     @Test
     public void correctExceptionMessage2() {
         try {
-            Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
-        } catch (Exception e) {
+            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
+        } catch (IOException e) {
             String expectedMessage =
                     "URL http://api.gios.gov.pl/pjp-api/rest/station/sensors/0 produced HttpResponseCode: 500 null";
             String actualMessage = e.getMessage();
             assertTrue(actualMessage.contains(expectedMessage));
+            return;
         }
+        fail();
     }
 }
