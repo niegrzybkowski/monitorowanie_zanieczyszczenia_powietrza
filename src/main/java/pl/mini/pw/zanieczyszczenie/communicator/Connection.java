@@ -43,4 +43,12 @@ class Connection {
             return "";
         }
     }
+
+    public static String getDataSilent(String urlString) {
+        try {
+            return getDataThrowing(urlString);
+        } catch (IOException e) {
+            return "";
+        }
+    }
 }
