@@ -15,10 +15,10 @@ public class ConnectionTest {
 
     @BeforeClass
     public static void setUp() {
-        findAllResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/findAll");
-        stationSensorsResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/station/sensors/156");
-        readingsResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/data/getData/92");
-        indexResponse = Connection.getDataFromURL("http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52");
+        findAllResponse = Connection.getDataQuiet("http://api.gios.gov.pl/pjp-api/rest/station/findAll");
+        stationSensorsResponse = Connection.getDataQuiet("http://api.gios.gov.pl/pjp-api/rest/station/sensors/156");
+        readingsResponse = Connection.getDataQuiet("http://api.gios.gov.pl/pjp-api/rest/data/getData/92");
+        indexResponse = Connection.getDataQuiet("http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ConnectionTest {
     @Test
     public void throwException404() {
         try {
-            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
+            Connection.getDataThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
         } catch (IOException e) {
             return;
         }
@@ -73,7 +73,7 @@ public class ConnectionTest {
     @Test
     public void throwException500() {
         try {
-            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
+            Connection.getDataThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
         } catch (IOException e) {
             return;
         }
@@ -83,7 +83,7 @@ public class ConnectionTest {
     @Test
     public void correctExceptionMessage1() {
         try {
-            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
+            Connection.getDataThrowing("http://api.gios.gov.pl/pjp-api/rest/station/findAll2");
         } catch (IOException e) {
             String expectedMessage =
                     "URL http://api.gios.gov.pl/pjp-api/rest/station/findAll2 produced HttpResponseCode: 404 null";
@@ -97,7 +97,7 @@ public class ConnectionTest {
     @Test
     public void correctExceptionMessage2() {
         try {
-            Connection.getDataFromURLThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
+            Connection.getDataThrowing("http://api.gios.gov.pl/pjp-api/rest/station/sensors/0");
         } catch (IOException e) {
             String expectedMessage =
                     "URL http://api.gios.gov.pl/pjp-api/rest/station/sensors/0 produced HttpResponseCode: 500 null";

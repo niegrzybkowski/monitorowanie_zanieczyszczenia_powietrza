@@ -21,7 +21,7 @@ public class BasicParser implements Parser{
 
     public static String giosDataSource(String path) {
         String url = "http://api.gios.gov.pl/pjp-api/rest/";
-        return Connection.getDataFromURL(url + path);
+        return Connection.getDataQuiet(url + path);
     }
 
     public BasicParser(Function<String, String> dataSource) {
