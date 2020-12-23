@@ -68,8 +68,8 @@ public class BasicParser implements Parser{
     /*
     getData
      */
-    public Readings parseReadings(String data) {
-        List<Readings.Observation> observations = new ArrayList<>();
+    public ReadingsPage parseReadings(String data) {
+        List<ReadingsPage.Observation> observations = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
         JSONArray values = new JSONArray(jsonObject.get("values").toString());
@@ -82,14 +82,14 @@ public class BasicParser implements Parser{
             if (value == JSONObject.NULL) {
                 value = BigDecimal.ZERO; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
             }
-            observations.add(new Readings.Observation(date, ((BigDecimal) value).doubleValue()));
+            observations.add(new ReadingsPage.Observation(date, ((BigDecimal) value).doubleValue()));
         }
         String key = jsonObject.getString("key");
         key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
-        return new Readings(key,observations);
+        return new ReadingsPage(key,observations);
     }
     @Override
-    public Readings getReadings(int sensorID){
+    public ReadingsPage getReadings(int sensorID){
         return parseReadings(dataSource.apply("data/getData/" + sensorID));
     }
 

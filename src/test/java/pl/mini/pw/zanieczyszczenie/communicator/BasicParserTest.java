@@ -3,7 +3,7 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 import org.junit.Test;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAllPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.IndexPage;
-import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
 import java.time.LocalDateTime;
@@ -58,7 +58,7 @@ public class BasicParserTest {
 
     @Test
     public void readingsNotNull() {
-        Readings readings = basicParser.getReadings(92);
+        ReadingsPage readings = basicParser.getReadings(92);
         assertNotNull(readings);
         assertNotNullList(readings.getObservations());
     }
@@ -67,7 +67,7 @@ public class BasicParserTest {
     public void readingsHash() {
         assertSortedListHash(-1753926665,
                 basicParser.getReadings(92).getObservations(),
-                Comparator.comparing(Readings.Observation::getTime));
+                Comparator.comparing(ReadingsPage.Observation::getTime));
     }
 
     @Test
