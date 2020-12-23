@@ -31,7 +31,7 @@ public class BasicParser implements Parser{
     /*
     FindAll
      */
-    private FindAll.Station parseStationJSON(JSONObject current) {
+    private FindAllPage.Station parseStationJSON(JSONObject current) {
         JSONObject current_city = new JSONObject(current.get("city").toString());
         JSONObject current_commune = new JSONObject(current_city.get("commune").toString());
 
@@ -39,7 +39,7 @@ public class BasicParser implements Parser{
         if (addressStreet== JSONObject.NULL) {
             addressStreet = null;
         }
-        return new FindAll.Station(
+        return new FindAllPage.Station(
                 current.getInt("id"),
                 current.getString("stationName"),
                 current.getDouble("gegrLat"),
@@ -53,16 +53,16 @@ public class BasicParser implements Parser{
         );
     }
     @Override
-    public FindAll getFindAll() {
+    public FindAllPage getFindAll() {
         String data = dataSource.apply("station/findAll");
-        List<FindAll.Station> stations = new ArrayList<>();
+        List<FindAllPage.Station> stations = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(data);
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject current = jsonArray.getJSONObject(i);
             stations.add(parseStationJSON(current));
         }
-        return new FindAll(stations);
+        return new FindAllPage(stations);
     }
 
     /*

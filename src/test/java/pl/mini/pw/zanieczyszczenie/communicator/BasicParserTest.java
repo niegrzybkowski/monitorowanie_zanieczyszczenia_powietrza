@@ -1,7 +1,7 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
 import org.junit.Test;
-import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAllPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.IndexPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
@@ -20,15 +20,15 @@ public class BasicParserTest {
 
     @Test
     public void findAllNotNull() {
-        FindAll findAll = basicParser.getFindAll();
+        FindAllPage findAll = basicParser.getFindAll();
         assertNotNull(findAll);
         assertNotNullList(findAll.getContainer());
     }
 
     @Test
     public void findAllContains() {
-        FindAll findAll = basicParser.getFindAll();
-        FindAll.Station dzialoszyn = new FindAll.Station(
+        FindAllPage findAll = basicParser.getFindAll();
+        FindAllPage.Station dzialoszyn = new FindAllPage.Station(
                 14,
                 "Działoszyn",
                 50.972167,
@@ -41,7 +41,7 @@ public class BasicParserTest {
                 "bez ulicy"
         );
         assertNotNull("FindAll container is null", findAll.getContainer());
-        ArrayList<FindAll.Station> list = findAll.getContainer()
+        ArrayList<FindAllPage.Station> list = findAll.getContainer()
                 .stream()
                 .filter((x) -> x.getId()==14)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -53,7 +53,7 @@ public class BasicParserTest {
     public void findAllHash() {
         assertSortedListHash(-2037789062,
                 basicParser.getFindAll().getContainer(),
-                Comparator.comparingInt(FindAll.Station::getId));
+                Comparator.comparingInt(FindAllPage.Station::getId));
     }
 
     @Test

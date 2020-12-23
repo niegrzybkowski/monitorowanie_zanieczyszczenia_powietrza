@@ -1,6 +1,5 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
-import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
 import java.io.*;

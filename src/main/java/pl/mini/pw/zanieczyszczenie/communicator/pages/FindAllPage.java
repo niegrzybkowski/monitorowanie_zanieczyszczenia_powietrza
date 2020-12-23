@@ -3,14 +3,14 @@ package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
 import java.util.List;
 
-public class FindAll extends APIPage {
+public class FindAllPage extends APIPage {
     /*
         Stacje pomiarowe:
         pjp-api/rest/station/findAll
      */
     private List<Station> container;
 
-    public FindAll(List<Station> container) {
+    public FindAllPage(List<Station> container) {
         this.container = container;
     }
 
@@ -24,7 +24,7 @@ public class FindAll extends APIPage {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        FindAll findAll = (FindAll) o;
+        FindAllPage findAll = (FindAllPage) o;
 
         return container.equals(findAll.container);
     }
