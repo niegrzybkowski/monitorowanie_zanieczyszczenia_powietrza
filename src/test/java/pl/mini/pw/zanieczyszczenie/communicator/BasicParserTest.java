@@ -2,7 +2,7 @@ package pl.mini.pw.zanieczyszczenie.communicator;
 
 import org.junit.Test;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAll;
-import pl.mini.pw.zanieczyszczenie.communicator.pages.Index;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.IndexPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.Readings;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
 
@@ -86,7 +86,7 @@ public class BasicParserTest {
 
     @Test
     public void indexNotNull() {
-        Index index = basicParser.getIndex(52);
+        IndexPage index = basicParser.getIndex(52);
         assertNotNull(index);
         assertNotNullList(index.getIndexes());
     }
@@ -95,7 +95,7 @@ public class BasicParserTest {
     public void indexHash() {
         assertSortedListHash(-1312665777,
                 basicParser.getIndex(52).getIndexes(),
-                Comparator.comparing(Index.IndexData::getCalculationDate));
+                Comparator.comparing(IndexPage.IndexData::getCalculationDate));
     }
 
     @Test

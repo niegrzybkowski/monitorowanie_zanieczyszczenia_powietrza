@@ -6,5 +6,5 @@ public interface Parser {
     FindAll getFindAll();
     StationSensors getStationSensors(int stationID);
     Readings getReadings(int sensorID);
-    Index getIndex(int stationID);
+    IndexPage getIndex(int stationID);
 }

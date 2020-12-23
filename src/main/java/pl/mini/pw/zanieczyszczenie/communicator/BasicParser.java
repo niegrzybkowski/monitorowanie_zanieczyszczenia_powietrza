@@ -136,8 +136,8 @@ public class BasicParser implements Parser{
         }
 
     }
-    public Index parseGetIndex(String data) {
-        List<Index.IndexData> indexes = new ArrayList<>();
+    public IndexPage parseGetIndex(String data) {
+        List<IndexPage.IndexData> indexes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(data);
 
         String[] prefixes = {"st", "so2", "no2", "co", "pm10", "pm25", "o3", "c6h6"};
@@ -154,14 +154,14 @@ public class BasicParser implements Parser{
                 indexLevel = (int) indexLevelInfo.get("id");
             }
 
-            indexes.add(new Index.IndexData(sourceDataDate, calcDate,
+            indexes.add(new IndexPage.IndexData(sourceDataDate, calcDate,
                     indexLevel, key));
         }
 
-        return new Index(indexes);
+        return new IndexPage(indexes);
     }
     @Override
-    public Index getIndex(int stationID) {
+    public IndexPage getIndex(int stationID) {
         return parseGetIndex(dataSource.apply("aqindex/getIndex/" + stationID));
     }
 }

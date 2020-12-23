@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class Index extends APIPage {
+public class IndexPage extends APIPage {
     /*
         Indeks jakości powietrza:
         pjp-api/rest/aqindex/getIndex/{stationId}
      */
     private List<IndexData> indexes;
 
-    public Index(List<IndexData> indexes) {
+    public IndexPage(List<IndexData> indexes) {
         this.indexes = indexes;
     }
 
@@ -25,7 +25,7 @@ public class Index extends APIPage {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Index index = (Index) o;
+        IndexPage index = (IndexPage) o;
 
         return indexes.equals(index.indexes);
     }
