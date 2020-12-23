@@ -1,56 +1,54 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
+import java.util.Optional;
 
-public class Connection {
-    private java.net.URL URL;
-
-    public Connection(String URLstring) {
-        try {
-            this.URL = new URL(URLstring);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-    private HttpURLConnection getConnection() {
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) this.URL.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode!=200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode + " "
-                        + connection.getResponseMessage());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+class Connection {
+    private static HttpURLConnection getConnection(URL url) throws IOException{
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        int responseCode = connection.getResponseCode();
+        if (responseCode!=200) {
+            throw new IOException("URL "+ url.toString() + " produced HttpResponseCode: " + responseCode + " "
+                    + connection.getResponseMessage());
         }
         return connection;
     }
 
-    public String getData() {
-        HttpURLConnection connection = getConnection();
+    private static String collectConnection(HttpURLConnection connection) throws IOException {
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(connection.getInputStream())
+        );
+        Optional<String> response = br.lines().reduce(String::concat);
+        br.close();
+        return response.orElseThrow(()-> new IOException("Empty response and/or something has gone terribly wrong"));
+    }
 
-        StringBuilder input = new StringBuilder();
-        Scanner scanner = null;
+    public static String getDataThrowing(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        HttpURLConnection connection = getConnection(url);
+        return collectConnection(connection);
+    }
+
+    public static String getDataQuiet(String urlString) {
         try {
-            scanner = new Scanner(this.URL.openStream());
+            return getDataThrowing(urlString);
         } catch (IOException e) {
             e.printStackTrace();
+            return "";
         }
-        if (scanner==null) {
-            throw new NullPointerException("No data");
-        }
-        while (scanner.hasNext()) {
-            input.append(scanner.nextLine());
-        }
-        scanner.close();
+    }
 
-        return input.toString();
+    public static String getDataSilent(String urlString) {
+        try {
+            return getDataThrowing(urlString);
+        } catch (IOException e) {
+            return "";
+        }
     }
 }
