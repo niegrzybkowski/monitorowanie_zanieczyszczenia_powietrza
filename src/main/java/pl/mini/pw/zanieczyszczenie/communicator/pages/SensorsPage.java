@@ -3,7 +3,7 @@ package pl.mini.pw.zanieczyszczenie.communicator.pages;
 import java.util.List;
 import java.util.Objects;
 
-public class StationSensors extends APIPage {
+public class SensorsPage extends APIPage {
     /*
         Stanowiska pomiarowe:
         pjp-api/rest/station/sensors/{stationId}
@@ -11,7 +11,7 @@ public class StationSensors extends APIPage {
 
     private List<Sensor> stationSensors;
 
-    public StationSensors(List<Sensor> stationSensors) {
+    public SensorsPage(List<Sensor> stationSensors) {
         this.stationSensors = stationSensors;
     }
 
@@ -85,7 +85,7 @@ public class StationSensors extends APIPage {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        StationSensors sensors = (StationSensors) o;
+        SensorsPage sensors = (SensorsPage) o;
 
         return Objects.equals(stationSensors, sensors.stationSensors);
     }

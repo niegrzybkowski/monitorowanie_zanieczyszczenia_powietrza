@@ -4,7 +4,7 @@ import org.junit.Test;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAllPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.IndexPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
-import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.SensorsPage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class BasicParserTest {
 
     @Test
     public void stationSensorsNotNull() {
-        StationSensors sensors = basicParser.getStationSensors(52);
+        SensorsPage sensors = basicParser.getStationSensors(52);
         assertNotNull(sensors);
         assertNotNullList(sensors.getStationSensors());
     }
@@ -81,7 +81,7 @@ public class BasicParserTest {
     public void stationSensorsHash() {
         assertSortedListHash(-1701317268,
                 basicParser.getStationSensors(52).getStationSensors(),
-                Comparator.comparingInt(StationSensors.Sensor::getSensorID));
+                Comparator.comparingInt(SensorsPage.Sensor::getSensorID));
     }
 
     @Test

@@ -96,8 +96,8 @@ public class BasicParser implements Parser{
     /*
     sensors
      */
-    public StationSensors parseStationSensors(String data) {
-        List<StationSensors.Sensor> sensors = new ArrayList<>();
+    public SensorsPage parseStationSensors(String data) {
+        List<SensorsPage.Sensor> sensors = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(data);
 
         for (int i=0; i<jsonArray.length(); i++) {
@@ -106,16 +106,16 @@ public class BasicParser implements Parser{
 
             String key = current_param.getString("paramCode");
             key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
-            StationSensors.Sensor sensor = new StationSensors.Sensor(
+            SensorsPage.Sensor sensor = new SensorsPage.Sensor(
                     current.getInt("stationId"),
                     current.getInt("id"),
                     key);
             sensors.add(sensor);
         }
-        return new StationSensors(sensors);
+        return new SensorsPage(sensors);
     }
     @Override
-    public StationSensors getStationSensors(int stationID) {
+    public SensorsPage getStationSensors(int stationID) {
         return parseStationSensors(dataSource.apply("station/sensors/" + stationID));
     }
 

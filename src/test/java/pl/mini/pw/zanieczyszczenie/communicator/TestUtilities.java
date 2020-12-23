@@ -1,6 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
-import pl.mini.pw.zanieczyszczenie.communicator.pages.StationSensors;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.SensorsPage;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -94,7 +94,7 @@ public final class TestUtilities {
                     BasicParser.giosDataSource("aqindex/getIndex/" + stationID));
 
             // readings
-            StationSensors sensors = onlineParser.getStationSensors(stationID);
+            SensorsPage sensors = onlineParser.getStationSensors(stationID);
             for(var sensor: sensors.getStationSensors()) {
                 writerWrapper(
                         "data" + fs + "getData",
