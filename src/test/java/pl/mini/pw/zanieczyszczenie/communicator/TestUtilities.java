@@ -1,5 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.communicator;
 
+import pl.mini.pw.zanieczyszczenie.communicator.pages.FindAllPage;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.SensorsPage;
 
 import java.io.*;
@@ -61,7 +62,7 @@ public final class TestUtilities {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
             Tworzy snapshot API i zapisuje
             Jak nie znajdzie resources/dummyAPI/station/findAll.json to pobiera nowe i ciągnie z giosu pełne
@@ -70,7 +71,7 @@ public final class TestUtilities {
         Parser onlineParser = new BasicParser(BasicParser::giosDataSource);
         Parser trimmed = new BasicParser(TestUtilities::loadFromTestResources);
 
-        var findAll = trimmed.getFindAll();
+        FindAllPage findAll = trimmed.getFindAll();
         if(findAll == null || findAll.getContainer() == null || findAll.getContainer().size() == 0) {
             System.err.println("No trimmed source found, downloading full findAll.json");
             System.err.println("Move the downloaded file from temp/station/findAll.json to src/test/resources/dummyAPI/station/findAll.json");
