@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public final class TestUtilities {
-    private static ClassLoader classLoader = TestUtilities.class.getClassLoader();
+    private static final ClassLoader classLoader = TestUtilities.class.getClassLoader();
 
     public static void assertNotNullList(List<?> list) {
         assertNotNull(list);
