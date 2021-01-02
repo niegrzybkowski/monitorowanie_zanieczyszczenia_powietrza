@@ -1,13 +1,9 @@
 package pl.mini.pw.zanieczyszczenie;
 
-import org.json.*;
+import pl.mini.pw.zanieczyszczenie.org.ui.Main2;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Test");
-        JSONObject jooo = new JSONObject();
-        jooo.put("me", "ja");
-        jooo.put("not me", "nie ja");
-        System.out.println(jooo.toString());
+        Main2.main(args);
     }
 }
