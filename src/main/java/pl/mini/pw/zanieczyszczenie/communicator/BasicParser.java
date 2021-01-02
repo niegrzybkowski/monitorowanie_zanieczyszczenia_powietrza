@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 
 public class BasicParser implements Parser{
-    private Function<String, String> dataSource;
+    private final Function<String, String> dataSource;
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static String giosDataSource(String path) {
