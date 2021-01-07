@@ -113,7 +113,32 @@ public class Controller {
         }
 
         plot1.setTitle("Wykres 1");
+        setprostokatpm25Color();
 
+    }
+
+    public void setprostokatpm25Color(){
+        if(pm25.getCharacters().isEmpty()){
+            prostokatpm25.setFill(Color.web("#737373"));
+        }
+        else if((Double.parseDouble(pm25.getCharacters().toString())) < 13){
+            prostokatpm25.setFill(Color.web("#00cc00"));
+        }
+        else if((Double.parseDouble(pm25.getCharacters().toString())) < 37){
+            prostokatpm25.setFill(Color.web("#00ff00"));
+        }
+        else if((Double.parseDouble(pm25.getCharacters().toString())) < 61){
+            prostokatpm25.setFill(Color.web("#ffff00"));
+        }
+        else if((Double.parseDouble(pm25.getCharacters().toString())) < 85){
+            prostokatpm25.setFill(Color.web("#ff6600"));
+        }
+        else if((Double.parseDouble(pm25.getCharacters().toString())) < 121){
+            prostokatpm25.setFill(Color.web("#ff3300"));
+        }
+        else{
+            prostokatpm25.setFill(Color.web("#e60000"));
+        }
     }
 
 }
