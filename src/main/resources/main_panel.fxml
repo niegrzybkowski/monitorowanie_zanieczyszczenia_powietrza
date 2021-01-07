@@ -135,32 +135,32 @@
             <Text layoutX="727.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <ImageView fx:id="image1" fitHeight="467.0" fitWidth="480.0" layoutX="40.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="stan_powietrza" alignment="CENTER" editable="false" layoutX="630.0" layoutY="70.0" prefHeight="3.0" prefWidth="94.0" />
-            <TextField fx:id="pm25" alignment="CENTER" editable="false" layoutX="582.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="pm25" alignment="CENTER" editable="false" layoutX="573.0" layoutY="126.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="pm10" alignment="CENTER" editable="false" layoutX="652.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="pm10" alignment="CENTER" editable="false" layoutX="643.0" layoutY="126.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="no2" alignment="CENTER" editable="false" layoutX="727.0" layoutY="126.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="no2" alignment="CENTER" editable="false" layoutX="718.0" layoutY="126.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="co" alignment="CENTER" editable="false" layoutX="583.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="co" alignment="CENTER" editable="false" layoutX="572.0" layoutY="200.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="c6h6" alignment="CENTER" editable="false" layoutX="652.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="c6h6" alignment="CENTER" editable="false" layoutX="643.0" layoutY="200.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="so2" alignment="CENTER" editable="false" layoutX="728.0" layoutY="200.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="so2" alignment="CENTER" editable="false" layoutX="718.0" layoutY="200.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -197,7 +197,7 @@
             </TextField>
             <Rectangle fx:id="prostokato3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
             <Text layoutX="581.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O3" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
-            <TextField fx:id="o3" alignment="CENTER" editable="false" layoutX="581.0" layoutY="272.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="o3" alignment="CENTER" editable="false" layoutX="572.0" layoutY="272.0" prefHeight="28.0" prefWidth="60.0">
                <font>
                   <Font size="14.0" />
                </font>
