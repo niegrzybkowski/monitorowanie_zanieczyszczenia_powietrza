@@ -15,6 +15,7 @@ public class Main2 extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_panel.fxml")));
         primaryStage.setTitle("Monitorowanie zanieczyszczenia powietrza");
         primaryStage.setScene(new Scene(root, 804, 573));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
