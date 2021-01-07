@@ -1,6 +1,7 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -59,6 +60,8 @@ public class Controller {
     private Rectangle prostokat6;
     @FXML
     private Rectangle prostokat7;
+    @FXML
+    private LineChart plot1;
 
 
 
@@ -106,6 +109,8 @@ public class Controller {
         for(Rectangle t : list_prostokaty){
             t.setFill(Color.web("#1aff1a"));
         }
+
+        plot1.setTitle("Wykres 1");
     }
 
 }
