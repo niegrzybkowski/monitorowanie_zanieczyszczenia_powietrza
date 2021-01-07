@@ -119,13 +119,13 @@
             </LineChart>
             <Separator layoutX="551.0" layoutY="317.0" prefHeight="2.0" prefWidth="248.0" />
             <ProgressBar layoutX="556.0" layoutY="14.0" prefHeight="20.0" prefWidth="94.0" progress="0.0" />
-            <Rectangle fx:id="prostokat1" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="573.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat2" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="643.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="718.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat4" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat5" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="643.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat6" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="718.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="prostokat0" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="574.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
+            <Rectangle fx:id="prostokatpm25" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="573.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatpm10" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="643.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatno2" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="718.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatco" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatc6h6" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="643.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatso2" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="718.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokatstan" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="574.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
             <Text layoutX="636.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stan Powietrza" />
             <Text layoutX="582.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <Text layoutX="652.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
@@ -165,44 +165,44 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka1" alignment="CENTER" editable="false" layoutX="582.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkapm25" alignment="CENTER" editable="false" layoutX="582.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka2" alignment="CENTER" editable="false" layoutX="652.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkapm10" alignment="CENTER" editable="false" layoutX="652.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka3" alignment="CENTER" editable="false" layoutX="727.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkano2" alignment="CENTER" editable="false" layoutX="727.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka4" alignment="CENTER" editable="false" layoutX="583.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkaco" alignment="CENTER" editable="false" layoutX="583.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka5" alignment="CENTER" editable="false" layoutX="652.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkac6h6" alignment="CENTER" editable="false" layoutX="652.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka6" alignment="CENTER" editable="false" layoutX="728.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkaso2" alignment="CENTER" editable="false" layoutX="728.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Rectangle fx:id="prostokat7" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Rectangle fx:id="prostokato3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
             <Text layoutX="581.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O3" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
             <TextField fx:id="o3" alignment="CENTER" editable="false" layoutX="581.0" layoutY="272.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="jednostka7" alignment="CENTER" editable="false" layoutX="581.0" layoutY="285.0" prefHeight="27.0" prefWidth="41.0">
+            <TextField fx:id="jednostkao3" alignment="CENTER" editable="false" layoutX="581.0" layoutY="285.0" prefHeight="27.0" prefWidth="41.0">
                <font>
                   <Font size="10.0" />
                </font>

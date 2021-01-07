@@ -31,35 +31,35 @@ public class Controller {
     @FXML
     private TextField o3;
     @FXML
-    private TextField jednostka1;
+    private TextField jednostkapm25;
     @FXML
-    private TextField jednostka2;
+    private TextField jednostkapm10;
     @FXML
-    private TextField jednostka3;
+    private TextField jednostkano2;
     @FXML
-    private TextField jednostka4;
+    private TextField jednostkaco;
     @FXML
-    private TextField jednostka5;
+    private TextField jednostkac6h6;
     @FXML
-    private TextField jednostka6;
+    private TextField jednostkaso2;
     @FXML
-    private TextField jednostka7;
+    private TextField jednostkao3;
     @FXML
-    private Rectangle prostokat0;
+    private Rectangle prostokatstan;
     @FXML
-    private Rectangle prostokat1;
+    private Rectangle prostokatpm25;
     @FXML
-    private Rectangle prostokat2;
+    private Rectangle prostokatpm10;
     @FXML
-    private Rectangle prostokat3;
+    private Rectangle prostokatno2;
     @FXML
-    private Rectangle prostokat4;
+    private Rectangle prostokatco;
     @FXML
-    private Rectangle prostokat5;
+    private Rectangle prostokatc6h6;
     @FXML
-    private Rectangle prostokat6;
+    private Rectangle prostokatso2;
     @FXML
-    private Rectangle prostokat7;
+    private Rectangle prostokato3;
     @FXML
     private LineChart plot1;
 
@@ -84,33 +84,36 @@ public class Controller {
             t.setText("55");
         }
         var list_jednostek = new ArrayList<TextField>();
-        list_jednostek.add(jednostka1);
-        list_jednostek.add(jednostka2);
-        list_jednostek.add(jednostka3);
-        list_jednostek.add(jednostka4);
-        list_jednostek.add(jednostka5);
-        list_jednostek.add(jednostka6);
-        list_jednostek.add(jednostka7);
+
+        list_jednostek.add(jednostkapm25);
+        list_jednostek.add(jednostkapm10);
+        list_jednostek.add(jednostkano2);
+        list_jednostek.add(jednostkaco);
+        list_jednostek.add(jednostkac6h6);
+        list_jednostek.add(jednostkaso2);
+        list_jednostek.add(jednostkao3);
+
         for(TextField t : list_jednostek){
             t.setMouseTransparent(true);
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
             t.setText("\u00B5"+"g/m"+"\u00B3");
         }
         var list_prostokaty = new ArrayList<Rectangle>();
-        list_prostokaty.add(prostokat0);
-        list_prostokaty.add(prostokat1);
-        list_prostokaty.add(prostokat2);
-        list_prostokaty.add(prostokat3);
-        list_prostokaty.add(prostokat4);
-        list_prostokaty.add(prostokat5);
-        list_prostokaty.add(prostokat6);
-        list_prostokaty.add(prostokat7);
+        list_prostokaty.add(prostokatstan);
+        list_prostokaty.add(prostokatpm25);
+        list_prostokaty.add(prostokatpm10);
+        list_prostokaty.add(prostokatno2);
+        list_prostokaty.add(prostokatco);
+        list_prostokaty.add(prostokatc6h6);
+        list_prostokaty.add(prostokatso2);
+        list_prostokaty.add(prostokato3);
 
         for(Rectangle t : list_prostokaty){
             t.setFill(Color.web("#1aff1a"));
         }
 
         plot1.setTitle("Wykres 1");
+
     }
 
 }
