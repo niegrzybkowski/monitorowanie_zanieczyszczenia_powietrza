@@ -69,7 +69,7 @@ public class Controller {
         image1.setImage(new Image("obr1.png"));
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
-        stan_powietrza.setText("dobry");
+        stan_powietrza.setText("Dobry");
         var list_zan = new ArrayList<TextField>();
         list_zan.add(pm25);
         list_zan.add(pm10);
@@ -108,37 +108,59 @@ public class Controller {
         list_prostokaty.add(prostokatso2);
         list_prostokaty.add(prostokato3);
 
-        for(Rectangle t : list_prostokaty){
-            t.setFill(Color.web("#1aff1a"));
-        }
+
 
         plot1.setTitle("Wykres 1");
-        setprostokatpm25Color();
+        setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
+        setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
+        setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
+        setprostokatColor(co, prostokatco, 3, 7, 11, 15, 21);
+        setprostokatColor(c6h6, prostokatc6h6, 6, 11, 16, 21, 51);
+        setprostokatColor(so2, prostokatso2, 51, 101, 201, 351, 501);
+        setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
+        setprostokatStanColor(stan_powietrza, prostokatstan);
 
     }
 
-    public void setprostokatpm25Color(){
-        if(pm25.getCharacters().isEmpty()){
-            prostokatpm25.setFill(Color.web("#737373"));
+    public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
+        if(wartosc.getCharacters().isEmpty()){
+            prostokat.setFill(Color.web("#737373"));
         }
-        else if((Double.parseDouble(pm25.getCharacters().toString())) < 13){
-            prostokatpm25.setFill(Color.web("#00cc00"));
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= bdb){
+            prostokat.setFill(Color.web("#00cc00"));
         }
-        else if((Double.parseDouble(pm25.getCharacters().toString())) < 37){
-            prostokatpm25.setFill(Color.web("#00ff00"));
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= db){
+            prostokat.setFill(Color.web("#00ff00"));
         }
-        else if((Double.parseDouble(pm25.getCharacters().toString())) < 61){
-            prostokatpm25.setFill(Color.web("#ffff00"));
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= umiark){
+            prostokat.setFill(Color.web("#ffff00"));
         }
-        else if((Double.parseDouble(pm25.getCharacters().toString())) < 85){
-            prostokatpm25.setFill(Color.web("#ff6600"));
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= dost){
+            prostokat.setFill(Color.web("#ff6600"));
         }
-        else if((Double.parseDouble(pm25.getCharacters().toString())) < 121){
-            prostokatpm25.setFill(Color.web("#ff3300"));
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= zly){
+            prostokat.setFill(Color.web("#ff3300"));
         }
         else{
-            prostokatpm25.setFill(Color.web("#e60000"));
+            prostokat.setFill(Color.web("#e60000"));
         }
     }
 
+    public void setprostokatStanColor(TextField wartosc, Rectangle prostokat) {
+        if (wartosc.getCharacters().isEmpty()) {
+            prostokat.setFill(Color.web("#737373"));
+        } else if ((wartosc.getCharacters().toString()).equals("Bardzo dobry")) {
+            prostokat.setFill(Color.web("#00cc00"));
+        } else if ((wartosc.getCharacters().toString()).equals("Dobry")) {
+            prostokat.setFill(Color.web("#00ff00"));
+        } else if ((wartosc.getCharacters().toString()).equals("Umiarkowany")) {
+            prostokat.setFill(Color.web("#ffff00"));
+        } else if ((wartosc.getCharacters().toString()).equals("Dostateczny")) {
+            prostokat.setFill(Color.web("#ff6600"));
+        } else if ((wartosc.getCharacters().toString()).equals("Zły")) {
+            prostokat.setFill(Color.web("#ff3300"));
+        } else {
+            prostokat.setFill(Color.web("#e60000"));
+        }
+    }
 }
