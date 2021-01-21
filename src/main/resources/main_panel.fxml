@@ -60,11 +60,11 @@
         </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fa8ff" height="543.0" layoutX="549.0" stroke="BLACK" strokeType="INSIDE" width="254.0" />
             <Separator layoutX="552.0" layoutY="49.0" prefHeight="2.0" prefWidth="248.0" />
-            <Button layoutX="739.0" layoutY="8.0" minWidth="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" text="OK">
+            <Button fx:id="okbutton" layoutX="739.0" layoutY="8.0" minWidth="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" text="OK">
                <font>
                   <Font size="12.0" />
                </font></Button>
-            <Button layoutX="662.0" layoutY="8.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="Odśwież">
+            <Button fx:id="refreshbutton" layoutX="662.0" layoutY="8.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="Odśwież">
                <font>
                   <Font size="12.0" />
                </font></Button>
