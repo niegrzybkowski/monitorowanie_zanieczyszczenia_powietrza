@@ -28,11 +28,10 @@ public class MapView {
 
     private final double width;
     private final double height;
-    private Image img;
-    private ImageView view;
+    private final ImageView view;
 
     public MapView() {
-        this.img = new Image(IMAGE_URL);
+        var img = new Image(IMAGE_URL);
         this.width = img.getWidth();
         this.height = img.getHeight();
         view = new ImageView(img);
@@ -103,11 +102,8 @@ public class MapView {
     private void shift(ImageView imageView, Point2D delta) {
         Rectangle2D viewport = imageView.getViewport();
 
-        double width = imageView.getImage().getWidth() ;
-        double height = imageView.getImage().getHeight() ;
-
-        double maxX = width - viewport.getWidth();
-        double maxY = height - viewport.getHeight();
+        double maxX = imageView.getImage().getWidth() - viewport.getWidth();
+        double maxY = imageView.getImage().getHeight() - viewport.getHeight();
 
         double minX = clamp(viewport.getMinX() - delta.getX(), 0, maxX);
         double minY = clamp(viewport.getMinY() - delta.getY(), 0, maxY);
@@ -126,7 +122,8 @@ public class MapView {
         Rectangle2D viewport = imageView.getViewport();
         return new Point2D(
                 viewport.getMinX() + xProportion * viewport.getWidth(),
-                viewport.getMinY() + yProportion * viewport.getHeight());
+                viewport.getMinY() + yProportion * viewport.getHeight()
+        );
     }
 
     public ImageView getView() {
