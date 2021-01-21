@@ -24,6 +24,7 @@ public class MapView {
     private final double height;
     private final ImageView view;
     private final AnchorPane container;
+    private final Group poiGroup;
 
     private static final double longitudeLow = 14.0;
     private static final double longitudeHigh = 24.5;
@@ -42,6 +43,11 @@ public class MapView {
         resetView();
         addListeners(view);
         container = new AnchorPane(view);
+        poiGroup = new Group();
+        container.getChildren().add(poiGroup);
+        view.fitWidthProperty().bind(container.widthProperty());
+        view.fitHeightProperty().bind(container.heightProperty());
+        drawPOIs();
     }
 
     private void addListeners(ImageView view) {
@@ -51,12 +57,14 @@ public class MapView {
         view.setOnMousePressed(e -> {
             Point2D mousePress = viewToImage(new Point2D(e.getX(), e.getY()));
             mouseDown.set(mousePress);
+            drawPOIs();
         });
 
         view.setOnMouseDragged(e -> {
             Point2D dragPoint = viewToImage(new Point2D(e.getX(), e.getY()));
             move(dragPoint.subtract(mouseDown.get()));
             mouseDown.set(viewToImage(new Point2D(e.getX(), e.getY())));
+            drawPOIs();
         });
 
         view.setOnScroll(e -> {
@@ -74,11 +82,13 @@ public class MapView {
                     0, height - newHeight);
 
             view.setViewport(new Rectangle2D(newMinX, newMinY, newWidth, newHeight));
+            drawPOIs();
         });
 
         view.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
                 resetView();
+                drawPOIs();
             }
         });
     }
@@ -101,18 +111,23 @@ public class MapView {
     }
 
     private Point2D viewToImage(Point2D viewCoordinates) {
-        double scaleX = viewCoordinates.getX() / view.getBoundsInLocal().getWidth();
-        double scaleY = viewCoordinates.getY() / view.getBoundsInLocal().getHeight();
+        double scaledX = viewCoordinates.getX() / view.getBoundsInLocal().getWidth();
+        double scaledY = viewCoordinates.getY() / view.getBoundsInLocal().getHeight();
 
-        Rectangle2D viewport = view.getViewport();
+        var viewport = view.getViewport();
         return new Point2D(
-                viewport.getMinX() + scaleX * viewport.getWidth(),
-                viewport.getMinY() + scaleY * viewport.getHeight()
+                viewport.getMinX() + scaledX * viewport.getWidth(),
+                viewport.getMinY() + scaledY * viewport.getHeight()
         );
     }
 
-    private Point2D imageToView() {
-        return null;
+    private Point2D imageToView(Point2D imageCoordinates) {
+        var viewport = view.getViewport();
+        double scale = viewport.getHeight() / height;
+        return new Point2D(
+                (imageCoordinates.getX() - viewport.getMinX()) / scale,
+                (imageCoordinates.getY() - viewport.getMinY()) / scale
+        );
     }
 
     private Point2D scaleGeographicToImage(double latitude, double longitude) {
@@ -129,14 +144,13 @@ public class MapView {
         return new Point2D(x, y);
     }
 
-    public Group drawPOIs() {
-        var g = new Group();
-        System.out.println(pois.get(0));
+    public void drawPOIs() {
+        poiGroup.getChildren().clear();
         pois.stream()
-                .filter(p -> true)
+                .filter(p -> view.getViewport().contains(p))
+                .map(this::imageToView)
                 .map(p -> new Circle(p.getX(), p.getY(), CIRCLE_SIZE, Color.BLACK))
-                .forEach(c -> g.getChildren().add(c));
-        return g;
+                .forEach(c -> poiGroup.getChildren().add(c));
     }
 
     public void addPOI(double latitude, double longitude) {

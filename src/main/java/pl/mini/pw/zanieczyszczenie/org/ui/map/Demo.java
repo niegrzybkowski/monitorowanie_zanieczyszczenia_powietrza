@@ -12,14 +12,8 @@ public class Demo extends Application {
     public void start(Stage stage) throws Exception {
         MapView mapView = new MapView();
         mapView.addPOI(52.23, 21.01);
-        var view = mapView.getView();
-        AnchorPane container = new AnchorPane(view);
-        container.getChildren().add(mapView.drawPOIs());
-
-        view.fitWidthProperty().bind(container.widthProperty());
-        view.fitHeightProperty().bind(container.heightProperty());
-
-        VBox root = new VBox(container);
+        var pane = mapView.getPane();
+        VBox root = new VBox(pane);
         stage.setScene(new Scene(root));
         stage.setTitle("Pluto explorer");
         stage.show();
