@@ -160,10 +160,6 @@ public class MapView {
                 .forEach(c -> poiGroup.getChildren().add(c.representation));
     }
 
-    private void updatePOIs() {
-
-    }
-
     public void addPOI(double latitude, double longitude, Paint color,
                        EventHandler<? super MouseEvent> eventHandler) {
         Point2D pos = scaleGeographicToImage(latitude, longitude);
