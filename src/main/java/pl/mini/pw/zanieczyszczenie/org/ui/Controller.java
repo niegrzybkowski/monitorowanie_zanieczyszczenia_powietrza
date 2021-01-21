@@ -2,6 +2,7 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -62,6 +63,8 @@ public class Controller {
     private Rectangle prostokato3;
     @FXML
     private LineChart plot1;
+    @FXML
+    private ProgressBar pasekpostepu;
 
 
 
@@ -120,6 +123,7 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
+        pasekpostepu.setProgress(0.25F);
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
