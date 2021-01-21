@@ -19,8 +19,6 @@ import java.util.List;
 
 
 public class MapView {
-
-    private static final String IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Poland_CIA_map_PL.png";
     private static final double CIRCLE_SIZE = 10.0;
 
     private final double width;
@@ -38,7 +36,7 @@ public class MapView {
     private final List<POI> pois = new ArrayList<>();
 
     public MapView() {
-        var img = new Image(IMAGE_URL);
+        var img = new Image("obr1.png", 500, 500, false, false);
         this.width = img.getWidth();
         this.height = img.getHeight();
         view = new ImageView(img);
