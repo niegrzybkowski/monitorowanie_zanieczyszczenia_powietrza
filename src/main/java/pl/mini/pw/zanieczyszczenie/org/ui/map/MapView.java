@@ -2,13 +2,16 @@ package pl.mini.pw.zanieczyszczenie.org.ui.map;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class MapView {
     private static final double latitudeLow = 57.0;
     private static final double latitudeHigh = 48.5;
 
-    private final List<Point2D> pois = new ArrayList<>();
+    private final List<POI> pois = new ArrayList<>();
 
     public MapView() {
         var img = new Image(IMAGE_URL);
@@ -147,17 +150,39 @@ public class MapView {
     public void drawPOIs() {
         poiGroup.getChildren().clear();
         pois.stream()
-                .filter(p -> view.getViewport().contains(p))
-                .map(this::imageToView)
-                .map(p -> new Circle(p.getX(), p.getY(), CIRCLE_SIZE, Color.BLACK))
-                .forEach(c -> poiGroup.getChildren().add(c));
+                .filter(c -> view.getViewport().contains(c.originalLocation))
+                .peek(poi -> {
+                    var c = poi.representation;
+                    Point2D p = imageToView(poi.originalLocation);
+                    c.setCenterX(p.getX());
+                    c.setCenterY(p.getY());
+                })
+                .forEach(c -> poiGroup.getChildren().add(c.representation));
     }
 
-    public void addPOI(double latitude, double longitude) {
-        pois.add(scaleGeographicToImage(latitude, longitude));
+    private void updatePOIs() {
+
+    }
+
+    public void addPOI(double latitude, double longitude, Paint color,
+                       EventHandler<? super MouseEvent> eventHandler) {
+        Point2D pos = scaleGeographicToImage(latitude, longitude);
+        var circle = new Circle(pos.getX(), pos.getY(), CIRCLE_SIZE, color);
+        circle.setOnMouseClicked(eventHandler);
+        pois.add(new POI(circle, pos));
     }
 
     public AnchorPane getPane() {
         return container;
+    }
+
+    private static class POI {
+        public Circle representation;
+        public Point2D originalLocation;
+
+        public POI(Circle representation, Point2D originalLocation) {
+            this.representation = representation;
+            this.originalLocation = originalLocation;
+        }
     }
 }
