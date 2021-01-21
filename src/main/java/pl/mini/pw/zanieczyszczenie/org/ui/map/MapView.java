@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class MapView extends Application {
+public class MapView {
 
     private static final String IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Poland_CIA_map_PL.png";
     private static final int MIN_PIXELS = 10;
@@ -39,27 +39,6 @@ public class MapView extends Application {
         view.setPreserveRatio(true);
         reset(view, width, height);
         addListeners(view);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-//        Image image = new Image(IMAGE_URL);
-//        double width = image.getWidth();
-//        double height = image.getHeight();
-
-//        ImageView imageView = new ImageView(image);
-//        imageView.setPreserveRatio(true);
-//        reset(imageView, width, height);
-
-//        Pane container = new Pane(imageView);
-
-//        imageView.fitWidthProperty().bind(container.widthProperty());
-//        imageView.fitHeightProperty().bind(container.heightProperty());
-//        VBox root = new VBox(container);
-//
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("Pluto explorer");
-//        primaryStage.show();
     }
 
     private void addListeners(ImageView view) {
@@ -152,9 +131,5 @@ public class MapView extends Application {
 
     public ImageView getView() {
         return view;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
