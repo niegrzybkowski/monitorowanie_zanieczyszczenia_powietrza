@@ -8,8 +8,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Controller {
     @FXML
@@ -67,7 +69,11 @@ public class Controller {
 
     public void initialize() {
         MapView mapView = new MapView();
-        mapView.addPOI(52.23, 21.01);
+        for(int i = 0; i < 500; i++) {
+            mapView.addPOI(52.23 + ThreadLocalRandom.current().nextDouble(), 21.01+ ThreadLocalRandom.current().nextDouble(), Color.BLUE,
+                    e -> System.out.println("tutaj byłoby coś, żeby otworzyć odpowiednie menu z prawej"));
+        }
+
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
