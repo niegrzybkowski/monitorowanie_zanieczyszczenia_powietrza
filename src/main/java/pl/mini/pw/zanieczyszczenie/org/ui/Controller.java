@@ -123,7 +123,8 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-        pasekpostepu.setProgress(0.25F);
+        pasekpostepu.setProgress(-1d); //włączanie paska postępu
+        pasekpostepu.setProgress(0d); //wyłączanie paska postępu
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
