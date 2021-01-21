@@ -4,8 +4,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +18,18 @@ import java.util.List;
 public class MapView {
 
     private static final String IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Poland_CIA_map_PL.png";
+    private static final double CIRCLE_SIZE = 10.0;
 
     private final double width;
     private final double height;
     private final ImageView view;
+    private final AnchorPane container;
 
     private static final double longitudeLow = 14.0;
-    private static final double longitudeHigh = 25.0;
+    private static final double longitudeHigh = 24.5;
 
-    private static final double latitudeLow = 55.0;
-    private static final double latitudeHigh = 48.0;
+    private static final double latitudeLow = 57.0;
+    private static final double latitudeHigh = 48.5;
 
     private final List<Point2D> pois = new ArrayList<>();
 
@@ -35,6 +41,7 @@ public class MapView {
         view.setPreserveRatio(true);
         resetView();
         addListeners(view);
+        container = new AnchorPane(view);
     }
 
     private void addListeners(ImageView view) {
@@ -109,26 +116,38 @@ public class MapView {
     }
 
     private Point2D scaleGeographicToImage(double latitude, double longitude) {
-        if(!(latitudeLow <= latitude && latitude <= latitudeHigh &&
-                longitudeLow <= longitude && longitude <= longitudeHigh))
+        if(!(latitudeLow > latitude && latitude > latitudeHigh &&
+                longitudeLow <= longitude && longitude <= longitudeHigh)) {
+            System.err.println("" + latitude + " " + longitude);
             throw new RuntimeException("POI out of bounds in map");
-
-        double xScale = (longitudeHigh - longitudeLow) / width;
-        double yScale = (latitudeHigh - latitudeLow) / height;
+        }
+        double xScale = width / (longitudeHigh - longitudeLow);
+        double yScale = height / (latitudeHigh - latitudeLow);
 
         double x = (longitude - longitudeLow) * xScale;
         double y = (latitude - latitudeLow) * yScale;
         return new Point2D(x, y);
     }
 
+    public Group drawPOIs() {
+        var g = new Group();
+        System.out.println(pois.get(0));
+        pois.stream()
+                .filter(p -> true)
+                .map(p -> new Circle(p.getX(), p.getY(), CIRCLE_SIZE, Color.BLACK))
+                .forEach(c -> g.getChildren().add(c));
+        return g;
+    }
+
     public void addPOI(double latitude, double longitude) {
-        if(latitudeLow <= latitude && latitude <= latitudeHigh &&
-        longitudeLow <= longitude && longitude <= longitudeHigh) {
-            pois.add(new Point2D(latitude, longitude));
-        }
+        pois.add(scaleGeographicToImage(latitude, longitude));
     }
 
     public ImageView getView() {
         return view;
+    }
+
+    public AnchorPane getPane() {
+        return container;
     }
 }
