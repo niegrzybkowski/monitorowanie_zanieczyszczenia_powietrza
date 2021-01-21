@@ -56,6 +56,7 @@ public class MapView {
     private void addListeners(ImageView view) {
         // magia beansowa, stack kazał tak zrobić
         ObjectProperty<Point2D> mouseDown = new SimpleObjectProperty<>();
+        view.setOnMouseEntered(e -> drawPOIs());
 
         view.setOnMousePressed(e -> {
             Point2D mousePress = viewToImage(new Point2D(e.getX(), e.getY()));
@@ -71,20 +72,7 @@ public class MapView {
         });
 
         view.setOnScroll(e -> {
-            var viewport = view.getViewport();
-
-            double scale = Math.pow(1.001, e.getDeltaY());
-
-            Point2D mouse = viewToImage(new Point2D(e.getX(), e.getY()));
-
-            double newWidth = Math.min(viewport.getWidth() * scale, width);
-            double newHeight = Math.min(viewport.getHeight() * scale, height);
-            double newMinX = clamp(mouse.getX() - (mouse.getX() - viewport.getMinX()) * scale,
-                    0, width - newWidth);
-            double newMinY = clamp(mouse.getY() - (mouse.getY() - viewport.getMinY()) * scale,
-                    0, height - newHeight);
-
-            view.setViewport(new Rectangle2D(newMinX, newMinY, newWidth, newHeight));
+            scale(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
             drawPOIs();
         });
 
@@ -94,6 +82,23 @@ public class MapView {
                 drawPOIs();
             }
         });
+    }
+
+    private void scale(double delta, Point2D identity) {
+        var viewport = view.getViewport();
+
+        double scale = Math.pow(1.001, delta);
+
+        Point2D mouse = viewToImage(new Point2D(identity.getX(), identity.getY()));
+
+        double newWidth = Math.min(viewport.getWidth() * scale, width);
+        double newHeight = Math.min(viewport.getHeight() * scale, height);
+        double newMinX = clamp(mouse.getX() - (mouse.getX() - viewport.getMinX()) * scale,
+                0, width - newWidth);
+        double newMinY = clamp(mouse.getY() - (mouse.getY() - viewport.getMinY()) * scale,
+                0, height - newHeight);
+
+        view.setViewport(new Rectangle2D(newMinX, newMinY, newWidth, newHeight));
     }
 
     private void resetView() {
@@ -147,7 +152,7 @@ public class MapView {
         return new Point2D(x, y);
     }
 
-    public void drawPOIs() {
+    private void drawPOIs() {
         poiGroup.getChildren().clear();
         pois.stream()
                 .filter(c -> view.getViewport().contains(c.originalLocation))
@@ -164,6 +169,10 @@ public class MapView {
                        EventHandler<? super MouseEvent> eventHandler) {
         Point2D pos = scaleGeographicToImage(latitude, longitude);
         var circle = new Circle(pos.getX(), pos.getY(), CIRCLE_SIZE, color);
+        circle.setOnScroll(e -> {
+            scale(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
+            drawPOIs();
+        });
         circle.setOnMouseClicked(eventHandler);
         pois.add(new POI(circle, pos));
     }
