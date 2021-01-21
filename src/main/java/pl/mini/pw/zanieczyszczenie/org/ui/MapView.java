@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.org.ui.map;
+package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MapView {
+public class MapView extends AnchorPane {
 
     private static final String IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Poland_CIA_map_PL.png";
     private static final double CIRCLE_SIZE = 10.0;

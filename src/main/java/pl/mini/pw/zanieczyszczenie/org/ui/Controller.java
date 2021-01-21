@@ -2,18 +2,16 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
 public class Controller {
-    @FXML
-    private ImageView image1;
     @FXML
     private TextField stan_powietrza;
     @FXML
@@ -62,11 +60,19 @@ public class Controller {
     private Rectangle prostokato3;
     @FXML
     private LineChart plot1;
+    @FXML
+    private AnchorPane map;
 
 
 
     public void initialize() {
-        image1.setImage(new Image("obr1.png"));
+        MapView mapView = new MapView();
+        mapView.addPOI(52.23, 21.01);
+        var pane = mapView.getPane();
+        VBox root = new VBox(pane);
+
+        map.getChildren().setAll(root);
+
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setText("Dobry");
@@ -119,6 +125,9 @@ public class Controller {
         setprostokatColor(so2, prostokatso2, 51, 101, 201, 351, 501);
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
+
+
+
 
     }
 
