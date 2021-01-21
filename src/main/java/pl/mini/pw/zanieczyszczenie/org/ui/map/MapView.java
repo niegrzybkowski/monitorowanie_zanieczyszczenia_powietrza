@@ -111,8 +111,8 @@ public class MapView {
     }
 
     private Point2D viewToImage(Point2D viewCoordinates) {
-        double scaledX = viewCoordinates.getX() / view.getBoundsInLocal().getWidth();
-        double scaledY = viewCoordinates.getY() / view.getBoundsInLocal().getHeight();
+        double scaledX = viewCoordinates.getX() / width;
+        double scaledY = viewCoordinates.getY() / height;
 
         var viewport = view.getViewport();
         return new Point2D(
@@ -155,10 +155,6 @@ public class MapView {
 
     public void addPOI(double latitude, double longitude) {
         pois.add(scaleGeographicToImage(latitude, longitude));
-    }
-
-    public ImageView getView() {
-        return view;
     }
 
     public AnchorPane getPane() {

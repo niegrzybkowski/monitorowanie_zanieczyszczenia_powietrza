@@ -26,13 +26,13 @@ public class Main2 extends Application {
     }
     private void showMap(Double lat, Double lon) {
         mapView = new MapView();
-        PoiLayer poiLayer = new PoiLayer();
+//        PoiLayer poiLayer = new PoiLayer();
         MapPoint mapPoint = new MapPoint(lat, lon);
-        poiLayer.addPoint(mapPoint, new Circle(7, Color.RED));
+//        poiLayer.addPoint(mapPoint, new Circle(7, Color.RED));
         mapView.setZoom(16);
-        mapView.addLayer(poiLayer);
+//        mapView.addLayer(poiLayer);
         mapView.flyTo(0.1, mapPoint, 0.1);
-        tabMap.setContent(mapView);
+//        tabMap.setContent(mapView);
    }
 
 
