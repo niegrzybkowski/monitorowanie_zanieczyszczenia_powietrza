@@ -20,7 +20,7 @@ public class Demo extends Application {
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
         stage.setScene(new Scene(root));
-        stage.setTitle("Pluto explorer");
+        stage.setTitle("Mappe demo");
         stage.show();
     }
 
