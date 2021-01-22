@@ -1,23 +1,19 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Controller {
-    @FXML
-    private ImageView image1;
     @FXML
     private TextField stan_powietrza;
     @FXML
@@ -67,16 +63,22 @@ public class Controller {
     @FXML
     private LineChart plot1;
     @FXML
-    private ProgressBar pasekpostepu;
-    @FXML
-    private Button refreshbutton;
-    @FXML
-    private Button okbutton;
+    private AnchorPane map;
 
 
 
     public void initialize() {
-        image1.setImage(new Image("obr1.png"));
+        MapView mapView = new MapView();
+        for(int i = 0; i < 500; i++) {
+            mapView.addPOI(52.23 + ThreadLocalRandom.current().nextDouble(), 21.01+ ThreadLocalRandom.current().nextDouble(), Color.BLUE,
+                    e -> System.out.println("tutaj byłoby coś, żeby otworzyć odpowiednie menu z prawej"));
+        }
+
+        var pane = mapView.getPane();
+        VBox root = new VBox(pane);
+
+        map.getChildren().setAll(root);
+
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setText("Dobry");
@@ -130,20 +132,9 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-        pasekpostepu.setProgress(-1d); //włączanie paska postępu
-        pasekpostepu.setProgress(0d); //wyłączanie paska postępu
 
-        EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            System.out.println("tak");
-            event.consume();
-        };
-        refreshbutton.setOnAction(refreshbuttonHandler);
 
-        EventHandler<ActionEvent> okbuttonHandler = event -> {
-            System.out.println("ok");
-            event.consume();
-        };
-        okbutton.setOnAction(okbuttonHandler);
+
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){

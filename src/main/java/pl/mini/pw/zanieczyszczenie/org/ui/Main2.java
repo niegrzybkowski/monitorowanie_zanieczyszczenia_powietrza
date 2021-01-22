@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class Main2 extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_panel.fxml")));
@@ -18,6 +19,7 @@ public class Main2 extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
 
 
     public static void main(String[] args) {
