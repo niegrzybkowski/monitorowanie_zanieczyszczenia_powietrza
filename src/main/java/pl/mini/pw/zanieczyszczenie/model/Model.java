@@ -5,9 +5,8 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.*;
 import java.util.List;
 
 public interface Model {
-    FindAllPage getFindAll();
-    IndexPage getIndexPage(int stationId);
-    List<IndexPage> getAllIndexPages();
+    List<StationInfoPage> getStationInfoPages();
+    StationInfoPage getStationInfoPage(int stationId);
     ReadingsPage getReadingsPage(int sensorId);
     SensorsPage getSensorsPage(int stationId);
 }
