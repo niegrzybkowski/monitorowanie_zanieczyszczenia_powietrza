@@ -132,7 +132,7 @@ public class MapView {
 
     private Point2D imageToView(Point2D imageCoordinates) {
         var viewport = view.getViewport();
-        double scale = viewport.getHeight() / height;
+        double scale = viewport.getHeight() / view.getFitHeight();
         return new Point2D(
                 (imageCoordinates.getX() - viewport.getMinX()) / scale,
                 (imageCoordinates.getY() - viewport.getMinY()) / scale
