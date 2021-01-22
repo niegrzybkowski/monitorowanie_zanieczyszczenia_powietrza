@@ -120,8 +120,8 @@ public class MapView {
     }
 
     private Point2D viewToImage(Point2D viewCoordinates) {
-        double scaledX = viewCoordinates.getX() / width;
-        double scaledY = viewCoordinates.getY() / height;
+        double scaledX = viewCoordinates.getX() / view.getFitWidth();
+        double scaledY = viewCoordinates.getY() / view.getFitHeight();
 
         var viewport = view.getViewport();
         return new Point2D(
