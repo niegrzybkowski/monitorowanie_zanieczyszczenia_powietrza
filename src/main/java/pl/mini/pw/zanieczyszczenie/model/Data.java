@@ -64,7 +64,9 @@ public class Data implements Model{
 
     @Override
     public List<IndexPage> getAllIndexPages() {
-        assert findAllPage != null;
+        if (findAllPage == null) {
+            getFindAll();
+        }
 
         for (FindAllPage.Station station: findAllPage.getContainer()) {
             int currentStationId = station.getId();
