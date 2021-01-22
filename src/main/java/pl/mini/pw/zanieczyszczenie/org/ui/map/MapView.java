@@ -36,7 +36,7 @@ public class MapView {
     private final List<POI> pois = new ArrayList<>();
 
     public MapView() {
-        var img = new Image("obr1.png", 544, 544, false, false);
+        var img = new Image("obr1.png");
         this.width = img.getWidth();
         this.height = img.getHeight();
         view = new ImageView(img);
@@ -44,6 +44,9 @@ public class MapView {
         resetView();
         addListeners(view);
         container = new AnchorPane(view);
+        container.setMinSize(544, 544);
+        container.setPrefSize(544, 544);
+        container.setMaxSize(544, 544);
         poiGroup = new Group();
         container.getChildren().add(poiGroup);
         view.fitWidthProperty().bind(container.widthProperty());
@@ -117,8 +120,8 @@ public class MapView {
     }
 
     private Point2D viewToImage(Point2D viewCoordinates) {
-        double scaledX = viewCoordinates.getX() / width;
-        double scaledY = viewCoordinates.getY() / height;
+        double scaledX = viewCoordinates.getX() / view.getFitWidth();
+        double scaledY = viewCoordinates.getY() / view.getFitHeight();
 
         var viewport = view.getViewport();
         return new Point2D(
@@ -129,7 +132,7 @@ public class MapView {
 
     private Point2D imageToView(Point2D imageCoordinates) {
         var viewport = view.getViewport();
-        double scale = viewport.getHeight() / height;
+        double scale = viewport.getHeight() / view.getFitHeight();
         return new Point2D(
                 (imageCoordinates.getX() - viewport.getMinX()) / scale,
                 (imageCoordinates.getY() - viewport.getMinY()) / scale
