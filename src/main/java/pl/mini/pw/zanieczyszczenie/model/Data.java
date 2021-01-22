@@ -87,7 +87,7 @@ public class Data implements Model{
 
     @Override
     public SensorsPage getSensorsPage(int stationId) {
-        if (!readingsPages.containsKey(stationId)) {
+        if (!sensorsPages.containsKey(stationId)) {
             sensorsPages.put(stationId, parser.getStationSensors(stationId));
             count++;
         }
