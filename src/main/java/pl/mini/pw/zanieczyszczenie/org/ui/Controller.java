@@ -1,8 +1,12 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -64,6 +68,12 @@ public class Controller {
     private LineChart plot1;
     @FXML
     private AnchorPane map;
+    @FXML
+    private ProgressBar pasekpostepu;
+    @FXML
+    private Button refreshbutton;
+    @FXML
+    private Button okbutton;
 
 
 
@@ -132,6 +142,20 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
+        pasekpostepu.setProgress(-1d); //włączanie paska postępu
+        pasekpostepu.setProgress(0d); //wyłączanie paska postępu
+
+        EventHandler<ActionEvent> refreshbuttonHandler = event -> {
+            System.out.println("tak");
+            event.consume();
+        };
+        refreshbutton.setOnAction(refreshbuttonHandler);
+
+        EventHandler<ActionEvent> okbuttonHandler = event -> {
+            System.out.println("ok");
+            event.consume();
+        };
+        okbutton.setOnAction(okbuttonHandler);
 
 
 
