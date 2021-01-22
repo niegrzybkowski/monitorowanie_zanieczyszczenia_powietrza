@@ -1,5 +1,6 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,6 +16,31 @@ public class StationInfoPage extends APIPage{
         this.geographicLat = geographicLat;
         this.geographicLon = geographicLon;
     }
+
+    public Color color() {
+        int id = indexes.stream()
+                .filter(a -> a.getKey().equals("st"))
+                .findFirst()
+                .map(a -> a.getIndexLevel())
+                .orElse(-1);
+
+        switch (id) {
+            case 0:
+                return Color.decode("#00cc00");
+            case 1:
+                return Color.decode("#00ff00");
+            case 2:
+                return Color.decode("#ffff00");
+            case 3:
+                return Color.decode("#ff6600");
+            case 4:
+                return Color.decode("#ff3300");
+            default: {
+                return Color.decode("#737373");
+            }
+        }
+    }
+
 
     public List<IndexPage.IndexData> getIndexes() {
         return indexes;
