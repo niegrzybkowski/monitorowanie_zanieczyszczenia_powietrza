@@ -30,35 +30,35 @@ public class DataTest {
 
     }
 
-    @Test
-    public void checkCachingIndexes() {
-        data.getIndexPage(52);
-
-        Assert.assertEquals(1, data.count);
-
-        data.getIndexPage(52);
-
-        Assert.assertEquals(1, data.count);
-
-        data.getIndexPage(14);
-
-        Assert.assertEquals(2, data.count);
-
-        data.getAllIndexPages();
-
-        Assert.assertEquals(9, data.count);
-
-        for (int i = 0; i < 10; i++) {
-            data.getIndexPage(11);
-            data.getIndexPage(14);
-            data.getIndexPage(129);
-            data.getAllIndexPages();
-        }
-
-        Assert.assertEquals(9, data.count);
-
-        Assert.assertEquals(9, data.getAllIndexPages().size()+1); // +1, bo wczytuje wszystkie ID z findAll
-    }
+//    @Test
+//    public void checkCachingIndexes() {
+//        data.getIndexPage(52);
+//
+//        Assert.assertEquals(1, data.count);
+//
+//        data.getIndexPage(52);
+//
+//        Assert.assertEquals(1, data.count);
+//
+//        data.getIndexPage(14);
+//
+//        Assert.assertEquals(2, data.count);
+//
+//        data.getAllIndexPages();
+//
+//        Assert.assertEquals(9, data.count);
+//
+//        for (int i = 0; i < 10; i++) {
+//            data.getIndexPage(11);
+//            data.getIndexPage(14);
+//            data.getIndexPage(129);
+//            data.getAllIndexPages();
+//        }
+//
+//        Assert.assertEquals(9, data.count);
+//
+//        Assert.assertEquals(9, data.getAllIndexPages().size()+1); // +1, bo wczytuje wszystkie ID z findAll
+//    }
 
     @Test
     public void checkCachingFindAll() {
@@ -92,6 +92,32 @@ public class DataTest {
 
         Assert.assertEquals(2, data.count);
         Assert.assertEquals(2, data.readingsPages.size());
+
+    }
+
+    @Test
+    public void checkCachingStationInfo() {
+        data.getStationInfoPage(52);
+
+        Assert.assertEquals(2, data.count);
+        Assert.assertEquals(2, data.stationInfoPages.size()+1);
+
+        data.getStationInfoPages();
+
+        Assert.assertEquals(9, data.count);
+        Assert.assertEquals(9, data.stationInfoPages.size()+1);
+
+
+
+        for (int i = 0; i < 15; i++) {
+            data.getStationInfoPages();
+            data.getStationInfoPage(11);
+            data.getStationInfoPage(109);
+            data.getStationInfoPage(117);
+        }
+
+        Assert.assertEquals(9, data.count);
+        Assert.assertEquals(9, data.stationInfoPages.size()+1);
 
     }
 
