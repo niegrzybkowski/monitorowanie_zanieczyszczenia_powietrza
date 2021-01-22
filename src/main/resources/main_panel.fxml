@@ -209,7 +209,7 @@
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <AnchorPane fx:id="map" layoutY="-2.0" prefHeight="544.0" prefWidth="548.0" />
+                  <AnchorPane fx:id="map" prefHeight="544.0" prefWidth="548.0" />
             </children>
           </AnchorPane>
          </children>

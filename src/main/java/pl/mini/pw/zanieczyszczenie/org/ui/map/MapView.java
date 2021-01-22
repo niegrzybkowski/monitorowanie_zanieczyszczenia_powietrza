@@ -36,7 +36,7 @@ public class MapView {
     private final List<POI> pois = new ArrayList<>();
 
     public MapView() {
-        var img = new Image("obr1.png", 500, 500, false, false);
+        var img = new Image("obr1.png", 548, 544, false, false);
         this.width = img.getWidth();
         this.height = img.getHeight();
         view = new ImageView(img);
