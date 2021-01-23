@@ -27,11 +27,11 @@ public class MapView {
     private final AnchorPane container;
     private final Group poiGroup;
 
-    private static final double longitudeLow = 14.0;
+    private static final double longitudeLow = 13.89;
     private static final double longitudeHigh = 24.5;
 
-    private static final double latitudeLow = 57.0;
-    private static final double latitudeHigh = 48.5;
+    private static final double latitudeLow = 55.0;
+    private static final double latitudeHigh = 48.6;
 
     private final List<POI> pois = new ArrayList<>();
 
