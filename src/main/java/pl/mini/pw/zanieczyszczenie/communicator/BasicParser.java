@@ -103,6 +103,7 @@ public class BasicParser implements Parser{
             LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
                 value = null; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
+                continue;
             }
             try {
                 observations.add(new ReadingsPage.Observation(date, (Double) value));
