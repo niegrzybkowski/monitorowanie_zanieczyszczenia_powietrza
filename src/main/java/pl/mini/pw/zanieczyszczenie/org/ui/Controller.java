@@ -225,6 +225,7 @@ public class Controller {
             } else {
                 keyToFun(-1, key);
             }
+            updatestan(model.getStationInfoPage(idStacji).getStringIndex());
         }
     }
 
