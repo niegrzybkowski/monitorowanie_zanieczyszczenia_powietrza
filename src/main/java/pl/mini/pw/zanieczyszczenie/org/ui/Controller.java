@@ -8,6 +8,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -68,6 +69,22 @@ public class Controller {
     private Rectangle prostokatso2;
     @FXML
     private Rectangle prostokato3;
+    @FXML
+    private Rectangle prostokatstanklik;
+    @FXML
+    private Rectangle prostokatpm25klik;
+    @FXML
+    private Rectangle prostokatpm10klik;
+    @FXML
+    private Rectangle prostokatno2klik;
+    @FXML
+    private Rectangle prostokatcoklik;
+    @FXML
+    private Rectangle prostokatc6h6klik;
+    @FXML
+    private Rectangle prostokatso2klik;
+    @FXML
+    private Rectangle prostokato3klik;
     @FXML
     private LineChart plot1;
     @FXML
@@ -135,6 +152,26 @@ public class Controller {
         list_prostokaty.add(prostokatso2);
         list_prostokaty.add(prostokato3);
 
+        var list_prostokaty_klik = new ArrayList<Rectangle>();
+        list_prostokaty.add(prostokatstanklik);
+        list_prostokaty.add(prostokatpm25klik);
+        list_prostokaty.add(prostokatpm10klik);
+        list_prostokaty.add(prostokatno2klik);
+        list_prostokaty.add(prostokatcoklik);
+        list_prostokaty.add(prostokatc6h6klik);
+        list_prostokaty.add(prostokatso2klik);
+        list_prostokaty.add(prostokato3klik);
+
+
+
+        prostokatpm25klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatpm10klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatno2klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatcoklik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatc6h6klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatso2klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokato3klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatstanklik.setOnMouseClicked(t -> System.out.println("ok"));
 
         plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);

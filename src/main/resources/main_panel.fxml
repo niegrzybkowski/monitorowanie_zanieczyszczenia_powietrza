@@ -170,6 +170,14 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+                  <Rectangle fx:id="prostokatstanklik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="42.0" layoutX="574.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
+                  <Rectangle fx:id="prostokatpm25klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="573.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokatpm10klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="643.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokatno2klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="718.0" layoutY="106.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokatcoklik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="572.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokatc6h6klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="643.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokatso2klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="718.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Rectangle fx:id="prostokato3klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
             </children>
           </AnchorPane>
          </children>
