@@ -19,6 +19,7 @@ import pl.mini.pw.zanieczyszczenie.model.Model;
 import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -98,7 +99,7 @@ public class Controller {
     @FXML
     private Button okbutton;
 
-    private Model model = new Data(
+    private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
     );
 
@@ -213,19 +214,20 @@ public class Controller {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ELOO");
+            System.err.println("Error loading data! Ruin has come to our family...");
         }
     }
     public void updateButtons(int idStacji) {
         for(String key: List.of("PM25", "PM10", "NO2", "CO", "C6H6", "SO2", "O3")) {
             var page = model.getReadingsPage(idStacji, key);
             if(page != null && page.getObservations().size() !=0) {
-                keyToFun(page.getObservations().get(0).getValue(), key);
+                double stezenie = page.getObservations().get(0).getValue();
+                keyToFun(Math.round(stezenie*10)/10.0, key);
             } else {
                 keyToFun(-1, key);
             }
-            updatestan(model.getStationInfoPage(idStacji).getStringIndex());
         }
+        updatestan(model.getStationInfoPage(idStacji).getStringIndex());
     }
 
     public void keyToFun(double stezenie, String key){
