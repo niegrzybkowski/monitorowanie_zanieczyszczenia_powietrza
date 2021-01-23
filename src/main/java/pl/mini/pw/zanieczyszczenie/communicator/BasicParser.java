@@ -39,7 +39,6 @@ public class BasicParser implements Parser{
                 return "";
             }
             var str = dataStream.lines().collect(Collectors.joining());
-            System.out.println(str);
             return str;
         } catch (IOException e) {
             System.err.println("Error loading from resource: " + e.getMessage());
@@ -103,7 +102,8 @@ public class BasicParser implements Parser{
             String dateString = currentValue.get("date").toString();
             LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
-                value = 0.0; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
+                value = null; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
+                continue;
             }
             try {
                 observations.add(new ReadingsPage.Observation(date, (Double) value));

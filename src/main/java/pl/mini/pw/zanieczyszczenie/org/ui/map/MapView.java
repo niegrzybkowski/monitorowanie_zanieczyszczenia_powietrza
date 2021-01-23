@@ -155,8 +155,13 @@ public class MapView {
 
     private void drawPOIs() {
         poiGroup.getChildren().clear();
+        Rectangle2D smolView = new Rectangle2D(
+                view.getViewport().getMinX()+25,
+                view.getViewport().getMinY()+25,
+                view.getViewport().getWidth()-50,
+                view.getViewport().getHeight()-50);
         pois.stream()
-                .filter(c -> view.getViewport().contains(c.originalLocation))
+                .filter(c -> smolView.contains(c.originalLocation))
                 .peek(poi -> {
                     var c = poi.representation;
                     Point2D p = imageToView(poi.originalLocation);
