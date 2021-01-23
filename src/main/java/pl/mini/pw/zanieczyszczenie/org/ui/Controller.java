@@ -80,7 +80,7 @@ public class Controller {
     private Button okbutton;
 
     private Model model = new Data(
-      new BasicParser(BasicParser::giosDataSource)
+      new BasicParser(BasicParser::loadFromTestResources)
     );
 
     public void initialize() {
@@ -175,6 +175,7 @@ public class Controller {
                 );
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("ELOO");
         }
     }

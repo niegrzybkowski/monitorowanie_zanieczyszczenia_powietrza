@@ -6,6 +6,10 @@ import org.json.JSONObject;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.*;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public class BasicParser implements Parser{
@@ -22,6 +27,24 @@ public class BasicParser implements Parser{
     public static String giosDataSource(String path) {
         String url = "http://api.gios.gov.pl/pjp-api/rest/";
         return Connection.getDataQuiet(url + path);
+    }
+
+    public static String loadFromTestResources(String path) {
+        try {
+            var dataStream  = new BufferedReader(
+                    new FileReader("dummyAPI/" + path + ".json")
+            );
+            if (dataStream == null) {
+                System.err.println("Error loading from resource: dataStream is null");
+                return "";
+            }
+            var str = dataStream.lines().collect(Collectors.joining());
+            System.out.println(str);
+            return str;
+        } catch (IOException e) {
+            System.err.println("Error loading from resource: " + e.getMessage());
+            return "";
+        }
     }
 
     public BasicParser(Function<String, String> dataSource) {
