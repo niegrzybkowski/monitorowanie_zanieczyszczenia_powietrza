@@ -21,6 +21,7 @@ import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.DoubleConsumer;
 
 public class Controller {
     @FXML
@@ -217,49 +218,73 @@ public class Controller {
     }
     public void updateButtons(int idStacji) {
         var page = model.getReadingsPage(idStacji, "PM25");
-        double stezenie = page.getObservations().get(0).getValue();
-        updatepm25(stezenie);
+        if(page != null && page.getObservations().size() !=0) {
+            updatepm25(page.getObservations().get(0).getValue());
+        } else {
+            updatepm25(-1);
+        }
+
     }
 
     public void updatepm25(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         pm25.setText(stezenieSt);
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
     }
 
     public void updatepm10(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         pm10.setText(stezenieSt);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
     }
 
 
     public void updateno2(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         no2.setText(stezenieSt);
         setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
     }
 
     public void updateco(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         co.setText(stezenieSt);
         setprostokatColor(co, prostokatco, 3, 7, 11, 15, 21);
     }
 
     public void updatec6h6(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         c6h6.setText(stezenieSt);
         setprostokatColor(c6h6, prostokatc6h6, 6, 11, 16, 21, 51);
     }
 
     public void updateso2(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
-        so2.setText(stezenieSt);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }        so2.setText(stezenieSt);
         setprostokatColor(so2, prostokatso2, 51, 101, 201, 351, 501);
     }
 
     public void updateo3(double stezenie){
-        String stezenieSt = String.valueOf(stezenie);
+        String stezenieSt = "-";
+        if(stezenie > 0) {
+            stezenieSt = String.valueOf(stezenie);
+        }
         o3.setText(stezenieSt);
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
     }
@@ -270,7 +295,7 @@ public class Controller {
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
-        if(wartosc.getCharacters().isEmpty()){
+        if(wartosc.getCharacters().isEmpty() || wartosc.getCharacters().equals("-")){
             prostokat.setFill(Color.web("#737373"));
         }
         else if((Double.parseDouble(wartosc.getCharacters().toString())) <= bdb){
