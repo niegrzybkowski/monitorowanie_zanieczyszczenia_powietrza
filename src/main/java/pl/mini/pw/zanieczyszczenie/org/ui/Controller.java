@@ -17,9 +17,7 @@ import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Controller {
     @FXML
@@ -73,7 +71,7 @@ public class Controller {
     @FXML
     private AnchorPane map;
     @FXML
-    private ProgressBar pasekpostepu;
+    private TextField ladowanie;
     @FXML
     private Button refreshbutton;
     @FXML
@@ -94,6 +92,11 @@ public class Controller {
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setText("Dobry");
+
+        ladowanie.setText("");
+        ladowanie.setMouseTransparent(true);
+        ladowanie.setStyle("-fx-background-color: rgba(53,89,119,0);");
+
         var list_zan = new ArrayList<TextField>();
         list_zan.add(pm25);
         list_zan.add(pm10);
@@ -102,6 +105,7 @@ public class Controller {
         list_zan.add(c6h6);
         list_zan.add(so2);
         list_zan.add(o3);
+
         for(TextField t : list_zan){
             t.setMouseTransparent(true);
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
@@ -143,8 +147,7 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-        pasekpostepu.setProgress(-1d); //włączanie paska postępu
-        pasekpostepu.setProgress(0d); //wyłączanie paska postępu
+
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             System.out.println("tak");
@@ -161,11 +164,10 @@ public class Controller {
         okbutton.setOnAction(okbuttonHandler);
 
 
-
-
     }
 
     public void addStations(MapView mapView){
+        ladowanie.setText("Ładuję");
         try {
             for (var el : model.getStationInfoPages()) {
                 mapView.addPOI(el.getGeographicLat(),
@@ -178,6 +180,7 @@ public class Controller {
             e.printStackTrace();
             System.out.println("ELOO");
         }
+        ladowanie.setText("");
     }
 
     public void updatepm25(double stezenie){
