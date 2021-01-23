@@ -30,36 +30,6 @@ public class DataTest {
 
     }
 
-//    @Test
-//    public void checkCachingIndexes() {
-//        data.getIndexPage(52);
-//
-//        Assert.assertEquals(1, data.count);
-//
-//        data.getIndexPage(52);
-//
-//        Assert.assertEquals(1, data.count);
-//
-//        data.getIndexPage(14);
-//
-//        Assert.assertEquals(2, data.count);
-//
-//        data.getAllIndexPages();
-//
-//        Assert.assertEquals(9, data.count);
-//
-//        for (int i = 0; i < 10; i++) {
-//            data.getIndexPage(11);
-//            data.getIndexPage(14);
-//            data.getIndexPage(129);
-//            data.getAllIndexPages();
-//        }
-//
-//        Assert.assertEquals(9, data.count);
-//
-//        Assert.assertEquals(9, data.getAllIndexPages().size()+1); // +1, bo wczytuje wszystkie ID z findAll
-//    }
-
     @Test
     public void checkCachingFindAll() {
         data.getFindAll();
@@ -75,7 +45,7 @@ public class DataTest {
     }
 
     @Test
-    public void checkCachingReadings() {
+    public void checkCachingReadingsBySensorId() {
         data.getReadingsPage(50);
 
         Assert.assertEquals(1, data.count);
@@ -92,6 +62,40 @@ public class DataTest {
 
         Assert.assertEquals(2, data.count);
         Assert.assertEquals(2, data.readingsPages.size());
+    }
+
+    @Test
+    public void checkCachingReadings() {
+        data.getReadingsPage(14, "PM10");
+
+        Assert.assertEquals(2, data.count);
+        // +1 bo musial zgarnac dostepne sensorId w danej stacji
+        Assert.assertEquals(2, data.readingsPages.size()+1);
+
+        data.getReadingsPage(11, "NO2");
+
+        Assert.assertEquals(4, data.count);
+        Assert.assertEquals(4, data.readingsPages.size()+2);
+
+        data.getReadingsPage(11, "O3");
+
+        Assert.assertEquals(5, data.count);
+        Assert.assertEquals(5, data.readingsPages.size()+2);
+
+        for (int i = 0; i < 15; i++) {
+            data.getReadingsPage(11, "O3");
+            data.getReadingsPage(11, "NO2");
+            data.getReadingsPage(14, "PM10");
+        }
+
+        Assert.assertEquals(5, data.count);
+        Assert.assertEquals(5, data.readingsPages.size()+2);
+
+
+        data.getReadingsPage(11, "PM10"); // nie istnieje
+
+        Assert.assertEquals(5, data.count);
+        Assert.assertEquals(5, data.readingsPages.size()+2);
 
     }
 
