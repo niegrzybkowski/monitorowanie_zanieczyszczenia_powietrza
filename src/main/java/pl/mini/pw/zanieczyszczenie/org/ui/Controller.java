@@ -12,8 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.model.Data;
+import pl.mini.pw.zanieczyszczenie.model.Model;
 import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -75,14 +79,12 @@ public class Controller {
     @FXML
     private Button okbutton;
 
-
+    private Model model = new Data(
+      new BasicParser(BasicParser::giosDataSource)
+    );
 
     public void initialize() {
         MapView mapView = new MapView();
-        for(int i = 0; i < 500; i++) {
-            mapView.addPOI(52.23 + ThreadLocalRandom.current().nextDouble(), 21.01+ ThreadLocalRandom.current().nextDouble(), Color.BLUE,
-                    e -> System.out.println("tutaj byłoby coś, żeby otworzyć odpowiednie menu z prawej"));
-        }
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
@@ -131,7 +133,6 @@ public class Controller {
         list_prostokaty.add(prostokato3);
 
 
-
         plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
@@ -147,6 +148,8 @@ public class Controller {
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             System.out.println("tak");
+            addStations(mapView);
+            updatepm25(55);
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
@@ -159,6 +162,69 @@ public class Controller {
 
 
 
+
+    }
+
+    public void addStations(MapView mapView){
+        try {
+            for (var el : model.getStationInfoPages()) {
+                mapView.addPOI(el.getGeographicLat(),
+                        el.getGeographicLon(),
+                        el.color(),
+                        e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                );
+            }
+        } catch (Exception e) {
+            System.out.println("ELOO");
+        }
+    }
+
+    public void updatepm25(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        pm25.setText(stezenieSt);
+        setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
+    }
+
+    public void updatepm10(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        pm10.setText(stezenieSt);
+        setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
+    }
+
+
+    public void updateno2(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        no2.setText(stezenieSt);
+        setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
+    }
+
+    public void updateco(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        co.setText(stezenieSt);
+        setprostokatColor(co, prostokatco, 3, 7, 11, 15, 21);
+    }
+
+    public void updatec6h6(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        c6h6.setText(stezenieSt);
+        setprostokatColor(c6h6, prostokatc6h6, 6, 11, 16, 21, 51);
+    }
+
+    public void updateso2(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        so2.setText(stezenieSt);
+        setprostokatColor(so2, prostokatso2, 51, 101, 201, 351, 501);
+    }
+
+    public void updateo3(double stezenie){
+        String stezenieSt = String.valueOf(stezenie);
+        o3.setText(stezenieSt);
+        setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
+    }
+
+    public void updatestan(String stan){
+        stan_powietrza.setText(stan);
+        setprostokatStanColor(stan_powietrza, prostokatstan);
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
