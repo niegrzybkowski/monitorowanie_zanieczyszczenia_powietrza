@@ -164,17 +164,14 @@ public class Controller {
 
 
 
-        EventHandler<ActionEvent> prostokatpm25Handler = event -> {
-            System.out.println("ok");
-            event.consume();
-        };
-        prostokatpm25klik.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent t) {
-                System.out.println("ok");
-            }
-        });
+        prostokatpm25klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatpm10klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatno2klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatcoklik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatc6h6klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatso2klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokato3klik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatstanklik.setOnMouseClicked(t -> System.out.println("ok"));
 
         plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
