@@ -154,7 +154,6 @@ public class Controller {
 
         EventHandler<ActionEvent> okbuttonHandler = event -> {
             System.out.println("ok");
-            updatepm25(78);
             event.consume();
         };
         okbutton.setOnAction(okbuttonHandler);
