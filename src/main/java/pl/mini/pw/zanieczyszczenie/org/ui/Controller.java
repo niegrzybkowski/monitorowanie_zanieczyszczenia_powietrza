@@ -85,17 +85,7 @@ public class Controller {
 
     public void initialize() {
         MapView mapView = new MapView();
-        try {
-            for (var el : model.getStationInfoPages()) {
-                mapView.addPOI(el.getGeographicLat(),
-                        el.getGeographicLon(),
-                        el.color(),
-                        e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
-                );
-            }
-        } catch (Exception e) {
-            System.out.println("ELOO");
-        }
+
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
@@ -158,6 +148,7 @@ public class Controller {
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             System.out.println("tak");
+            addStations(mapView);
             updatepm25(55);
             event.consume();
         };
@@ -171,6 +162,21 @@ public class Controller {
 
 
 
+
+    }
+
+    public void addStations(MapView mapView){
+        try {
+            for (var el : model.getStationInfoPages()) {
+                mapView.addPOI(el.getGeographicLat(),
+                        el.getGeographicLon(),
+                        el.color(),
+                        e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                );
+            }
+        } catch (Exception e) {
+            System.out.println("ELOO");
+        }
     }
 
     public void updatepm25(double stezenie){
