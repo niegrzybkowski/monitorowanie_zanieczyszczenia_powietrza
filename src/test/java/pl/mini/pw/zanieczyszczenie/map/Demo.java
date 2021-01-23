@@ -5,17 +5,29 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.communicator.TestUtilities;
+import pl.mini.pw.zanieczyszczenie.model.Data;
+import pl.mini.pw.zanieczyszczenie.model.Model;
 import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Demo extends Application {
+    private Model model = new Data(
+            new BasicParser(TestUtilities::loadFromTestResources)
+    );
+
     @Override
     public void start(Stage stage) throws Exception {
         MapView mapView = new MapView();
-        for(int i = 0; i < 500; i++) {
-            mapView.addPOI(52.23 + ThreadLocalRandom.current().nextDouble(), 21.01+ ThreadLocalRandom.current().nextDouble(), Color.BLUE,
-                    e -> System.out.println("tutaj byłoby coś, żeby otworzyć odpowiednie menu z prawej"));
+
+        var x = model.getStationInfoPages();
+        for(var el: x) {
+            mapView.addPOI(el.getGeographicLat(),
+                    el.getGeographicLon(),
+                    el.color(),
+                    e -> System.out.println(el.getId()));
         }
 
         var pane = mapView.getPane();
