@@ -159,10 +159,6 @@ public class Controller {
             event.consume();
         };
         okbutton.setOnAction(okbuttonHandler);
-
-
-
-
     }
 
     public void addStations(MapView mapView){
@@ -171,13 +167,18 @@ public class Controller {
                 mapView.addPOI(el.getGeographicLat(),
                         el.getGeographicLon(),
                         el.color(),
-                        e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                        e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
                 );
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("ELOO");
         }
+    }
+    public void updateButtons(int idStacji) {
+        var page = model.getReadingsPage(idStacji, "PM25");
+        double stezenie = page.getObservations().get(0).getValue();
+        updatepm25(stezenie);
     }
 
     public void updatepm25(double stezenie){
