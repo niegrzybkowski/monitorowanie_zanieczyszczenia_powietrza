@@ -2,6 +2,7 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -29,7 +30,7 @@ public class PlotView extends Application {
 
         primaryStage.setTitle("Wykres 1");
 
-        NumberAxis xAxis = new NumberAxis();
+        CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Data");
 
         NumberAxis yAxis = new NumberAxis();
@@ -41,8 +42,10 @@ public class PlotView extends Application {
         dataSeries.setName("st");
 
         List<ReadingsPage.Observation> list = model.getReadingsPage(14, "PM10").getObservations();
+        int i = 1;
         for(ReadingsPage.Observation ob : list){
-            dataSeries.getData().add(new XYChart.Data(1, ob.getValue()));
+            dataSeries.getData().add(new XYChart.Data(ob.getTime().toString(), ob.getValue()));
+            i++;
         }
 
         lineChart.getData().add(dataSeries);
