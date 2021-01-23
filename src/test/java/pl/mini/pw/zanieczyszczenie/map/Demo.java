@@ -27,7 +27,8 @@ public class Demo extends Application {
             mapView.addPOI(el.getGeographicLat(),
                     el.getGeographicLon(),
                     el.color(),
-                    e -> System.out.println(el.getId()));
+                    e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
+            );
         }
 
         var pane = mapView.getPane();
