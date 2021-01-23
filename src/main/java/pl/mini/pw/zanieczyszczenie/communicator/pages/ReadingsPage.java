@@ -27,8 +27,8 @@ public class ReadingsPage extends APIPage {
 
     public static class Observation {
         private LocalDateTime time;
-        private Double value;
-        public Observation(LocalDateTime time, Double value) {
+        private double value;
+        public Observation(LocalDateTime time, double value) {
             this.time = time;
             this.value = value;
         }
