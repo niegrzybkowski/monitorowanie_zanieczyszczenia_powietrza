@@ -85,8 +85,8 @@
                   <Rectangle fx:id="prostokatso2" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="718.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                   <Rectangle fx:id="prostokatstan" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="42.0" layoutX="574.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
                   <Text layoutX="636.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stan Powietrza" />
-                  <Text layoutX="582.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
-                  <Text layoutX="652.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM 10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
+                  <Text layoutX="582.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM2,5" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
+                  <Text layoutX="652.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PM10" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
                   <Text layoutX="727.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO2" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
                   <Text layoutX="581.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
                   <Text layoutX="652.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C6H6" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
