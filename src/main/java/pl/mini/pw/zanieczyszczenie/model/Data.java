@@ -1,21 +1,16 @@
 package pl.mini.pw.zanieczyszczenie.model;
 
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
-import pl.mini.pw.zanieczyszczenie.communicator.Parser;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Data implements Model{
 
     FindAllPage findAllPage;
-//    Map<Integer, IndexPage> indexPages;
     Map<Integer, StationInfoPage> stationInfoPages;
     Map<Integer, ReadingsPage> readingsPages;
     Map<Integer, SensorsPage> sensorsPages;
@@ -25,7 +20,6 @@ public class Data implements Model{
 
     public Data(BasicParser basicParser) {
         this.findAllPage = null;
-//        this.indexPages = new HashMap<>();
         this.readingsPages = new HashMap<>();
         this.sensorsPages = new HashMap<>();
         this.stationInfoPages = new HashMap<>();
@@ -33,7 +27,6 @@ public class Data implements Model{
     }
     public Data() {
         this.findAllPage = null;
-//        this.indexPages = new HashMap<>();
         this.readingsPages = new HashMap<>();
         this.sensorsPages = new HashMap<>();
         this.stationInfoPages = new HashMap<>();
@@ -50,31 +43,6 @@ public class Data implements Model{
         }
         return findAllPage;
     }
-
-//    @Override
-//    public IndexPage getIndexPage(int stationId) {
-//        if (!indexPages.containsKey(stationId)) {
-//            indexPages.put(stationId, parser.getIndex(stationId));
-//            count++;
-//        }
-//        return indexPages.get(stationId);
-//    }
-
-//    @Override
-//    public List<IndexPage> getAllIndexPages() {
-//        if (findAllPage == null) {
-//            getFindAll();
-//        }
-//
-//        for (FindAllPage.Station station: findAllPage.getContainer()) {
-//            int currentStationId = station.getId();
-//            if (!indexPages.containsKey(currentStationId)) {
-//                indexPages.put(currentStationId, parser.getIndex(currentStationId));
-//                count++;
-//            }
-//        }
-//        return new ArrayList<>(indexPages.values());
-//    }
 
     @Override
     public List<StationInfoPage> getStationInfoPages() {
@@ -120,7 +88,21 @@ public class Data implements Model{
     }
 
     @Override
-    public ReadingsPage getReadingsPage(int sensorId) {
+    public ReadingsPage getReadingsPage(int stationId, String key) {
+        int sensorId = getSensorsPage(stationId).getStationSensors()
+                .stream()
+                .filter(x -> x.getKey().equals(key))
+                .map(SensorsPage.Sensor::getSensorID)
+                .findFirst()
+                .orElse(-1);
+        if (sensorId==-1) {
+            return null;
+        }
+        return getReadingsPage(sensorId);
+    }
+
+
+    ReadingsPage getReadingsPage(int sensorId) {
         if (!readingsPages.containsKey(sensorId)) {
             readingsPages.put(sensorId, parser.getReadings(sensorId));
             count++;
@@ -135,9 +117,5 @@ public class Data implements Model{
             count++;
         }
         return sensorsPages.get(stationId);
-    }
-
-    public static void main(String[] args) {
-        Data data = new Data();
     }
 }
