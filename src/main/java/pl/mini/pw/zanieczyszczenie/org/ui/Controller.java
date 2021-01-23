@@ -73,7 +73,7 @@ public class Controller {
     @FXML
     private AnchorPane map;
     @FXML
-    private ProgressBar pasekpostepu;
+    private TextField ladowanie;
     @FXML
     private Button refreshbutton;
     @FXML
@@ -91,6 +91,9 @@ public class Controller {
 
         map.getChildren().setAll(root);
 
+        ladowanie.setText("");
+        ladowanie.setMouseTransparent(true);
+        ladowanie.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setText("Dobry");
@@ -143,13 +146,13 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-        pasekpostepu.setProgress(-1d); //włączanie paska postępu
-        pasekpostepu.setProgress(0d); //wyłączanie paska postępu
+
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            System.out.println("tak");
+            ladowanie.setText("Ładuję");
             addStations(mapView);
             updatepm25(55);
+            ladowanie.setText("");
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
