@@ -80,9 +80,21 @@ public class BasicParser implements Parser{
             String dateString = currentValue.get("date").toString();
             LocalDateTime date = LocalDateTime.parse(dateString, dateTimeFormatter);
             if (value == JSONObject.NULL) {
-                value = BigDecimal.ZERO; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
+                value = 0.0; // TODO: co tu się dzieje, czemu tu jest BigDecimal?
             }
-            observations.add(new ReadingsPage.Observation(date, ((BigDecimal) value).doubleValue()));
+            try {
+                observations.add(new ReadingsPage.Observation(date, (Double) value));
+            } catch(Exception e) {
+                try {
+                    observations.add(new ReadingsPage.Observation(date, ((Integer) value).doubleValue()));
+                } catch (Exception e1) {
+                    try {
+                        observations.add(new ReadingsPage.Observation(date, ((BigDecimal) value).doubleValue()));
+                    } catch(Exception e2) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
         String key = jsonObject.getString("key");
         key = key.replace(".", ""); // PM2.5 zapisujemy jako PM25 (enum)
