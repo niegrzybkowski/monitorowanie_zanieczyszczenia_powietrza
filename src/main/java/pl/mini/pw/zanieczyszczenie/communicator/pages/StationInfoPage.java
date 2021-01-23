@@ -1,6 +1,7 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -26,17 +27,17 @@ public class StationInfoPage extends APIPage{
 
         switch (id) {
             case 0:
-                return Color.decode("#00cc00");
+                return Color.web("#00cc00");
             case 1:
-                return Color.decode("#00ff00");
+                return Color.web("#00ff00");
             case 2:
-                return Color.decode("#ffff00");
+                return Color.web("#ffff00");
             case 3:
-                return Color.decode("#ff6600");
+                return Color.web("#ff6600");
             case 4:
-                return Color.decode("#ff3300");
+                return Color.web("#ff3300");
             default: {
-                return Color.decode("#737373");
+                return Color.web("#737373");
             }
         }
     }
