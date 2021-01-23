@@ -190,7 +190,6 @@ public class Controller {
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
             addStations(mapView);
-            updatepm25(55);
             ladowanie.setText("");
             event.consume();
         };
