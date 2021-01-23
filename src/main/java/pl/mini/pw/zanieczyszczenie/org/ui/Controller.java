@@ -334,7 +334,7 @@ public class Controller {
     }
 
     public void setprostokatStanColor(TextField wartosc, Rectangle prostokat) {
-        if ((wartosc.getCharacters().toString()).equals("Brak danych")) {
+        if (wartosc.getCharacters().isEmpty()) {
             prostokat.setFill(Color.web("#737373"));
         } else if ((wartosc.getCharacters().toString()).equals("Bardzo dobry")) {
             prostokat.setFill(Color.web("#00cc00"));
