@@ -51,7 +51,7 @@ public class BasicParserTest {
     }
     @Test
     public void findAllHash() throws Exception {
-        assertSortedListHash(-2037789062,
+        assertSortedListHash(-1061611982,
                 basicParser.getFindAll().getContainer(),
                 Comparator.comparingInt(FindAllPage.Station::getId));
     }
@@ -65,7 +65,7 @@ public class BasicParserTest {
 
     @Test
     public void readingsHash() throws Exception {
-        assertSortedListHash(-1753926665,
+        assertSortedListHash(-1153248221,
                 basicParser.getReadings(92).getObservations(),
                 Comparator.comparing(ReadingsPage.Observation::getTime));
     }
@@ -93,7 +93,7 @@ public class BasicParserTest {
 
     @Test
     public void indexHash() throws Exception {
-        assertSortedListHash(-1312665777,
+        assertSortedListHash(340425127,
                 basicParser.getIndex(52).getIndexes(),
                 Comparator.comparing(IndexPage.IndexData::getCalculationDate));
     }
