@@ -27,8 +27,8 @@ public class ReadingsPage extends APIPage {
 
     public static class Observation {
         private LocalDateTime time;
-        private double value;
-        public Observation(LocalDateTime time, double value) {
+        private Double value;
+        public Observation(LocalDateTime time, Double value) {
             this.time = time;
             this.value = value;
         }
@@ -52,23 +52,35 @@ public class ReadingsPage extends APIPage {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
+            if (!(o instanceof Observation)) return false;
             Observation that = (Observation) o;
-
-            if (Double.compare(that.value, value) != 0) return false;
-            return Objects.equals(time, that.time);
+            return Objects.equals(time, that.time) && Objects.equals(value, that.value);
         }
 
         @Override
         public int hashCode() {
-            int result;
-            long temp;
-            result = time != null ? time.hashCode() : 0;
-            temp = Double.doubleToLongBits(value);
-            result = 31 * result + (int) (temp ^ (temp >>> 32));
-            return result;
+            return Objects.hash(time, value);
         }
+//        @Override
+//        public boolean equals(Object o) {
+//            if (this == o) return true;
+//            if (o == null || getClass() != o.getClass()) return false;
+//
+//            Observation that = (Observation) o;
+//
+//            if (Double.compare(that.value, value) != 0) return false;
+//            return Objects.equals(time, that.time);
+//        }
+//
+//        @Override
+//        public int hashCode() {
+//            int result;
+//            long temp;
+//            result = time != null ? time.hashCode() : 0;
+//            temp = Double.doubleToLongBits(value);
+//            result = 31 * result + (int) (temp ^ (temp >>> 32));
+//            return result;
+//        }
     }
 
     @Override
