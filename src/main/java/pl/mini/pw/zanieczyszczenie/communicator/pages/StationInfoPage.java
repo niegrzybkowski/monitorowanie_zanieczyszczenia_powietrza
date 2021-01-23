@@ -42,6 +42,29 @@ public class StationInfoPage extends APIPage{
         }
     }
 
+    public String getStringIndex() {
+        int id = indexes.stream()
+                .filter(a -> a.getKey().equals("st"))
+                .findFirst()
+                .map(a -> a.getIndexLevel())
+                .orElse(-1);
+        switch (id) {
+            case 0:
+                return "Bardzo dobry";
+            case 1:
+                return "Dobry";
+            case 2:
+                return "Umiarkowany";
+            case 3:
+                return "Dostateczny";
+            case 4:
+                return "Zły";
+            default: {
+                return "Brak danych";
+            }
+        }
+    }
+
 
     public List<IndexPage.IndexData> getIndexes() {
         return indexes;

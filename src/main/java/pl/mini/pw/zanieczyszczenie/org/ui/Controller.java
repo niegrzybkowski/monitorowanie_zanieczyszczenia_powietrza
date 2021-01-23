@@ -288,11 +288,12 @@ public class Controller {
         else if((Double.parseDouble(wartosc.getCharacters().toString())) <= dost){
             prostokat.setFill(Color.web("#ff6600"));
         }
-        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= zly){
+        else if((Double.parseDouble(wartosc.getCharacters().toString())) <= zly &&
+                (Double.parseDouble(wartosc.getCharacters().toString())) > 0){
             prostokat.setFill(Color.web("#ff3300"));
         }
         else{
-            prostokat.setFill(Color.web("#e60000"));
+            prostokat.setFill(Color.web("#e60000")); // color gdy null
         }
     }
 
