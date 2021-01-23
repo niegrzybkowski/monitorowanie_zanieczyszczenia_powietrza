@@ -12,8 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.model.Data;
+import pl.mini.pw.zanieczyszczenie.model.Model;
 import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -75,15 +79,23 @@ public class Controller {
     @FXML
     private Button okbutton;
 
-
+    private Model model = new Data(
+      new BasicParser(BasicParser::giosDataSource)
+    );
 
     public void initialize() {
         MapView mapView = new MapView();
-        for(int i = 0; i < 500; i++) {
-            mapView.addPOI(52.23 + ThreadLocalRandom.current().nextDouble(), 21.01+ ThreadLocalRandom.current().nextDouble(), Color.BLUE,
-                    e -> System.out.println("tutaj byłoby coś, żeby otworzyć odpowiednie menu z prawej"));
+        try {
+            for (var el : model.getStationInfoPages()) {
+                mapView.addPOI(el.getGeographicLat(),
+                        el.getGeographicLon(),
+                        el.color(),
+                        e -> System.out.println(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                );
+            }
+        } catch (Exception e) {
+            System.out.println("ELOO");
         }
-
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
@@ -129,7 +141,6 @@ public class Controller {
         list_prostokaty.add(prostokatc6h6);
         list_prostokaty.add(prostokatso2);
         list_prostokaty.add(prostokato3);
-
 
 
         plot1.setTitle("Wykres 1");
