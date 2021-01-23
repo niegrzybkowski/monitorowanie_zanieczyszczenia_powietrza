@@ -115,7 +115,7 @@ public class Controller {
         ladowanie.setStyle("-fx-background-color: rgba(53,89,119,0);");
         stan_powietrza.setMouseTransparent(true);
         stan_powietrza.setStyle("-fx-background-color: rgba(53,89,119,0);");
-        stan_powietrza.setText("Dobry");
+        stan_powietrza.setText("");
         var list_zan = new ArrayList<TextField>();
         list_zan.add(pm25);
         list_zan.add(pm10);
@@ -127,7 +127,7 @@ public class Controller {
         for(TextField t : list_zan){
             t.setMouseTransparent(true);
             t.setStyle("-fx-background-color: rgba(53,89,119,0);");
-            t.setText("55");
+            t.setText("");
         }
         var list_jednostek = new ArrayList<TextField>();
 
@@ -334,7 +334,7 @@ public class Controller {
     }
 
     public void setprostokatStanColor(TextField wartosc, Rectangle prostokat) {
-        if (wartosc.getCharacters().isEmpty()) {
+        if ((wartosc.getCharacters().toString()).equals("Brak danych")) {
             prostokat.setFill(Color.web("#737373"));
         } else if ((wartosc.getCharacters().toString()).equals("Bardzo dobry")) {
             prostokat.setFill(Color.web("#00cc00"));

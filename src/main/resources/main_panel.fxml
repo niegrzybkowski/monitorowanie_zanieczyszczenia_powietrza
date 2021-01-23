@@ -132,12 +132,12 @@
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="jednostkano2" alignment="CENTER" editable="false" layoutX="727.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+                  <TextField fx:id="jednostkano2" alignment="CENTER" editable="false" layoutX="722.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="jednostkaco" alignment="CENTER" editable="false" layoutX="583.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+                  <TextField fx:id="jednostkaco" alignment="CENTER" editable="false" layoutX="582.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="jednostkaso2" alignment="CENTER" editable="false" layoutX="728.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+                  <TextField fx:id="jednostkaso2" alignment="CENTER" editable="false" layoutX="722.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                      <font>
                         <Font size="10.0" />
                      </font>
