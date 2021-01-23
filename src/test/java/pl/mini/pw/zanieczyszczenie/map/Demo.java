@@ -1,10 +1,11 @@
-package pl.mini.pw.zanieczyszczenie.org.ui.map;
+package pl.mini.pw.zanieczyszczenie.map;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.util.concurrent.ThreadLocalRandom;
 

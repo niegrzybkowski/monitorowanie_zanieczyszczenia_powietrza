@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.org.ui.map;
+package pl.mini.pw.zanieczyszczenie.map;
 
 public class DemoLauncher {
     public static void main(String[] args) {
