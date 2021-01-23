@@ -118,4 +118,12 @@ public class Data implements Model{
         }
         return sensorsPages.get(stationId);
     }
+
+    public static void main(String[] args) {
+        Model model = new Data(
+                new BasicParser(BasicParser::loadFromTestResources)
+        );
+
+        System.out.println(model.getReadingsPage(14, "PM10"));
+    }
 }
