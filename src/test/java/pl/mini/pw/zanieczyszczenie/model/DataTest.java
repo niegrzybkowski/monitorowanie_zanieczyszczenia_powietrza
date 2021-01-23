@@ -108,8 +108,8 @@ public class DataTest {
 
         data.getStationInfoPages();
 
-        Assert.assertEquals(9, data.count);
-        Assert.assertEquals(9, data.stationInfoPages.size()+1);
+        Assert.assertEquals(208, data.count);
+        Assert.assertEquals(208, data.stationInfoPages.size()+1);
 
 
 
@@ -120,8 +120,8 @@ public class DataTest {
             data.getStationInfoPage(117);
         }
 
-        Assert.assertEquals(9, data.count);
-        Assert.assertEquals(9, data.stationInfoPages.size()+1);
+        Assert.assertEquals(208, data.count);
+        Assert.assertEquals(208, data.stationInfoPages.size()+1);
 
     }
 
