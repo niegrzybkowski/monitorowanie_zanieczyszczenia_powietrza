@@ -13,8 +13,7 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.List;
 
 public class PlotView extends Application {
@@ -24,8 +23,6 @@ public class PlotView extends Application {
         Model model = new Data(
                 new BasicParser(BasicParser::loadFromTestResources)
         );
-
-        System.out.println(model.getReadingsPage(14, "PM10"));
 
 
         primaryStage.setTitle("Wykres 1");
