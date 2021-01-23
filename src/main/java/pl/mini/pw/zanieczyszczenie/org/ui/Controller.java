@@ -150,9 +150,11 @@ public class Controller {
 
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
+            ladowanie.setText("Ładuję");
             System.out.println("tak");
             addStations(mapView);
             updatepm25(55);
+            ladowanie.setText("");
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
@@ -167,7 +169,6 @@ public class Controller {
     }
 
     public void addStations(MapView mapView){
-        ladowanie.setText("Ładuję");
         try {
             for (var el : model.getStationInfoPages()) {
                 mapView.addPOI(el.getGeographicLat(),
@@ -180,7 +181,6 @@ public class Controller {
             e.printStackTrace();
             System.out.println("ELOO");
         }
-        ladowanie.setText("");
     }
 
     public void updatepm25(double stezenie){
