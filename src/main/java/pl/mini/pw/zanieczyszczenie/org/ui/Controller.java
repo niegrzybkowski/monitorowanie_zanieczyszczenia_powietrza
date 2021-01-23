@@ -216,6 +216,11 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
     }
 
+    public void updatestan(String stan){
+        stan_powietrza.setText(stan);
+        setprostokatStanColor(stan_powietrza, prostokatstan);
+    }
+
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
         if(wartosc.getCharacters().isEmpty()){
             prostokat.setFill(Color.web("#737373"));
