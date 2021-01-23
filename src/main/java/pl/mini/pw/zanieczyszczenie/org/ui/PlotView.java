@@ -42,9 +42,9 @@ public class PlotView extends Application {
 
         List<ReadingsPage.Observation> list = model.getReadingsPage(14, "PM10").getObservations();
         for(ReadingsPage.Observation ob : list){
-            dataSeries.getData().add(new XYChart.Data(ob.getTime(), ob.getValue()) {
-            });
+            dataSeries.getData().add(new XYChart.Data(1, ob.getValue()));
         }
+
         lineChart.getData().add(dataSeries);
 
         VBox vbox = new VBox(lineChart);
