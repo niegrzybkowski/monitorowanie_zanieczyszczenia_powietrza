@@ -20,6 +20,7 @@ import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.DoubleConsumer;
 
@@ -217,13 +218,27 @@ public class Controller {
         }
     }
     public void updateButtons(int idStacji) {
-        var page = model.getReadingsPage(idStacji, "PM25");
-        if(page != null && page.getObservations().size() !=0) {
-            updatepm25(page.getObservations().get(0).getValue());
-        } else {
-            updatepm25(-1);
+        for(String key: List.of("PM25", "PM10", "NO2", "CO", "C6H6", "SO2", "O3")) {
+            var page = model.getReadingsPage(idStacji, key);
+            if(page != null && page.getObservations().size() !=0) {
+                keyToFun(page.getObservations().get(0).getValue(), key);
+            } else {
+                keyToFun(-1, key);
+            }
         }
+    }
 
+    public void keyToFun(double stezenie, String key){
+        switch (key) {
+            case "PM25": updatepm25(stezenie);
+            case "PM10": updatepm10(stezenie);
+            case "NO2": updateno2(stezenie);
+            case "CO": updateco(stezenie);
+            case "C6H6": updatec6h6(stezenie);
+            case "SO2": updateso2(stezenie);
+            case "O3": updateo3(stezenie);
+
+        }
     }
 
     public void updatepm25(double stezenie){
@@ -243,7 +258,6 @@ public class Controller {
         pm10.setText(stezenieSt);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
     }
-
 
     public void updateno2(double stezenie){
         String stezenieSt = "-";
@@ -295,7 +309,7 @@ public class Controller {
     }
 
     public void setprostokatColor(TextField wartosc, Rectangle prostokat, int bdb, int db, int umiark, int dost, int zly){
-        if(wartosc.getCharacters().isEmpty() || wartosc.getCharacters().equals("-")){
+        if(wartosc.getCharacters().isEmpty() || wartosc.getCharacters().toString().equals("-")){
             prostokat.setFill(Color.web("#737373"));
         }
         else if((Double.parseDouble(wartosc.getCharacters().toString())) <= bdb){
