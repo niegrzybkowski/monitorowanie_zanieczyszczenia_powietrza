@@ -39,7 +39,6 @@ public class BasicParser implements Parser{
                 return "";
             }
             var str = dataStream.lines().collect(Collectors.joining());
-            System.out.println(str);
             return str;
         } catch (IOException e) {
             System.err.println("Error loading from resource: " + e.getMessage());
