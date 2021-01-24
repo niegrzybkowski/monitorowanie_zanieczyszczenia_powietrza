@@ -3,6 +3,7 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.Button;
@@ -83,8 +84,6 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
-    private LineChart<LocalDateTime, Double> plot1;
-    @FXML
     private AnchorPane map;
     @FXML
     private TextField ladowanie;
@@ -92,6 +91,8 @@ public class Controller {
     private Button refreshbutton;
     @FXML
     private Button okbutton;
+    @FXML
+    private VBox plotpollution;
 
     private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
@@ -110,6 +111,19 @@ public class Controller {
         VBox root = new VBox(pane);
 
         map.getChildren().setAll(root);
+
+        Model model = new Data(
+                new BasicParser(BasicParser::loadFromTestResources)
+        );
+
+
+
+        PlotView pv = new PlotView();
+        pv.setCurrent(model.getReadingsPage(14, "PM10"));
+
+        VBox vbox = new VBox(pv.chart);
+
+        plotpollution.getChildren().setAll(vbox);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -176,7 +190,6 @@ public class Controller {
         prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
         prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
-        plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
         setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);

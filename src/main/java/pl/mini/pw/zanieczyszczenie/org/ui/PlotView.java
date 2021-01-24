@@ -20,7 +20,7 @@ import java.util.List;
 public class PlotView extends Application {
 
     private ReadingsPage current;
-    private final LineChart<String, Number> chart;
+    public final LineChart<String, Number> chart;
 
     public PlotView() {
         CategoryAxis xAxis = new CategoryAxis();
