@@ -83,7 +83,7 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
-    private LineChart plot1;
+    private LineChart<LocalDateTime, Double> plot1;
     @FXML
     private AnchorPane map;
     @FXML
@@ -97,8 +97,14 @@ public class Controller {
       new BasicParser(BasicParser::loadFromTestResources)
     );
 
+    private int currentStation = -1;
+
+    private MapView mapView;
+
+    private PlotView plotView;
+
     public void initialize() {
-        MapView mapView = new MapView();
+        mapView = new MapView();
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
@@ -161,14 +167,14 @@ public class Controller {
 
 
 
-        prostokatpm25klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatpm10klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatno2klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatcoklik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatc6h6klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatso2klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokato3klik.setOnMouseClicked(t -> System.out.println("ok"));
-        prostokatstanklik.setOnMouseClicked(t -> System.out.println("ok"));
+        prostokatpm25klik.setOnMouseClicked(t -> makeChart("PM25"));
+        prostokatpm10klik.setOnMouseClicked(t -> makeChart("PM10"));
+        prostokatno2klik.setOnMouseClicked(t -> makeChart("NO2"));
+        prostokatcoklik.setOnMouseClicked(t -> makeChart("CO"));
+        prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
+        prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
+        prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
+        prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
         plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
@@ -197,8 +203,9 @@ public class Controller {
         okbutton.setOnAction(okbuttonHandler);
     }
 
-    public void makeChart(int idStacji, String key) {
-
+    public void makeChart(String key) {
+        System.out.println("stacja: " + currentStation + " klucz:"+ key);
+        // plotView.setCurrent(model.getReadingsPage(currentStation, key));
     }
 
     public void addStations(MapView mapView){
@@ -215,7 +222,9 @@ public class Controller {
             System.err.println("Error loading data! Ruin has come to our family...");
         }
     }
+
     public void updateButtons(int idStacji) {
+        currentStation = idStacji;
         for(String key: List.of("PM25", "PM10", "NO2", "CO", "C6H6", "SO2", "O3")) {
             var page = model.getReadingsPage(idStacji, key);
             if(page != null && page.getObservations().size() !=0) {
