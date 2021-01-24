@@ -95,7 +95,7 @@ public class Controller {
     @FXML
     VBox plotpollution;
 
-    private final PlotView pv = new PlotView();
+    private final PlotView pv = new PlotView(false);
 
     private final Model model = new Data(
             new BasicParser(BasicParser::loadFromTestResources)

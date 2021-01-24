@@ -6,28 +6,24 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-
-import java.util.List;
-
 public class PlotView extends Application {
 
     private ReadingsPage current;
-
+    private boolean isXaxis;
 
 
     private LineChart<String, Number> chart;
 
-    public PlotView() {
+    public PlotView(boolean isXAxisActive) {
         chart = makeNewChart();
+        this.isXaxis = isXAxisActive;
     }
 
     public LineChart<String, Number> makeNewChart() {
@@ -64,8 +60,12 @@ public class PlotView extends Application {
             series.getData().add(data);
         }
         chart.getData().add(series);
-        chart.getXAxis().setTickLabelsVisible(false);
-        chart.getXAxis().setOpacity(0);
+
+        if(!isXaxis) {
+            chart.getXAxis().setOpacity(0);
+            chart.getXAxis().setTickLabelsVisible(false);
+        }
+
     }
 
     @Override
@@ -77,7 +77,7 @@ public class PlotView extends Application {
 
         primaryStage.setTitle("Wykres 1");
 
-        PlotView pv = new PlotView();
+        PlotView pv = new PlotView(false);
         pv.setCurrent(model.getReadingsPage(14, "PM10"));
 
         VBox vbox = new VBox(pv.chart);
