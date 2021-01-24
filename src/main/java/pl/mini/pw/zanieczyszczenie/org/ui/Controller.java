@@ -205,6 +205,7 @@ public class Controller {
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
 
+        plotpollution.setOnMouseClicked(t -> System.out.println("ok"));
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
