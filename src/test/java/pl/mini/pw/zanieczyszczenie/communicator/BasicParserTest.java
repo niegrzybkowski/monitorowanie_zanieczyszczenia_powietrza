@@ -65,7 +65,7 @@ public class BasicParserTest {
 
     @Test
     public void readingsHash() throws Exception {
-        assertSortedListHash(1654379492,
+        assertSortedListHash(-102295474,
                 basicParser.getReadings(92).getObservations(),
                 Comparator.comparing(ReadingsPage.Observation::getTime));
     }
