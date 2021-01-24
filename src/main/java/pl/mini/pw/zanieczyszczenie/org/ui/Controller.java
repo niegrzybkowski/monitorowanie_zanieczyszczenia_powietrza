@@ -3,6 +3,7 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.*;
@@ -87,8 +88,6 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
-    private LineChart<String, Number> plot1;
-    @FXML
     private AnchorPane map;
     @FXML
     private TextField ladowanie;
@@ -98,27 +97,38 @@ public class Controller {
     private Button okbutton;
     @FXML
     ToggleGroup selected;
+    @FXML
+    VBox plotpollution;
 
     private final Model model = new Data(
-      new BasicParser(BasicParser::loadFromTestResources)
+            new BasicParser(BasicParser::loadFromTestResources)
     );
 
     private int currentStation = -1;
 
     private MapView mapView;
 
-    private PlotView plotView;
 
     public void initialize() {
         mapView = new MapView();
-        plotView = new PlotView();
 
-        plot1 = plotView.getChart();
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
         map.getChildren().setAll(root);
+
+        Model model = new Data(
+                new BasicParser(BasicParser::loadFromTestResources)
+        );
+
+
+        PlotView pv = new PlotView();
+        pv.setCurrent(model.getReadingsPage(14, "PM10"));
+
+        VBox vbox = new VBox(pv.chart);
+
+        plotpollution.getChildren().setAll(vbox);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -176,16 +186,15 @@ public class Controller {
 
 
 
-        prostokatpm25klik.setOnMouseClicked(t -> makeChart("PM25"));
-        prostokatpm10klik.setOnMouseClicked(t -> makeChart("PM10"));
-        prostokatno2klik.setOnMouseClicked(t -> makeChart("NO2"));
-        prostokatcoklik.setOnMouseClicked(t -> makeChart("CO"));
-        prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
-        prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
-        prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
-        prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
+       // prostokatpm25klik.setOnMouseClicked(t -> makeChart("PM25"));
+       // prostokatpm10klik.setOnMouseClicked(t -> makeChart("PM10"));
+       // prostokatno2klik.setOnMouseClicked(t -> makeChart("NO2"));
+      //  prostokatcoklik.setOnMouseClicked(t -> makeChart("CO"));
+     //   prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
+     //   prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
+      //  prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
+      //  prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
-        plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
         setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
@@ -214,11 +223,11 @@ public class Controller {
         updateButtons(562);
     }
 
-    public void makeChart(String key) {
-        System.out.println("stacja: " + currentStation + " klucz:"+ key);
-        plotView.setCurrent(model.getReadingsPage(currentStation, key));
-        plot1 = plotView.getChart();
-    }
+    //public void makeChart(String key) {
+   //     System.out.println("stacja: " + currentStation + " klucz:"+ key);
+    //    plotView.setCurrent(model.getReadingsPage(currentStation, key));
+   //     plot1 = plotView.getChart();
+   // }
 
     public void addStations(){
         try {
