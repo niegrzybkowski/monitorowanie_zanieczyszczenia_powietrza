@@ -91,6 +91,9 @@ public class PlotView extends Application {
         primaryStage.show();
     }
 
+    public ReadingsPage getCurrent() {
+        return current;
+    }
 
     public static void main(String[] args) {
         Application.launch(args);

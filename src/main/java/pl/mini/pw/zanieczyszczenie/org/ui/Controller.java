@@ -3,18 +3,14 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
@@ -22,8 +18,6 @@ import pl.mini.pw.zanieczyszczenie.model.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.DoubleConsumer;
 
 public class Controller {
     @FXML
@@ -101,6 +95,8 @@ public class Controller {
     @FXML
     VBox plotpollution;
 
+    private final PlotView pv = new PlotView();
+
     private final Model model = new Data(
             new BasicParser(BasicParser::loadFromTestResources)
     );
@@ -123,8 +119,6 @@ public class Controller {
                 new BasicParser(BasicParser::loadFromTestResources)
         );
 
-
-        PlotView pv = new PlotView();
         pv.setCurrent(model.getReadingsPage(14, "PM25"));
 
         VBox vbox = new VBox(pv.getChart());
@@ -207,7 +201,7 @@ public class Controller {
 
 
         plotpollution.setOnMouseClicked(t -> {
-            OknoWykres.run();
+            OknoWykres.popUp(pv.getCurrent());
         });
 
 
@@ -231,7 +225,6 @@ public class Controller {
     public void makeChart(String key) {
         System.out.println("stacja: " + currentStation + " klucz:"+ key);
 
-        PlotView pv = new PlotView();
         pv.setCurrent(model.getReadingsPage(currentStation, key));
 
         VBox vbox = new VBox(pv.getChart());

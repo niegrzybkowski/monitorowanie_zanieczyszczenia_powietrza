@@ -12,44 +12,29 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-public class OknoWykres extends Application {
+public class OknoWykres {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void popUp(ReadingsPage readingsPage){
+        Stage stage = new Stage();
 
-    @Override
-    public void start(final Stage primaryStage) {
-        Model model = new Data(
-                new BasicParser(BasicParser::loadFromTestResources)
-        );
-
-
-        primaryStage.setTitle("Wykres 1");
+        stage.setTitle("Wykres 1");
 
         PlotView pv = new PlotView();
-        pv.setCurrent(model.getReadingsPage(currentStation, key));
+        pv.setCurrent(readingsPage);
+        pv.updateChart();
 
         VBox vbox = new VBox(pv.getChart());
-
-
-
-        VBox vbox = new VBox(pv.getChart());
-
 
         Scene scene = new Scene(vbox, 400, 200);
 
-        primaryStage.setScene(scene);
-        primaryStage.setHeight(300);
-        primaryStage.setWidth(1200);
+        stage.setScene(scene);
+        stage.setHeight(300);
+        stage.setWidth(1200);
 
-        primaryStage.show();
-    }
-
-    public static void run(){
-        launch();
+        stage.show();
     }
 }
