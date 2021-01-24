@@ -5,14 +5,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.DoubleConsumer;
 
@@ -98,6 +99,8 @@ public class Controller {
     private Button refreshbutton;
     @FXML
     private Button okbutton;
+    @FXML
+    ToggleGroup selected;
 
     private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
@@ -208,7 +211,7 @@ public class Controller {
             for (var el : model.getStationInfoPages()) {
                 mapView.addPOI(el.getGeographicLat(),
                         el.getGeographicLon(),
-                        el.color(),
+                        el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
                         e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
                 );
             }
@@ -276,7 +279,7 @@ public class Controller {
             stezenieSt = String.valueOf(stezenie);
         }
         co.setText(stezenieSt);
-        setprostokatColor(co, prostokatco, 3, 7, 11, 15, 21);
+        setprostokatColor(co, prostokatco, 3000, 7000, 11000, 15000, 21000);
     }
 
     public void updatec6h6(double stezenie){
