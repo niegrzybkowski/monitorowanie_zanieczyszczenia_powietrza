@@ -153,7 +153,7 @@ public class MapView {
         return new Point2D(x, y);
     }
 
-    private void drawPOIs() {
+    public void drawPOIs() {
         poiGroup.getChildren().clear();
         Rectangle2D smolView = new Rectangle2D(
                 view.getViewport().getMinX()+25,

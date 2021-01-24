@@ -109,6 +109,7 @@ public class Controller {
 
     private PlotView plotView;
 
+
     public void initialize() {
         mapView = new MapView();
         plotView = new PlotView();
@@ -200,7 +201,6 @@ public class Controller {
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
             addStations();
-            ladowanie.setText("");
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
@@ -222,7 +222,6 @@ public class Controller {
 
 
     public void addStations(){
-        pm25.setText("69.69");
         Thread loadingThread = new Thread(() -> {
             try {
                 Thread.sleep(1000);
@@ -238,9 +237,11 @@ public class Controller {
                 e.printStackTrace();
                 System.err.println("Error loading data! Ruin has come to our family...");
             }
-            pm25.setText("13.37");
+
+            ladowanie.setText("Gotowe");
         });
         loadingThread.start();
+
     }
 
     public void updateButtons(int idStacji) {
