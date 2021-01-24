@@ -205,7 +205,6 @@ public class Controller {
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            ladowanie.setText("Ładuję");
             addStations();
             event.consume();
         };
@@ -232,10 +231,11 @@ public class Controller {
 
 
     public void addStations(){
+        ladowanie.setText("Ładuję...");
+        //ladowanie.setStyle("-fx-text-fill:black;");
         Thread loadingThread = new Thread(() -> {
             imageview.setVisible(true);
             try {
-                Thread.sleep(1000);
                 for (var el : model.getStationInfoPages()) {
 
                     mapView.addPOI(el.getGeographicLat(),
@@ -244,12 +244,14 @@ public class Controller {
                             e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
                     );
                 }
+                ladowanie.setText("Gotowe");
             } catch (Exception e) {
-                e.printStackTrace();
                 System.err.println("Error loading data! Ruin has come to our family...");
+                ladowanie.setText("Błąd!");
+                e.printStackTrace();
+                //ladowanie.setStyle("-fx-text-fill: red;");
             }
             imageview.setVisible(false);
-            ladowanie.setText("Gotowe");
             Platform.runLater(mapView::drawPOIs);
         });
         loadingThread.start();
