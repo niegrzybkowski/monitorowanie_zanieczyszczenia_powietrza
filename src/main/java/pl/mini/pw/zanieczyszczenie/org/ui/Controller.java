@@ -220,19 +220,27 @@ public class Controller {
         plot1 = plotView.getChart();
     }
 
+
     public void addStations(){
-        try {
-            for (var el : model.getStationInfoPages()) {
-                mapView.addPOI(el.getGeographicLat(),
-                        el.getGeographicLon(),
-                        el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
-                        e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
-                );
+        pm25.setText("69.69");
+        Thread loadingThread = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                for (var el : model.getStationInfoPages()) {
+
+                    mapView.addPOI(el.getGeographicLat(),
+                            el.getGeographicLon(),
+                            el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
+                            e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                    );
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Error loading data! Ruin has come to our family...");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error loading data! Ruin has come to our family...");
-        }
+            pm25.setText("13.37");
+        });
+        loadingThread.start();
     }
 
     public void updateButtons(int idStacji) {
