@@ -49,7 +49,7 @@ public class PlotView extends Application {
         chart = makeNewChart();
         chart.setCreateSymbols(false);
         if (current == null){
-            System.out.println("current == null");
+//            System.out.println("current == null");
             chart.setVisible(false);
             return;
         }
