@@ -226,7 +226,6 @@ public class Controller {
 
 
 
-        updateButtons(562);
 
         selected.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
             Platform.runLater(this::addStations);
