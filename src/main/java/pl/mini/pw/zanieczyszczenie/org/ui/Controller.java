@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +22,7 @@ import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -101,6 +104,8 @@ public class Controller {
     private Button okbutton;
     @FXML
     ToggleGroup selected;
+    @FXML
+    ImageView imageview = new ImageView();
 
     private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
@@ -115,14 +120,14 @@ public class Controller {
 
     public void initialize() {
         mapView = new MapView();
-        plotView = new PlotView();
-
-        plot1 = plotView.getChart();
+        Image i = new Image(new File("docs/load.gif").toURI().toString());
+        imageview.setImage(i);
+        imageview.setVisible(false);
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
-        map.getChildren().setAll(root);
+        map.getChildren().setAll(root, imageview);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -228,6 +233,7 @@ public class Controller {
 
     public void addStations(){
         Thread loadingThread = new Thread(() -> {
+            imageview.setVisible(true);
             try {
                 Thread.sleep(1000);
                 for (var el : model.getStationInfoPages()) {
@@ -242,7 +248,7 @@ public class Controller {
                 e.printStackTrace();
                 System.err.println("Error loading data! Ruin has come to our family...");
             }
-
+            imageview.setVisible(false);
             ladowanie.setText("Gotowe");
             Platform.runLater(mapView::drawPOIs);
         });
