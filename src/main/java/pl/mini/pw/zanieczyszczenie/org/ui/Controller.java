@@ -124,7 +124,7 @@ public class Controller {
 
 
         PlotView pv = new PlotView();
-        pv.setCurrent(model.getReadingsPage(14, "PM10"));
+        pv.setCurrent(model.getReadingsPage(14, "PM25"));
 
         VBox vbox = new VBox(pv.getChart());
 

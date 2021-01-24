@@ -52,6 +52,7 @@ public class PlotView extends Application {
         chart = new LineChart<>(xAxis, yAxis);
         if (current == null){
             System.out.println("current == null");
+            chart.setVisible(false);
             return;
         }
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -63,6 +64,8 @@ public class PlotView extends Application {
                             observation.getValue()));
         }
         chart.getData().add(series);
+        chart.getXAxis().setTickLabelsVisible(false);
+        chart.getXAxis().setOpacity(0);
     }
 
     @Override
