@@ -1,5 +1,8 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -196,8 +199,6 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-
-
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
             addStations();
@@ -239,6 +240,7 @@ public class Controller {
             }
 
             ladowanie.setText("Gotowe");
+            Platform.runLater(mapView::drawPOIs);
         });
         loadingThread.start();
 
