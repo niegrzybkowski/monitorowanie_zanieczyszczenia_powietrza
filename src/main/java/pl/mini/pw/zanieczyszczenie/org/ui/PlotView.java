@@ -26,11 +26,15 @@ public class PlotView extends Application {
     private LineChart<String, Number> chart;
 
     public PlotView() {
+        chart = makeNewChart();
+    }
+
+    public LineChart<String, Number> makeNewChart() {
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setTickMarkVisible(false);
         NumberAxis yAxis = new NumberAxis();
         yAxis.setTickMarkVisible(false);
-        chart = new LineChart<>(xAxis, yAxis);
+        return new LineChart<>(xAxis, yAxis);
     }
 
     public LineChart<String, Number> getChart() {
