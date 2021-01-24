@@ -126,7 +126,7 @@ public class Controller {
         PlotView pv = new PlotView();
         pv.setCurrent(model.getReadingsPage(14, "PM10"));
 
-        VBox vbox = new VBox(pv.chart);
+        VBox vbox = new VBox(pv.getChart());
 
         plotpollution.getChildren().setAll(vbox);
 
@@ -186,14 +186,14 @@ public class Controller {
 
 
 
-       // prostokatpm25klik.setOnMouseClicked(t -> makeChart("PM25"));
-       // prostokatpm10klik.setOnMouseClicked(t -> makeChart("PM10"));
-       // prostokatno2klik.setOnMouseClicked(t -> makeChart("NO2"));
-      //  prostokatcoklik.setOnMouseClicked(t -> makeChart("CO"));
-     //   prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
-     //   prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
-      //  prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
-      //  prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
+        prostokatpm25klik.setOnMouseClicked(t -> makeChart("PM25"));
+        prostokatpm10klik.setOnMouseClicked(t -> makeChart("PM10"));
+        prostokatno2klik.setOnMouseClicked(t -> makeChart("NO2"));
+        prostokatcoklik.setOnMouseClicked(t -> makeChart("CO"));
+        prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
+        prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
+        prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
+        prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
@@ -223,11 +223,16 @@ public class Controller {
         updateButtons(562);
     }
 
-    //public void makeChart(String key) {
-   //     System.out.println("stacja: " + currentStation + " klucz:"+ key);
-    //    plotView.setCurrent(model.getReadingsPage(currentStation, key));
-   //     plot1 = plotView.getChart();
-   // }
+    public void makeChart(String key) {
+        System.out.println("stacja: " + currentStation + " klucz:"+ key);
+
+        PlotView pv = new PlotView();
+        pv.setCurrent(model.getReadingsPage(currentStation, key));
+
+        VBox vbox = new VBox(pv.getChart());
+        plotpollution.getChildren().setAll(vbox);
+
+    }
 
     public void addStations(){
         try {

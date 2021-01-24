@@ -20,12 +20,19 @@ import java.util.List;
 public class PlotView extends Application {
 
     private ReadingsPage current;
-    protected LineChart<String, Number> chart;
+
+
+
+    private LineChart<String, Number> chart;
 
     public PlotView() {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         chart = new LineChart<>(xAxis, yAxis);
+    }
+
+    public LineChart<String, Number> getChart() {
+        return chart;
     }
 
     public void setCurrent(ReadingsPage current) {
