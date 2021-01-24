@@ -212,7 +212,7 @@ public class Controller {
 
 
         plotpollution.setOnMouseClicked(t -> {
-            if(!model.getReadingsPage(currentStation, actualChart).getObservations().isEmpty()){
+            if(pv.getChart().isVisible()){
                 OknoWykres.popUp(pv.getCurrent());
             }
         });
