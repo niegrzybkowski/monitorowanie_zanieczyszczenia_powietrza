@@ -47,7 +47,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="560.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
+<VBox prefHeight="560.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
   <children>
       <AnchorPane prefHeight="523.0" prefWidth="807.0" VBox.vgrow="ALWAYS">
          <children>
@@ -143,8 +143,10 @@
                   </TextField>
                   <Rectangle fx:id="prostokato3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                   <Text layoutX="581.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O3" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
-                  <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" x="250.0" y="200.0" />
-                  <AnchorPane fx:id="map" layoutX="2.0" layoutY="48.0" prefHeight="491.0" prefWidth="548.0" />
+                  <AnchorPane fx:id="map" layoutX="2.0" layoutY="48.0" prefHeight="491.0" prefWidth="548.0">
+                     <children>
+                        <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" x="200.0" y="200.0" AnchorPane.bottomAnchor="170.60000000000002" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="170.6" />
+                     </children></AnchorPane>
                   <TextField fx:id="o3" alignment="CENTER" editable="false" layoutX="572.0" layoutY="272.0" prefHeight="28.0" prefWidth="60.0">
                      <font>
                         <Font size="14.0" />
