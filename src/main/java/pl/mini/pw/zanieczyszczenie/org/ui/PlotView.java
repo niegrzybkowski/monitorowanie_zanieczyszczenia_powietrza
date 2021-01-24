@@ -13,6 +13,8 @@ import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
+import java.util.Collections;
+
 public class PlotView extends Application {
 
     private ReadingsPage current;
@@ -53,10 +55,12 @@ public class PlotView extends Application {
         }
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(current.getKey());
-        for(var observation: current.getObservations()) {
+        var list = current.getObservations();
+
+        for(int i = list.size(); i-- > 0;) {
             var data = new XYChart.Data<String, Number>(
-                    observation.getTime().toString(),
-                    observation.getValue());
+                    list.get(i).getTime().toString(),
+                    list.get(i).getValue());
             series.getData().add(data);
         }
         chart.getData().add(series);
