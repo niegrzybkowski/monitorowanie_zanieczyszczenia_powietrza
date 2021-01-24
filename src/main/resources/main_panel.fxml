@@ -174,7 +174,7 @@
                            <toggleGroup>
                               <ToggleGroup fx:id="selected" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="PM25" mnemonicParsing="false" text="pm25" toggleGroup="$selected" />
+                        <RadioButton fx:id="PM25" mnemonicParsing="false" text="pm2,5" toggleGroup="$selected" />
                         <RadioButton fx:id="PM10" mnemonicParsing="false" text="pm10" toggleGroup="$selected" />
                         <RadioButton fx:id="NO2" mnemonicParsing="false" text="no2" toggleGroup="$selected" />
                         <RadioButton fx:id="CO" mnemonicParsing="false" text="co" toggleGroup="$selected" />
