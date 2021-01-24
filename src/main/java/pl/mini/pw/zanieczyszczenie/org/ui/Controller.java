@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -17,12 +15,9 @@ import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.DoubleConsumer;
 
 public class Controller {
     @FXML
@@ -200,6 +195,10 @@ public class Controller {
             event.consume();
         };
         okbutton.setOnAction(okbuttonHandler);
+    }
+
+    public void makeChart(int idStacji, String key) {
+
     }
 
     public void addStations(MapView mapView){
