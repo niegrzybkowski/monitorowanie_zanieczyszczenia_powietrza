@@ -233,11 +233,14 @@ public class Controller {
     }
 
     public void makeChart(String key) {
-        System.out.println("stacja: " + currentStation + " klucz:"+ key);
+//        System.out.println("stacja: " + currentStation + " klucz:"+ key);
         actualChart = key;
 
-        pv.setCurrent(model.getReadingsPage(currentStation, key));
-
+        if (currentStation == -1) {
+            pv.setCurrent(null);
+        } else {
+            pv.setCurrent(model.getReadingsPage(currentStation, key));
+        }
         VBox vbox = new VBox(pv.getChart());
         plotpollution.getChildren().setAll(vbox);
 
