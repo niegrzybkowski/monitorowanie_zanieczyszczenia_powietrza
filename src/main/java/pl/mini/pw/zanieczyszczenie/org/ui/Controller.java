@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
@@ -205,7 +206,10 @@ public class Controller {
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
 
-        plotpollution.setOnMouseClicked(t -> System.out.println("ok"));
+        plotpollution.setOnMouseClicked(t -> {
+            OknoWykres.run();
+        });
+
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
