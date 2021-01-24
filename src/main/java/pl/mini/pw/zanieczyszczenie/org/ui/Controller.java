@@ -1,11 +1,16 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -17,6 +22,7 @@ import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -98,6 +104,8 @@ public class Controller {
     private Button okbutton;
     @FXML
     ToggleGroup selected;
+    @FXML
+    ImageView imageview = new ImageView();
 
     private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
@@ -109,16 +117,17 @@ public class Controller {
 
     private PlotView plotView;
 
+
     public void initialize() {
         mapView = new MapView();
-        plotView = new PlotView();
-
-        plot1 = plotView.getChart();
+        Image i = new Image(new File("docs/load.gif").toURI().toString());
+        imageview.setImage(i);
+        imageview.setVisible(false);
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
-        map.getChildren().setAll(root);
+        map.getChildren().setAll(root, imageview);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -195,12 +204,8 @@ public class Controller {
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
 
-
-
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            ladowanie.setText("Ładuję");
             addStations();
-            ladowanie.setText("");
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
@@ -212,6 +217,10 @@ public class Controller {
         okbutton.setOnAction(okbuttonHandler);
 
         updateButtons(562);
+
+        selected.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            Platform.runLater(this::addStations);
+        });
     }
 
     public void makeChart(String key) {
@@ -220,19 +229,33 @@ public class Controller {
         plot1 = plotView.getChart();
     }
 
+
     public void addStations(){
-        try {
-            for (var el : model.getStationInfoPages()) {
-                mapView.addPOI(el.getGeographicLat(),
-                        el.getGeographicLon(),
-                        el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
-                        e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
-                );
+        ladowanie.setText("Ładuję...");
+        //ladowanie.setStyle("-fx-text-fill:black;");
+        Thread loadingThread = new Thread(() -> {
+            imageview.setVisible(true);
+            try {
+                for (var el : model.getStationInfoPages()) {
+
+                    mapView.addPOI(el.getGeographicLat(),
+                            el.getGeographicLon(),
+                            el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
+                            e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                    );
+                }
+                ladowanie.setText("Gotowe");
+            } catch (Exception e) {
+                System.err.println("Error loading data! Ruin has come to our family...");
+                ladowanie.setText("Błąd!");
+                e.printStackTrace();
+                //ladowanie.setStyle("-fx-text-fill: red;");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error loading data! Ruin has come to our family...");
-        }
+            imageview.setVisible(false);
+            Platform.runLater(mapView::drawPOIs);
+        });
+        loadingThread.start();
+
     }
 
     public void updateButtons(int idStacji) {

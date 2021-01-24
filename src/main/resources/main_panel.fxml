@@ -35,6 +35,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -148,6 +149,7 @@
                   </TextField>
                   <Rectangle fx:id="prostokato3" arcHeight="5.0" arcWidth="5.0" fill="#1fff8c" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                   <Text layoutX="581.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O3" textAlignment="CENTER" wrappingWidth="41.15936279296875" />
+                  <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" x="250.0" y="200.0" />
                   <AnchorPane fx:id="map" layoutX="2.0" layoutY="48.0" prefHeight="491.0" prefWidth="548.0" />
                   <TextField fx:id="o3" alignment="CENTER" editable="false" layoutX="572.0" layoutY="272.0" prefHeight="28.0" prefWidth="60.0">
                      <font>

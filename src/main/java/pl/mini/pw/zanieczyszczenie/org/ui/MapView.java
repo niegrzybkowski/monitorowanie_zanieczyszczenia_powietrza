@@ -30,8 +30,8 @@ public class MapView {
     private static final double longitudeLow = 13.89;
     private static final double longitudeHigh = 24.5;
 
-    private static final double latitudeLow = 55.0;
-    private static final double latitudeHigh = 48.9;
+    private static final double latitudeLow = 55.1;
+    private static final double latitudeHigh = 48.7;
 
     private final List<POI> pois = new ArrayList<>();
 
@@ -153,7 +153,7 @@ public class MapView {
         return new Point2D(x, y);
     }
 
-    private void drawPOIs() {
+    public void drawPOIs() {
         poiGroup.getChildren().clear();
         Rectangle2D smolView = new Rectangle2D(
                 view.getViewport().getMinX()+25,
