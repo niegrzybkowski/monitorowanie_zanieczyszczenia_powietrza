@@ -10,7 +10,7 @@ public class OknoWykres {
     public static void popUp(ReadingsPage readingsPage){
         Stage stage = new Stage();
 
-        stage.setTitle("Wykres 1");
+        stage.setTitle("Wykres");
 
         PlotView pv = new PlotView(true);
         pv.setCurrent(readingsPage);
