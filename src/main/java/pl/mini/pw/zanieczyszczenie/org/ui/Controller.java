@@ -101,6 +101,8 @@ public class Controller {
 
     private final PlotView pv = new PlotView(false);
 
+    private String actualChart;
+
     private final Model model = new Data(
             new BasicParser(BasicParser::loadFromTestResources)
     );
@@ -210,7 +212,9 @@ public class Controller {
 
 
         plotpollution.setOnMouseClicked(t -> {
-            OknoWykres.popUp(pv.getCurrent());
+            if(!model.getReadingsPage(currentStation, actualChart).getObservations().isEmpty()){
+                OknoWykres.popUp(pv.getCurrent());
+            }
         });
 
 
@@ -231,6 +235,7 @@ public class Controller {
 
     public void makeChart(String key) {
         System.out.println("stacja: " + currentStation + " klucz:"+ key);
+        actualChart = key;
 
         pv.setCurrent(model.getReadingsPage(currentStation, key));
 
