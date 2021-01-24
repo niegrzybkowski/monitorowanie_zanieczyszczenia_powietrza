@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
 
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -26,8 +25,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.DoubleConsumer;
 
 public class Controller {
     @FXML
@@ -93,8 +90,6 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
-    private LineChart<String, Number> plot1;
-    @FXML
     private AnchorPane map;
     @FXML
     private TextField ladowanie;
@@ -106,16 +101,19 @@ public class Controller {
     ToggleGroup selected;
     @FXML
     ImageView imageview = new ImageView();
+    @FXML
+    VBox plotpollution;
+
+    private final PlotView pv = new PlotView(false);
 
     private final Model model = new Data(
-      new BasicParser(BasicParser::loadFromTestResources)
+            new BasicParser(BasicParser::loadFromTestResources)
     );
 
     private int currentStation = -1;
 
     private MapView mapView;
 
-    private PlotView plotView;
 
 
     public void initialize() {
@@ -124,10 +122,22 @@ public class Controller {
         imageview.setImage(i);
         imageview.setVisible(false);
 
+
+
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
         map.getChildren().setAll(root, imageview);
+
+        Model model = new Data(
+                new BasicParser(BasicParser::loadFromTestResources)
+        );
+
+        pv.setCurrent(model.getReadingsPage(14, "PM25"));
+
+        VBox vbox = new VBox(pv.getChart());
+
+        plotpollution.getChildren().setAll(vbox);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -194,7 +204,6 @@ public class Controller {
         prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
         prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
-        plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
         setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
@@ -203,6 +212,12 @@ public class Controller {
         setprostokatColor(so2, prostokatso2, 51, 101, 201, 351, 501);
         setprostokatColor(o3, prostokato3, 71, 121, 151, 181, 241);
         setprostokatStanColor(stan_powietrza, prostokatstan);
+
+
+        plotpollution.setOnMouseClicked(t -> {
+            OknoWykres.popUp(pv.getCurrent());
+        });
+
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             addStations();
@@ -225,8 +240,12 @@ public class Controller {
 
     public void makeChart(String key) {
         System.out.println("stacja: " + currentStation + " klucz:"+ key);
-        plotView.setCurrent(model.getReadingsPage(currentStation, key));
-        plot1 = plotView.getChart();
+
+        pv.setCurrent(model.getReadingsPage(currentStation, key));
+
+        VBox vbox = new VBox(pv.getChart());
+        plotpollution.getChildren().setAll(vbox);
+
     }
 
 
