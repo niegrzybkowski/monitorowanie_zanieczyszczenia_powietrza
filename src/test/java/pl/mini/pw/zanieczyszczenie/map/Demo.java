@@ -3,15 +3,12 @@ package pl.mini.pw.zanieczyszczenie.map;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.communicator.TestUtilities;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
-import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
-
-import java.util.concurrent.ThreadLocalRandom;
+import pl.mini.pw.zanieczyszczenie.org.ui.MapView;
 
 public class Demo extends Application {
     private Model model = new Data(

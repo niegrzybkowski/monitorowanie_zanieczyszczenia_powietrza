@@ -16,7 +16,6 @@ import javafx.scene.shape.Rectangle;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
-import pl.mini.pw.zanieczyszczenie.org.ui.map.MapView;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

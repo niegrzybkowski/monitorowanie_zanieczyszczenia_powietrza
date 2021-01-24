@@ -1,4 +1,4 @@
-package pl.mini.pw.zanieczyszczenie.org.ui.map;
+package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
