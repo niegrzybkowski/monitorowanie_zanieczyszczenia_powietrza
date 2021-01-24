@@ -252,6 +252,7 @@ public class Controller {
         //ladowanie.setStyle("-fx-text-fill:black;");
         Thread loadingThread = new Thread(() -> {
             imageview.setVisible(true);
+            map.setOpacity(0.7);
             try {
                 for (var el : model.getStationInfoPages()) {
 
@@ -269,6 +270,7 @@ public class Controller {
                 //ladowanie.setStyle("-fx-text-fill: red;");
             }
             imageview.setVisible(false);
+            map.setOpacity(1);
             Platform.runLater(mapView::drawPOIs);
         });
         loadingThread.start();
