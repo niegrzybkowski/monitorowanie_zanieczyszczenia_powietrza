@@ -1,22 +1,19 @@
 package pl.mini.pw.zanieczyszczenie.org.ui;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
@@ -95,8 +92,6 @@ public class Controller {
     private TextField ladowanie;
     @FXML
     private Button refreshbutton;
-    @FXML
-    private Button okbutton;
     @FXML
     ToggleGroup selected;
     @FXML
@@ -225,11 +220,7 @@ public class Controller {
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
 
-        EventHandler<ActionEvent> okbuttonHandler = event -> {
-            System.out.println("ok");
-            event.consume();
-        };
-        okbutton.setOnAction(okbuttonHandler);
+
 
         updateButtons(562);
 
