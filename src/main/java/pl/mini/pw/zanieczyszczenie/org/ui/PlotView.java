@@ -20,7 +20,7 @@ import java.util.List;
 public class PlotView extends Application {
 
     private ReadingsPage current;
-    private final LineChart<String, Number> chart;
+    private LineChart<String, Number> chart;
 
     public PlotView() {
         CategoryAxis xAxis = new CategoryAxis();
@@ -34,14 +34,17 @@ public class PlotView extends Application {
     }
 
     public void updateChart() {
-        chart.getData().clear();
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        chart = new LineChart<>(xAxis, yAxis);
         if (current == null){
+            System.out.println("current == null");
             return;
         }
-        var list = current.getObservations();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(current.getKey());
-        for(var observation: list) {
+        for(var observation: current.getObservations()) {
+            System.out.println(observation);
             series.getData().add(
                     new XYChart.Data<>(observation.getTime().toString(),
                     observation.getValue()));
@@ -72,6 +75,9 @@ public class PlotView extends Application {
         primaryStage.show();
     }
 
+    public LineChart<String, Number> getChart() {
+        return chart;
+    }
 
     public static void main(String[] args) {
         Application.launch(args);

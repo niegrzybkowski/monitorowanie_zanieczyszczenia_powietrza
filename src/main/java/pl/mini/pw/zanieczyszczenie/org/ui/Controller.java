@@ -15,7 +15,6 @@ import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +82,7 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
-    private LineChart<LocalDateTime, Double> plot1;
+    private LineChart<String, Number> plot1;
     @FXML
     private AnchorPane map;
     @FXML
@@ -105,6 +104,9 @@ public class Controller {
 
     public void initialize() {
         mapView = new MapView();
+        plotView = new PlotView();
+
+        plot1 = plotView.getChart();
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
@@ -190,7 +192,7 @@ public class Controller {
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
-            addStations(mapView);
+            addStations();
             ladowanie.setText("");
             event.consume();
         };
@@ -201,14 +203,17 @@ public class Controller {
             event.consume();
         };
         okbutton.setOnAction(okbuttonHandler);
+
+        updateButtons(562);
     }
 
     public void makeChart(String key) {
         System.out.println("stacja: " + currentStation + " klucz:"+ key);
-        // plotView.setCurrent(model.getReadingsPage(currentStation, key));
+        plotView.setCurrent(model.getReadingsPage(currentStation, key));
+        plot1 = plotView.getChart();
     }
 
-    public void addStations(MapView mapView){
+    public void addStations(){
         try {
             for (var el : model.getStationInfoPages()) {
                 mapView.addPOI(el.getGeographicLat(),
