@@ -27,7 +27,9 @@ public class PlotView extends Application {
 
     public PlotView() {
         CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setTickMarkVisible(false);
         NumberAxis yAxis = new NumberAxis();
+        yAxis.setTickMarkVisible(false);
         chart = new LineChart<>(xAxis, yAxis);
     }
 
