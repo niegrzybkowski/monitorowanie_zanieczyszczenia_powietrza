@@ -8,6 +8,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.communicator.pages.ReadingsPage;
@@ -47,9 +48,8 @@ public class PlotView extends Application {
     }
 
     public void updateChart() {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        chart = new LineChart<>(xAxis, yAxis);
+        chart = makeNewChart();
+        chart.setCreateSymbols(false);
         if (current == null){
             System.out.println("current == null");
             chart.setVisible(false);
@@ -58,10 +58,10 @@ public class PlotView extends Application {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(current.getKey());
         for(var observation: current.getObservations()) {
-            System.out.println(observation);
-            series.getData().add(
-                    new XYChart.Data<>(observation.getTime().toString(),
-                            observation.getValue()));
+            var data = new XYChart.Data<String, Number>(
+                    observation.getTime().toString(),
+                    observation.getValue());
+            series.getData().add(data);
         }
         chart.getData().add(series);
         chart.getXAxis().setTickLabelsVisible(false);
