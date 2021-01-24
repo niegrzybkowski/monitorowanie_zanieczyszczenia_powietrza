@@ -6,6 +6,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
@@ -18,6 +19,36 @@ import java.util.List;
 
 public class PlotView extends Application {
 
+    private ReadingsPage current;
+    private final LineChart<String, Number> chart;
+
+    public PlotView() {
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        chart = new LineChart<>(xAxis, yAxis);
+    }
+
+    public void setCurrent(ReadingsPage current) {
+        this.current = current;
+        updateChart();
+    }
+
+    public void updateChart() {
+        chart.getData().clear();
+        if (current == null){
+            return;
+        }
+        var list = current.getObservations();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(current.getKey());
+        for(var observation: list) {
+            series.getData().add(
+                    new XYChart.Data<>(observation.getTime().toString(),
+                    observation.getValue()));
+        }
+        chart.getData().add(series);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Model model = new Data(
@@ -27,27 +58,10 @@ public class PlotView extends Application {
 
         primaryStage.setTitle("Wykres 1");
 
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Data");
+        PlotView pv = new PlotView();
+        pv.setCurrent(model.getReadingsPage(14, "PM10"));
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Stężenie pyłu");
-
-        LineChart lineChart = new LineChart(xAxis, yAxis);
-
-        XYChart.Series dataSeries = new XYChart.Series();
-        dataSeries.setName("st");
-
-        List<ReadingsPage.Observation> list = model.getReadingsPage(14, "PM10").getObservations();
-        int i = 1;
-        for(ReadingsPage.Observation ob : list){
-            dataSeries.getData().add(new XYChart.Data(ob.getTime().toString(), ob.getValue()));
-            i++;
-        }
-
-        lineChart.getData().add(dataSeries);
-
-        VBox vbox = new VBox(lineChart);
+        VBox vbox = new VBox(pv.chart);
 
         Scene scene = new Scene(vbox, 400, 200);
 
