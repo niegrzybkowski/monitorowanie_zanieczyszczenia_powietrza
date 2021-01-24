@@ -18,9 +18,9 @@ public class StationInfoPage extends APIPage{
         this.geographicLon = geographicLon;
     }
 
-    public Color color() {
+    public Color color(String type) {
         int id = indexes.stream()
-                .filter(a -> a.getKey().equals("st"))
+                .filter(a -> a.getKey().equals(type))
                 .findFirst()
                 .map(a -> a.getIndexLevel())
                 .orElse(-1);

@@ -3,22 +3,25 @@ package pl.mini.pw.zanieczyszczenie.org.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.DoubleConsumer;
 
 public class Controller {
     @FXML
@@ -84,6 +87,8 @@ public class Controller {
     @FXML
     private Rectangle prostokato3klik;
     @FXML
+    private LineChart<String, Number> plot1;
+    @FXML
     private AnchorPane map;
     @FXML
     private TextField ladowanie;
@@ -92,7 +97,7 @@ public class Controller {
     @FXML
     private Button okbutton;
     @FXML
-    private VBox plotpollution;
+    ToggleGroup selected;
 
     private final Model model = new Data(
       new BasicParser(BasicParser::loadFromTestResources)
@@ -106,24 +111,14 @@ public class Controller {
 
     public void initialize() {
         mapView = new MapView();
+        plotView = new PlotView();
+
+        plot1 = plotView.getChart();
 
         var pane = mapView.getPane();
         VBox root = new VBox(pane);
 
         map.getChildren().setAll(root);
-
-        Model model = new Data(
-                new BasicParser(BasicParser::loadFromTestResources)
-        );
-
-
-
-        PlotView pv = new PlotView();
-        pv.setCurrent(model.getReadingsPage(14, "PM10"));
-
-        VBox vbox = new VBox(pv.chart);
-
-        plotpollution.getChildren().setAll(vbox);
 
         ladowanie.setText("");
         ladowanie.setMouseTransparent(true);
@@ -190,6 +185,7 @@ public class Controller {
         prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
         prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
+        plot1.setTitle("Wykres 1");
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
         setprostokatColor(no2, prostokatno2, 41, 101, 151, 201, 401);
@@ -203,7 +199,7 @@ public class Controller {
 
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
             ladowanie.setText("Ładuję");
-            addStations(mapView);
+            addStations();
             ladowanie.setText("");
             event.consume();
         };
@@ -214,19 +210,22 @@ public class Controller {
             event.consume();
         };
         okbutton.setOnAction(okbuttonHandler);
+
+        updateButtons(562);
     }
 
     public void makeChart(String key) {
         System.out.println("stacja: " + currentStation + " klucz:"+ key);
-        // plotView.setCurrent(model.getReadingsPage(currentStation, key));
+        plotView.setCurrent(model.getReadingsPage(currentStation, key));
+        plot1 = plotView.getChart();
     }
 
-    public void addStations(MapView mapView){
+    public void addStations(){
         try {
             for (var el : model.getStationInfoPages()) {
                 mapView.addPOI(el.getGeographicLat(),
                         el.getGeographicLon(),
-                        el.color(),
+                        el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
                         e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
                 );
             }
@@ -296,7 +295,7 @@ public class Controller {
             stezenieSt = String.valueOf(stezenie);
         }
         co.setText(stezenieSt);
-        setprostokatColor(co, prostokatco, 3, 7, 11, 15, 21);
+        setprostokatColor(co, prostokatco, 3000, 7000, 11000, 15000, 21000);
     }
 
     public void updatec6h6(double stezenie){
