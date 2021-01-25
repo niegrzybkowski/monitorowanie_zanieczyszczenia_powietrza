@@ -291,7 +291,7 @@ public class Controller {
                     mapView.addPOI(el.getGeographicLat(),
                             el.getGeographicLon(),
                             el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
-                            e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                            e -> updateButtons(el.getId())// tutaj handler żeby zmienić prawy pasek
                     );
                 }
                 ladowanie.setText("Gotowe");
@@ -321,6 +321,9 @@ public class Controller {
             }
         }
         updatestan(model.getStationInfoPage(idStacji).getStringIndex());
+        pv.setCurrent(null);// przy zmianie stacji chowamy nie aktualny wykres
+        VBox vbox = new VBox(pv.getChart());
+        plotpollution.getChildren().setAll(vbox);
     }
 
     public void keyToFun(double stezenie, String key){
