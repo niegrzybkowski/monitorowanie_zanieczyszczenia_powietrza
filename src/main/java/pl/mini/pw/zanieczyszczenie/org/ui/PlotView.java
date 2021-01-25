@@ -15,10 +15,10 @@ import pl.mini.pw.zanieczyszczenie.model.Model;
 
 import java.util.Collections;
 
-public class PlotView extends Application {
+public class PlotView {
 
     private ReadingsPage current;
-    private boolean isXaxis;
+    private final boolean isXaxis;
 
 
     private LineChart<String, Number> chart;
@@ -72,34 +72,30 @@ public class PlotView extends Application {
 
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Model model = new Data(
-                new BasicParser(BasicParser::loadFromTestResources)
-        );
-
-
-        primaryStage.setTitle("Wykres 1");
-
-        PlotView pv = new PlotView(false);
-        pv.setCurrent(model.getReadingsPage(14, "PM10"));
-
-        VBox vbox = new VBox(pv.chart);
-
-        Scene scene = new Scene(vbox, 400, 200);
-
-        primaryStage.setScene(scene);
-        primaryStage.setHeight(300);
-        primaryStage.setWidth(1200);
-
-        primaryStage.show();
-    }
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+//        Model model = new Data(
+//                new BasicParser(BasicParser::loadFromTestResources)
+//        );
+//
+//
+//        primaryStage.setTitle("Wykres 1");
+//
+//        PlotView pv = new PlotView(false);
+//        pv.setCurrent(model.getReadingsPage(14, "PM10"));
+//
+//        VBox vbox = new VBox(pv.chart);
+//
+//        Scene scene = new Scene(vbox, 400, 200);
+//
+//        primaryStage.setScene(scene);
+//        primaryStage.setHeight(300);
+//        primaryStage.setWidth(1200);
+//
+//        primaryStage.show();
+//    }
 
     public ReadingsPage getCurrent() {
         return current;
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
     }
 }
