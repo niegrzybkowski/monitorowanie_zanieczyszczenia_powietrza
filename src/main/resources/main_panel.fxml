@@ -47,7 +47,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="560.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
+<VBox prefHeight="560.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mini.pw.zanieczyszczenie.org.ui.Controller">
   <children>
       <AnchorPane prefHeight="523.0" prefWidth="807.0" VBox.vgrow="ALWAYS">
          <children>
@@ -121,7 +121,7 @@
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="jednostkano2" alignment="CENTER" editable="false" layoutX="722.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
+                  <TextField fx:id="jednostkano2" alignment="CENTER" editable="false" layoutX="727.0" layoutY="141.0" prefHeight="27.0" prefWidth="41.0">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -136,7 +136,7 @@
                         <Font size="10.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="jednostkaso2" alignment="CENTER" editable="false" layoutX="722.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
+                  <TextField fx:id="jednostkaso2" alignment="CENTER" editable="false" layoutX="727.0" layoutY="213.0" prefHeight="27.0" prefWidth="41.0">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -170,6 +170,11 @@
                   <Rectangle fx:id="prostokatc6h6klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="643.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                   <Rectangle fx:id="prostokatso2klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="718.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                   <Rectangle fx:id="prostokato3klik" arcHeight="5.0" arcWidth="5.0" fill="#21ff8c00" height="60.0" layoutX="572.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                  <Button fx:id="refreshbutton1" layoutX="678.0" layoutY="8.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="Wczytaj">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
                   <HBox alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="42.0" prefWidth="548.0" spacing="25.0">
                      <children>
                         <RadioButton fx:id="ST" mnemonicParsing="false" selected="true" text="st">

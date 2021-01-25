@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.StationInfoPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
@@ -90,6 +91,8 @@ public class Controller {
     private AnchorPane map;
     @FXML
     private TextField ladowanie;
+    @FXML
+    private Button refreshbutton1;
     @FXML
     private Button refreshbutton;
     @FXML
@@ -217,18 +220,31 @@ public class Controller {
             }
         });
 
-
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            addStations();
+            refresh();
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
+
+        EventHandler<ActionEvent> refreshbutton1Handler = event -> {
+            addStations();
+            refreshbutton1.setVisible(false);
+            event.consume();
+        };
+        refreshbutton1.setOnAction(refreshbutton1Handler);
 
 
 
 
         selected.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            if (refreshbutton1.isVisible()) {
+                return;
+            }
             Platform.runLater(this::addStations);
+            StationInfoPage el = model.getStationInfoPage(currentStation);
+            MapView.POI current = mapView.getPoi(el.getGeographicLat(),
+                    el.getGeographicLon());
+            current.setColor(el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)));
         });
     }
 
@@ -246,6 +262,27 @@ public class Controller {
 
     }
 
+    public void refresh(){
+        ladowanie.setText("Odświeżam...");
+        //ladowanie.setStyle("-fx-text-fill:black;");
+        Thread loadingThread = new Thread(() -> {
+            imageview.setVisible(true);
+            map.setOpacity(0.7);
+            try {
+                model.refresh();
+                ladowanie.setText("Gotowe");
+            } catch (Exception e) {
+                System.err.println("Error loading data! Ruin has come to our family...");
+                ladowanie.setText("Błąd!");
+                e.printStackTrace();
+                //ladowanie.setStyle("-fx-text-fill: red;");
+            }
+            imageview.setVisible(false);
+            map.setOpacity(1);
+            Platform.runLater(model::refresh);
+        });
+        loadingThread.start();
+    }
 
     public void addStations(){
         ladowanie.setText("Ładuję...");
@@ -259,7 +296,15 @@ public class Controller {
                     mapView.addPOI(el.getGeographicLat(),
                             el.getGeographicLon(),
                             el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
-                            e -> updateButtons(el.getId()) // tutaj handler żeby zmienić prawy pasek
+                            e -> {
+                        updateButtons(el.getId());
+                        mapView.getPois().forEach(poi -> poi.setRadius(10.0));
+                        MapView.POI current = mapView.getPoi(el.getGeographicLat(),
+                                el.getGeographicLon());
+                        current.setRadius(15.0,
+                                el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)));
+                        current.setStroke(Color.web("000000"));
+                    }// tutaj handler żeby zmienić prawy pasek
                     );
                 }
                 ladowanie.setText("Gotowe");
@@ -289,6 +334,9 @@ public class Controller {
             }
         }
         updatestan(model.getStationInfoPage(idStacji).getStringIndex());
+        pv.setCurrent(null);// przy zmianie stacji chowamy nie aktualny wykres
+        VBox vbox = new VBox(pv.getChart());
+        plotpollution.getChildren().setAll(vbox);
     }
 
     public void keyToFun(double stezenie, String key){

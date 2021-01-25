@@ -119,6 +119,63 @@ public class Data implements Model{
         return sensorsPages.get(stationId);
     }
 
+    private void refreshFindAll() {
+        if (findAllPage==null) {
+            return;
+        }
+        if (findAllPage.shouldRefresh()) {
+            findAllPage = null;
+            getFindAll();
+        }
+    }
+
+    private void refreshStationInfoPages() {
+        if (stationInfoPages==null) {
+            return;
+        }
+
+        for (StationInfoPage station: stationInfoPages.values()) {
+            if (station.shouldRefresh()) {
+                stationInfoPages.remove(station.getId());
+                getStationInfoPage(station.getId());
+            }
+        }
+    }
+    private void refreshReadingsPages() {
+        if (readingsPages==null) {
+            return;
+        }
+
+        for (int sensorID: readingsPages.keySet()) {
+            ReadingsPage reading = readingsPages.get(sensorID);
+            if (reading.shouldRefresh()) {
+                readingsPages.remove(sensorID);
+                getReadingsPage(sensorID);
+            }
+        }
+    }
+    private void refreshSensorsPages() {
+        if (sensorsPages==null) {
+            return;
+        }
+
+        for (int stationID: sensorsPages.keySet()) {
+            SensorsPage sensor = sensorsPages.get(stationID);
+            if (sensor.shouldRefresh()) {
+                sensorsPages.remove(stationID);
+                getSensorsPage(stationID);
+            }
+        }
+    }
+
+    @Override
+    public void refresh() {
+        refreshFindAll();
+        refreshStationInfoPages();
+        refreshReadingsPages();
+        refreshSensorsPages();
+    }
+
     public static void main(String[] args) {
         Model model = new Data(
                 new BasicParser(BasicParser::loadFromTestResources)

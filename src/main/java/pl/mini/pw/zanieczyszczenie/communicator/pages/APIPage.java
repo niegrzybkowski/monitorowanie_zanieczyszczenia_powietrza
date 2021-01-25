@@ -17,6 +17,10 @@ public abstract class APIPage {
         return updated;
     }
 
+    public boolean shouldRefresh () {
+        return this.updated.getHour() - LocalDateTime.now().getHour() != 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
