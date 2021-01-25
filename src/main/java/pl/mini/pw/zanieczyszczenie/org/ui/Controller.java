@@ -91,6 +91,8 @@ public class Controller {
     @FXML
     private TextField ladowanie;
     @FXML
+    private Button refreshbutton1;
+    @FXML
     private Button refreshbutton;
     @FXML
     ToggleGroup selected;
@@ -217,17 +219,26 @@ public class Controller {
             }
         });
 
-
         EventHandler<ActionEvent> refreshbuttonHandler = event -> {
-            addStations();
+            refresh();
             event.consume();
         };
         refreshbutton.setOnAction(refreshbuttonHandler);
+
+        EventHandler<ActionEvent> refreshbutton1Handler = event -> {
+            addStations();
+            refreshbutton1.setVisible(false);
+            event.consume();
+        };
+        refreshbutton1.setOnAction(refreshbutton1Handler);
 
 
 
 
         selected.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            if (refreshbutton1.isVisible()) {
+                return;
+            }
             Platform.runLater(this::addStations);
         });
     }
@@ -246,6 +257,27 @@ public class Controller {
 
     }
 
+    public void refresh(){
+        ladowanie.setText("Odświeżam...");
+        //ladowanie.setStyle("-fx-text-fill:black;");
+        Thread loadingThread = new Thread(() -> {
+            imageview.setVisible(true);
+            map.setOpacity(0.7);
+            try {
+                model.refresh();
+                ladowanie.setText("Gotowe");
+            } catch (Exception e) {
+                System.err.println("Error loading data! Ruin has come to our family...");
+                ladowanie.setText("Błąd!");
+                e.printStackTrace();
+                //ladowanie.setStyle("-fx-text-fill: red;");
+            }
+            imageview.setVisible(false);
+            map.setOpacity(1);
+            Platform.runLater(model::refresh);
+        });
+        loadingThread.start();
+    }
 
     public void addStations(){
         ladowanie.setText("Ładuję...");
