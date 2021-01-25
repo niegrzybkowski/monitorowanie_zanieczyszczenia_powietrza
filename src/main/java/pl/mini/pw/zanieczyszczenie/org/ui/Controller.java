@@ -107,7 +107,7 @@ public class Controller {
     private String actualChart;
 
     private final Model model = new Data(
-            new BasicParser(BasicParser::loadFromTestResources)
+            new BasicParser(BasicParser::giosDataSource)
     );
 
     private int currentStation = -1;
