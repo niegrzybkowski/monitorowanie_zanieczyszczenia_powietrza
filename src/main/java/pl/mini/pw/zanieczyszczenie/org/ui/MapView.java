@@ -182,17 +182,35 @@ public class MapView {
         pois.add(new POI(circle, pos));
     }
 
+    public List<POI> getPois() {
+        return pois;
+    }
+
+    public POI getPoi(double lat, double lon) {
+        Point2D pos = scaleGeographicToImage(lat,lon);
+        for (POI e: getPois()) {
+            if (e.originalLocation.equals(pos)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     public AnchorPane getPane() {
         return container;
     }
 
-    private static class POI {
+    public static class POI {
         public Circle representation;
         public Point2D originalLocation;
 
         public POI(Circle representation, Point2D originalLocation) {
             this.representation = representation;
             this.originalLocation = originalLocation;
+        }
+
+        public void setRadius(double radius) {
+            representation.setRadius(radius);
         }
     }
 }

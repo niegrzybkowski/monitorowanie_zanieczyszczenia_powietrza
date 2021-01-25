@@ -291,7 +291,12 @@ public class Controller {
                     mapView.addPOI(el.getGeographicLat(),
                             el.getGeographicLon(),
                             el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)),
-                            e -> updateButtons(el.getId())// tutaj handler żeby zmienić prawy pasek
+                            e -> {
+                        updateButtons(el.getId());
+                        mapView.getPois().forEach(poi -> poi.setRadius(10.0));
+                        mapView.getPoi(el.getGeographicLat(),
+                                el.getGeographicLon()).setRadius(15.0);
+                    }// tutaj handler żeby zmienić prawy pasek
                     );
                 }
                 ladowanie.setText("Gotowe");
