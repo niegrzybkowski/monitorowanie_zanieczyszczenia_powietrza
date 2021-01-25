@@ -9,4 +9,5 @@ public interface Model {
     StationInfoPage getStationInfoPage(int stationId);
     ReadingsPage getReadingsPage(int stationId, String key);
     SensorsPage getSensorsPage(int stationId);
+    void refresh();
 }
