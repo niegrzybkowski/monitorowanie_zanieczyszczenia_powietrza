@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import pl.mini.pw.zanieczyszczenie.communicator.BasicParser;
+import pl.mini.pw.zanieczyszczenie.communicator.pages.StationInfoPage;
 import pl.mini.pw.zanieczyszczenie.model.Data;
 import pl.mini.pw.zanieczyszczenie.model.Model;
 
@@ -240,6 +241,10 @@ public class Controller {
                 return;
             }
             Platform.runLater(this::addStations);
+            StationInfoPage el = model.getStationInfoPage(currentStation);
+            MapView.POI current = mapView.getPoi(el.getGeographicLat(),
+                    el.getGeographicLon());
+            current.setColor(el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)));
         });
     }
 
@@ -294,8 +299,11 @@ public class Controller {
                             e -> {
                         updateButtons(el.getId());
                         mapView.getPois().forEach(poi -> poi.setRadius(10.0));
-                        mapView.getPoi(el.getGeographicLat(),
-                                el.getGeographicLon()).setRadius(15.0);
+                        MapView.POI current = mapView.getPoi(el.getGeographicLat(),
+                                el.getGeographicLon());
+                        current.setRadius(15.0,
+                                el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)));
+                        current.setStroke(Color.web("000000"));
                     }// tutaj handler żeby zmienić prawy pasek
                     );
                 }

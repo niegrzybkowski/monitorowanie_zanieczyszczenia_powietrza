@@ -209,8 +209,18 @@ public class MapView {
             this.originalLocation = originalLocation;
         }
 
+        public void setRadius(double radius, Paint color) {
+            representation.setRadius(radius);
+            representation.setFill(color);
+        }
         public void setRadius(double radius) {
             representation.setRadius(radius);
+        }
+        public void setColor(Paint color) {
+            representation.setFill(color);
+        }
+        public void setStroke(Paint color) {
+            representation.setStroke(color);
         }
     }
 }
