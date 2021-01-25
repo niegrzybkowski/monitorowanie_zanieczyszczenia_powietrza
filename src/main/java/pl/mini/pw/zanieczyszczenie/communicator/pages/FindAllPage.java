@@ -1,6 +1,7 @@
 package pl.mini.pw.zanieczyszczenie.communicator.pages;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class FindAllPage extends APIPage {
@@ -16,6 +17,11 @@ public class FindAllPage extends APIPage {
 
     public List<Station> getContainer() {
         return container;
+    }
+
+    @Override
+    public boolean shouldRefresh() {
+        return getUpdateTime().getDayOfYear() - LocalDateTime.now().getDayOfYear() != 0;
     }
 
     @Override

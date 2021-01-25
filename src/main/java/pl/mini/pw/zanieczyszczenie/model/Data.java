@@ -119,6 +119,16 @@ public class Data implements Model{
         return sensorsPages.get(stationId);
     }
 
+    private void refreshFindAll() {
+        if (findAllPage==null) {
+            return;
+        }
+        if (findAllPage.shouldRefresh()) {
+            findAllPage = null;
+            getFindAll();
+        }
+    }
+
     private void refreshStationInfoPages() {
         if (stationInfoPages==null) {
             return;
@@ -160,6 +170,7 @@ public class Data implements Model{
 
     @Override
     public void refresh() {
+        refreshFindAll();
         refreshStationInfoPages();
         refreshReadingsPages();
         refreshSensorsPages();
