@@ -202,7 +202,7 @@ public class Controller {
         prostokatc6h6klik.setOnMouseClicked(t -> makeChart("C6H6"));
         prostokatso2klik.setOnMouseClicked(t -> makeChart("SO2"));
         prostokato3klik.setOnMouseClicked(t -> makeChart("O3"));
-        prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
+        //prostokatstanklik.setOnMouseClicked(t -> System.out.println("co?"));
 
         setprostokatColor(pm25, prostokatpm25, 13, 37, 61, 85, 121);
         setprostokatColor(pm10, prostokatpm10, 21, 61, 101, 141, 201);
