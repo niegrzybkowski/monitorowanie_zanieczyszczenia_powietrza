@@ -241,6 +241,9 @@ public class Controller {
                 return;
             }
             Platform.runLater(this::addStations);
+            if(currentStation == -1) {
+                return;
+            }
             StationInfoPage el = model.getStationInfoPage(currentStation);
             MapView.POI current = mapView.getPoi(el.getGeographicLat(),
                     el.getGeographicLon());
