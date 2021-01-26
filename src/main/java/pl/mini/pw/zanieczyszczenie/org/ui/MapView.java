@@ -179,7 +179,16 @@ public class MapView {
             drawPOIs();
         });
         circle.setOnMouseClicked(eventHandler);
-        pois.add(new POI(circle, pos));
+
+        POI poi = new POI(circle, pos);
+        long count = pois.stream().filter(poi1 -> poi1.originalLocation.equals(poi.originalLocation)).count();
+        if (count == 0) {
+            pois.add(poi);
+        }
+    }
+    public void toFront(POI poi) {
+        pois.forEach(e -> e.representation.setViewOrder(1));
+        poi.representation.setViewOrder(0);
     }
 
     public List<POI> getPois() {
@@ -212,9 +221,11 @@ public class MapView {
         public void setRadius(double radius, Paint color) {
             representation.setRadius(radius);
             representation.setFill(color);
+            representation.toFront();
         }
         public void setRadius(double radius) {
             representation.setRadius(radius);
+            representation.setStroke(null);
         }
         public void setColor(Paint color) {
             representation.setFill(color);

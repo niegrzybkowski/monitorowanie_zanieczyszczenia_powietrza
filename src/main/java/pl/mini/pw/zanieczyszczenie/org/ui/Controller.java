@@ -312,6 +312,7 @@ public class Controller {
                         current.setRadius(15.0,
                                 el.color(((RadioButton) selected.getSelectedToggle()).getId().toLowerCase(Locale.ROOT)));
                         current.setStroke(Color.web("000000"));
+                        mapView.toFront(current);
                     }// tutaj handler żeby zmienić prawy pasek
                     );
                 }
