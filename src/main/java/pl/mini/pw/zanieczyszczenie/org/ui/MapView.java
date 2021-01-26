@@ -186,6 +186,10 @@ public class MapView {
             pois.add(poi);
         }
     }
+    public void toFront(POI poi) {
+        pois.forEach(e -> e.representation.setViewOrder(1));
+        poi.representation.setViewOrder(0);
+    }
 
     public List<POI> getPois() {
         return pois;
