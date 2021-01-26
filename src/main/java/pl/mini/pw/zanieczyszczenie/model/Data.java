@@ -169,7 +169,7 @@ public class Data implements Model{
     }
 
     @Override
-    public void refresh() {
+    public void refresh() throws InterruptedException{
         refreshFindAll();
         refreshStationInfoPages();
         refreshReadingsPages();

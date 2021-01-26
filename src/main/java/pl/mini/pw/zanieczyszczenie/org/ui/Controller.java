@@ -102,6 +102,8 @@ public class Controller {
     @FXML
     VBox plotpollution;
 
+    private static Thread loadingThread;
+
     private final PlotView pv = new PlotView(false);
 
     private String actualChart;
@@ -118,7 +120,7 @@ public class Controller {
 
     public void initialize() {
         mapView = new MapView();
-        Image i = new Image(new File("docs/load.gif").toURI().toString());
+        Image i = new Image("load.gif");
         imageview.setImage(i);
         imageview.setVisible(false);
 
@@ -128,10 +130,6 @@ public class Controller {
         VBox root = new VBox(pane);
 
         map.getChildren().setAll(root, imageview);
-
-        Model model = new Data(
-                new BasicParser(BasicParser::loadFromTestResources)
-        );
 
         pv.setCurrent(model.getReadingsPage(14, "PM25"));
 
@@ -265,26 +263,33 @@ public class Controller {
 
     }
 
-    public void refresh(){
-        ladowanie.setText("Odświeżam...");
+    public static void killLoadingThread() {
+        if(loadingThread != null && loadingThread.isAlive()){
+            loadingThread.interrupt();
+        }
+    }
+
+    public void refresh() {
         //ladowanie.setStyle("-fx-text-fill:black;");
-        Thread loadingThread = new Thread(() -> {
-            imageview.setVisible(true);
-            map.setOpacity(0.7);
-            try {
-                model.refresh();
-                ladowanie.setText("Gotowe");
-            } catch (Exception e) {
-                System.err.println("Error loading data! Ruin has come to our family...");
-                ladowanie.setText("Błąd!");
-                e.printStackTrace();
-                //ladowanie.setStyle("-fx-text-fill: red;");
-            }
-            imageview.setVisible(false);
-            map.setOpacity(1);
-            Platform.runLater(model::refresh);
-        });
-        loadingThread.start();
+        if(loadingThread == null || !loadingThread.isAlive()) {
+            ladowanie.setText("Odświeżam...");
+            Thread loadingThread = new Thread(() -> {
+                imageview.setVisible(true);
+                map.setOpacity(0.7);
+                try {
+                    model.refresh();
+                    ladowanie.setText("Gotowe");
+                } catch (Exception e) {
+                    System.err.println("Error loading data! Ruin has come to our family...");
+                    ladowanie.setText("Błąd!");
+                    e.printStackTrace();
+                    //ladowanie.setStyle("-fx-text-fill: red;");
+                }
+                imageview.setVisible(false);
+                map.setOpacity(1);
+            });
+            loadingThread.start();
+        }
     }
 
     public void addStations(){
