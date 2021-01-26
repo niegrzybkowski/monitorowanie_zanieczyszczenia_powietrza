@@ -179,8 +179,12 @@ public class MapView {
             drawPOIs();
         });
         circle.setOnMouseClicked(eventHandler);
-        circle.setStroke(null);
-        pois.add(new POI(circle, pos));
+
+        POI poi = new POI(circle, pos);
+        long count = pois.stream().filter(poi1 -> poi1.originalLocation.equals(poi.originalLocation)).count();
+        if (count == 0) {
+            pois.add(poi);
+        }
     }
 
     public List<POI> getPois() {
