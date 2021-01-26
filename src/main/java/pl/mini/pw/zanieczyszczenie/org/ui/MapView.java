@@ -179,6 +179,7 @@ public class MapView {
             drawPOIs();
         });
         circle.setOnMouseClicked(eventHandler);
+        circle.setStroke(null);
         pois.add(new POI(circle, pos));
     }
 
@@ -212,9 +213,11 @@ public class MapView {
         public void setRadius(double radius, Paint color) {
             representation.setRadius(radius);
             representation.setFill(color);
+            representation.toFront();
         }
         public void setRadius(double radius) {
             representation.setRadius(radius);
+            representation.setStroke(null);
         }
         public void setColor(Paint color) {
             representation.setFill(color);
