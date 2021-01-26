@@ -181,8 +181,12 @@ public class MapView {
         circle.setOnMouseClicked(eventHandler);
 
         POI poi = new POI(circle, pos);
-        long count = pois.stream().filter(poi1 -> poi1.originalLocation.equals(poi.originalLocation)).count();
-        if (count == 0) {
+        POI poiCurrent = pois.stream().filter(poi1 -> poi1.originalLocation.equals(poi.originalLocation))
+                .findFirst().orElse(null);
+
+        if (poiCurrent != null) {
+            poiCurrent.setColor(color);
+        } else {
             pois.add(poi);
         }
     }
