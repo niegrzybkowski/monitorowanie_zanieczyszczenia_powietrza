@@ -72,8 +72,11 @@ public class MapView {
         });
 
         view.setOnScroll(e -> {
-            scale(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
-            drawPOIs();
+            try {
+                scale(e.getDeltaY(), new Point2D(e.getX(), e.getY()));
+                drawPOIs();
+            }
+            catch (Exception ignored){}
         });
 
         view.setOnMouseClicked(e -> {
