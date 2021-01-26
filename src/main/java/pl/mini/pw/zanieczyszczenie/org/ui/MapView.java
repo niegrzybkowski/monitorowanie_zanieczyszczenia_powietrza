@@ -153,21 +153,23 @@ public class MapView {
     }
 
     public void drawPOIs() {
-        poiGroup.getChildren().clear();
-        Rectangle2D smolView = new Rectangle2D(
-                view.getViewport().getMinX()+25,
-                view.getViewport().getMinY()+25,
-                view.getViewport().getWidth()-50,
-                view.getViewport().getHeight()-50);
-        pois.stream()
-                .filter(c -> smolView.contains(c.originalLocation))
-                .peek(poi -> {
-                    var c = poi.representation;
-                    Point2D p = imageToView(poi.originalLocation);
-                    c.setCenterX(p.getX());
-                    c.setCenterY(p.getY());
-                })
-                .forEach(c -> poiGroup.getChildren().add(c.representation));
+        try {
+            poiGroup.getChildren().clear();
+            Rectangle2D smolView = new Rectangle2D(
+                    view.getViewport().getMinX() + 25,
+                    view.getViewport().getMinY() + 25,
+                    view.getViewport().getWidth() - 50,
+                    view.getViewport().getHeight() - 50);
+            pois.stream()
+                    .filter(c -> smolView.contains(c.originalLocation))
+                    .peek(poi -> {
+                        var c = poi.representation;
+                        Point2D p = imageToView(poi.originalLocation);
+                        c.setCenterX(p.getX());
+                        c.setCenterY(p.getY());
+                    })
+                    .forEach(c -> poiGroup.getChildren().add(c.representation));
+        } catch (IllegalArgumentException exception) {}
     }
 
     public void addPOI(double latitude, double longitude, Paint color,
